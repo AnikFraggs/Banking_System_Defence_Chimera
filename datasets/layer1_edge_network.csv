@@ -1,0 +1,2415 @@
+label,payload,severity,role,purpose,ip
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.4.73
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.26.188
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.33.121
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.19.200
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.14.125
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.15.96
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.11.21
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.29.38
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.50.155
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.27.15
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.21.110
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.22.184
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.23.236
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.42.222
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.39.53
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.38.39
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.39.159
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.36.32
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.36.122
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.14.204
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.43.196
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.5.194
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.11.145
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.18.191
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.44.227
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.27.110
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.32.239
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.5.164
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.19.208
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.46.116
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.38.91
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.20.224
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.31.133
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.11.94
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.29.168
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.31.209
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.10.48
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.43.154
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.10.5
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.15.237
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.1.54
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.23.207
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.32.49
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.1.128
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.26.10
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.33.126
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.40.124
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.10.36
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.4.86
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.9.200
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.41.176
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.46.43
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.16.235
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.3.93
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.26.222
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.2.19
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.28.212
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.5.40
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.8.40
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.21.235
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.29.55
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.4.27
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.17.38
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.13.15
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.37.15
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.39.106
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.6.252
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.28.102
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.18.2
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.32.148
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.27.20
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.31.38
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.47.27
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.45.234
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.36.245
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.31.22
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.1.158
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.31.72
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.1.84
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.24.222
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.14.208
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.32.216
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.41.104
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.32.89
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.38.202
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.5.200
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.18.126
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.18.191
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.5.7
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.38.93
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.16.206
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.18.83
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.35.98
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.9.221
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.25.205
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.45.38
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.5.156
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.25.158
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.40.162
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.23.173
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.48.91
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.16.162
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.9.71
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.19.194
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.9.164
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.47.59
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.13.128
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.16.160
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.22.208
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.47.3
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.45.87
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.8.83
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.33.148
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.29.154
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.47.202
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.43.135
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.1.2
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.43.136
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.14.23
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.19.21
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.24.106
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.12.238
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.22.1
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.27.165
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.27.235
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.4.146
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.13.69
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.30.232
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.31.82
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.9.130
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.17.210
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.14.192
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.36.240
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.11.205
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.12.3
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.5.2
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.29.107
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.31.247
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.15.181
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.31.170
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.2.149
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.30.42
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.35.20
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.5.106
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.24.178
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.25.57
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.18.252
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.8.34
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.18.33
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.24.124
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.11.62
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.7.219
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.29.197
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.2.27
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.10.198
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.43.220
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.49.170
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.1.49
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.10.182
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.31.21
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.21.82
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.17.18
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.37.107
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.4.50
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.18.128
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.47.34
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.37.126
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.47.142
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.10.99
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.34.13
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.29.82
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.4.153
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.37.145
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.37.166
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.35.87
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.40.216
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.35.194
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.40.128
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.45.129
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.11.46
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.17.250
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.33.224
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.19.183
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.21.92
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.31.96
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.36.190
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.47.78
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.43.127
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.45.62
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.33.224
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.42.91
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.27.46
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.38.216
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.4.111
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.11.164
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.4.156
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.22.5
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.15.49
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.28.213
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.41.157
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.21.65
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.10.121
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.14.154
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.27.247
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.39.238
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.12.234
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.37.93
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.16.9
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.37.136
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.35.197
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.25.215
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.6.91
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.29.234
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.23.72
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.14.161
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.44.246
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.39.117
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.30.231
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.3.163
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.35.252
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.27.172
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.32.148
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.37.50
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.40.99
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.41.240
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.33.117
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.42.86
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.41.140
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.12.42
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.49.151
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.36.35
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.33.244
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.31.4
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.6.149
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.9.137
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.37.163
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.23.71
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.25.156
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.7.175
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.31.217
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.6.84
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.37.186
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.31.43
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.4.105
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.8.244
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.33.83
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.47.251
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.27.211
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.49.242
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.47.166
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.48.10
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.13.213
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.13.109
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.49.138
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.12.71
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.30.63
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.10.226
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.9.251
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.30.167
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.15.125
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.25.107
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.24.203
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.19.100
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.1.215
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.44.103
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.40.207
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.11.56
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.23.166
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.32.245
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.17.62
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.14.26
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.26.129
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.11.15
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.21.166
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.27.167
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.2.116
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.35.135
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.18.74
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.47.11
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.34.254
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.6.1
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.14.222
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.21.238
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.22.198
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.11.191
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.12.134
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.23.148
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.32.84
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.32.92
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.41.154
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.43.160
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.40.39
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.33.236
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.38.82
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.15.235
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.12.5
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.2.54
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.29.21
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.6.117
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.41.199
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.31.125
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.34.3
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.39.218
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.44.61
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.18.179
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.13.130
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.49.153
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.19.80
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.19.113
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.33.117
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.1.108
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.28.190
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.50.54
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.23.18
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.33.200
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.35.110
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.41.176
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.19.214
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.2.41
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.12.58
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.32.84
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.28.164
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.13.210
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.24.182
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.15.156
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.42.128
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.40.180
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.4.149
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.22.213
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.27.234
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.50.36
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.8.180
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.17.47
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.3.31
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.47.78
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.2.233
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.40.86
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.20.154
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.45.211
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.14.175
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.7.103
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.5.44
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.1.207
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.29.167
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.31.176
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.42.230
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.36.254
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.48.189
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.46.218
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.10.186
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.17.154
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.2.252
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.38.193
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.39.59
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.30.250
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.12.108
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.1.100
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.38.18
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.33.122
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.48.20
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.43.20
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.2.82
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.20.14
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.32.137
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.37.103
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.36.105
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.3.157
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.49.164
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.49.239
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.21.12
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.4.150
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.3.227
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.45.205
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.50.150
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.32.77
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.39.184
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.8.153
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.22.23
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.49.176
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.2.46
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.30.192
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.50.212
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.20.137
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.2.216
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.43.23
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.20.248
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.19.195
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.8.250
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.41.149
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.47.232
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.36.189
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.28.78
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.43.125
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.45.5
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.34.213
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.9.38
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.19.236
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.39.253
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.35.29
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.19.101
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.31.143
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.2.231
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.19.195
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.34.20
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.6.207
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.26.185
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.50.133
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.26.183
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.26.23
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.41.167
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.26.164
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.48.37
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.49.22
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.34.60
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.9.3
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.16.211
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.50.69
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.3.79
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.17.135
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.46.253
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.27.143
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.46.70
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.40.148
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.17.139
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.14.180
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.7.151
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.4.117
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.28.61
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.37.182
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.39.253
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.28.12
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.27.109
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.43.50
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.2.82
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.15.14
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.47.6
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.46.252
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.29.166
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.14.156
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.35.233
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.10.238
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.42.118
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.17.225
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.4.192
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.2.244
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.14.203
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.36.239
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.29.13
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.7.93
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.3.178
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.16.168
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.12.78
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.11.190
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.45.147
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.30.8
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.46.208
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.32.14
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.48.33
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.44.166
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.40.209
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.13.50
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.25.124
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.24.60
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.38.161
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.3.94
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.25.168
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.38.70
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.44.134
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.43.174
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.38.22
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.34.71
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.47.48
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.20.144
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.8.189
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.20.117
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.34.93
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.40.126
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.25.159
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.12.200
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.24.211
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.2.48
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.16.108
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.28.210
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.37.222
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.8.92
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.1.154
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.50.189
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.17.195
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.12.118
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.31.217
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.11.123
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.45.128
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.39.157
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.47.166
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.32.86
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.41.172
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.45.44
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.26.123
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.29.221
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.7.22
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.36.30
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.19.193
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.1.108
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.49.6
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.9.60
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.26.26
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.49.243
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.21.191
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.7.136
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.18.110
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.46.196
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.15.185
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.15.8
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.35.103
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.12.158
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.12.251
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.6.233
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.29.140
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.20.131
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.38.227
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.11.212
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.2.89
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.45.186
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.14.83
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.13.227
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.23.86
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.6.42
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.31.17
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.35.50
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.42.38
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.16.61
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.32.122
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.38.224
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.12.152
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.49.233
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.28.245
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.14.10
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.27.164
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.5.23
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.13.31
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.42.156
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.32.7
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.48.55
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.17.155
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.15.149
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.47.70
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.50.105
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.1.243
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.34.126
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.19.172
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.27.217
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.14.166
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.12.216
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.5.220
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.47.152
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.14.141
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.16.220
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.13.230
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.6.248
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.8.12
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.27.151
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.5.210
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.8.66
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.14.186
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.44.246
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.26.43
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.45.5
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.24.133
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.19.90
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.20.11
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.20.213
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.50.211
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.19.124
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.32.56
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.8.242
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.41.48
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.26.118
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.29.196
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.28.129
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.34.132
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.40.231
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.20.84
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.34.72
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.6.227
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.42.214
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.36.136
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.11.14
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.16.165
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.49.27
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.19.183
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.49.27
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.29.189
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.32.177
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.37.138
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.3.163
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.15.253
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.11.41
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.18.220
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.10.78
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.37.234
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.34.201
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.33.91
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.14.132
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.25.48
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.11.204
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.45.153
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.8.225
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.15.96
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.15.42
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.8.60
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.46.222
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.35.97
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.8.22
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.36.59
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.14.13
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.44.181
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.22.213
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.11.173
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.46.152
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.24.225
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.36.227
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.14.2
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.3.189
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.39.169
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.45.35
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.32.177
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.10.238
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.26.232
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.43.112
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.37.42
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.6.49
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.28.106
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.11.145
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.44.135
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.36.90
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.35.190
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.41.154
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.20.245
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.32.213
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.18.224
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.13.70
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.29.119
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.31.194
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.2.142
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.35.93
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.17.21
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.27.46
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.33.12
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.33.94
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.21.11
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.17.97
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.10.101
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.14.46
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.42.61
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.50.162
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.38.50
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.27.39
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.47.244
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.36.99
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.49.5
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.35.60
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.3.193
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.22.37
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.18.3
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.30.124
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.31.23
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.20.90
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.9.74
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.1.37
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.6.121
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.3.97
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.34.233
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.17.180
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.32.107
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.22.211
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.25.65
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.2.25
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.21.81
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.27.120
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.49.95
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.37.225
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.5.109
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.11.15
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.26.67
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.6.81
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.14.171
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.24.120
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.21.81
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.11.120
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.13.163
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.40.157
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.43.40
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.24.110
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.20.8
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.33.169
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.28.232
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.7.205
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.13.65
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.24.245
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.28.250
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.45.232
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.37.202
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.6.97
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.50.221
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.50.35
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.25.7
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.35.115
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.49.222
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.44.83
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.35.23
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.26.76
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.15.99
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.42.84
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.19.207
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.32.42
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.33.178
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.28.153
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.35.184
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.26.185
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.18.48
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.36.207
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.2.195
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.31.94
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.30.66
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.9.98
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.39.23
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.13.8
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.44.162
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.27.84
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.7.177
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.45.90
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.18.190
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.43.139
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.21.175
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.39.26
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.48.218
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.8.77
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.12.214
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.9.26
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.13.235
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.15.147
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.45.193
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.47.100
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.16.67
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.22.229
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.14.104
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.33.233
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.19.86
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.36.9
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.13.196
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.26.50
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.41.89
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.35.15
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.2.7
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.11.219
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.40.152
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.36.75
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.9.16
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.14.82
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.47.172
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.26.105
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.19.88
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.6.6
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.31.72
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.30.131
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.12.134
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.19.69
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.45.52
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.22.62
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.17.127
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.41.47
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.13.174
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.2.149
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.26.60
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.29.28
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.17.209
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.43.189
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.35.74
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.39.171
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.13.215
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.10.150
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.27.195
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.43.193
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.30.199
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.22.189
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.41.56
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.24.71
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.5.133
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.22.239
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.3.104
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.31.168
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.40.127
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.25.214
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.33.253
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.28.92
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.26.100
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.10.124
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.41.244
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.43.195
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.28.221
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.15.45
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.47.83
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.3.97
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.20.244
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.48.21
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.1.172
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.20.102
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.38.155
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.13.67
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.18.150
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.12.100
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.37.204
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.13.251
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.17.251
+0,GET /api/banking/dashboard,0.0,CUSTOMER,login,192.168.21.102
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.18.156
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.25.197
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.13.197
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.31.52
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.32.9
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.14.79
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.32.169
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.18.73
+0,GET /api/market/overview,0.0,MANAGER,dashboard,192.168.36.165
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.15.23
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.10.90
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.34.144
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.10.40
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.30.216
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.35.240
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.11.164
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.16.86
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.43.89
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.2.214
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.1.48
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.42.112
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.17.47
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.50.128
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.6.224
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.43.34
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.26.61
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.40.183
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.4.26
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.33.90
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.21.29
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.1.231
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.47.202
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.11.183
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.41.164
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.4.238
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.18.99
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.15.166
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.40.42
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.29.97
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.5.188
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,dashboard,192.168.13.90
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.43.4
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.35.198
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.38.248
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.36.153
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.2.242
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.24.49
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.1.131
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.40.76
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.32.193
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.29.147
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.31.91
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.2.27
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.49.233
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.27.57
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.10.4
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.16.145
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.36.55
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.23.69
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.23.107
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.18.179
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.21.170
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.17.154
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.34.165
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.31.244
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.36.243
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.17.187
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.48.121
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.20.34
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.2.49
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.29.138
+0,POST /api/auth/login,0.0,MANAGER,login,192.168.13.5
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.40.247
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.48.16
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.27.208
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.39.132
+0,POST /api/banking/deposit,0.0,CUSTOMER,login,192.168.15.17
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.11.130
+0,POST /api/banking/deposit,0.0,CUSTOMER,market,192.168.31.78
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.35.153
+0,GET /api/banking/dashboard,0.0,MANAGER,login,192.168.28.79
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.39.227
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.2.56
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.25.45
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.5.59
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.4.37
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.8.52
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.17.119
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.23.225
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.38.44
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.48.235
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.44.217
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.44.236
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.26.126
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.15.131
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.15.124
+0,GET /api/market/overview,0.0,ACCOUNTANT,dashboard,192.168.26.14
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.25.185
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.9.147
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.32.38
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.27.140
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.33.229
+0,GET /api/banking/dashboard,0.0,MANAGER,dashboard,192.168.5.101
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.30.228
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.41.9
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.43.88
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.36.247
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.50.48
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.40.166
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.27.116
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.36.26
+0,GET /api/market/overview,0.0,ACCOUNTANT,login,192.168.23.83
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.33.177
+0,POST /api/auth/login,0.0,CUSTOMER,login,192.168.10.233
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.4.19
+0,GET /api/market/overview,0.0,MANAGER,login,192.168.22.178
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.7.80
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.44.83
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.48.39
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.13.215
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.14.145
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.50.11
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.29.245
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.37.41
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.9.11
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.50.132
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.36.51
+0,POST /api/banking/deposit,0.0,CUSTOMER,dashboard,192.168.45.26
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.28.36
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,dashboard,192.168.25.69
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.38.105
+0,POST /api/auth/login,0.0,CUSTOMER,market,192.168.43.99
+0,GET /api/market/overview,0.0,ACCOUNTANT,market,192.168.11.146
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.11.18
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.2.33
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.17.45
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.9.185
+0,POST /api/auth/login,0.0,MANAGER,dashboard,192.168.12.131
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.47.214
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.35.112
+0,GET /api/banking/dashboard,0.0,CUSTOMER,market,192.168.1.118
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.50.122
+0,GET /api/banking/dashboard,0.0,CUSTOMER,deposit,192.168.49.200
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.25.176
+0,POST /api/banking/deposit,0.0,MANAGER,dashboard,192.168.50.65
+0,POST /api/auth/login,0.0,CUSTOMER,deposit,192.168.44.206
+0,POST /api/auth/login,0.0,MANAGER,market,192.168.7.133
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.30.53
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.41.175
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.40.145
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.35.70
+0,POST /api/auth/login,0.0,ACCOUNTANT,login,192.168.44.32
+0,GET /api/market/overview,0.0,MANAGER,market,192.168.21.175
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.8.187
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.22.187
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.16.42
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.25.177
+0,GET /api/banking/dashboard,0.0,MANAGER,deposit,192.168.16.176
+0,POST /api/auth/login,0.0,ACCOUNTANT,deposit,192.168.12.179
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,login,192.168.35.144
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,login,192.168.37.26
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,deposit,192.168.49.3
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.39.22
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.32.139
+0,GET /api/market/overview,0.0,CUSTOMER,dashboard,192.168.9.130
+0,GET /api/market/overview,0.0,CUSTOMER,login,192.168.48.91
+0,GET /api/banking/dashboard,0.0,CUSTOMER,dashboard,192.168.25.98
+0,POST /api/banking/deposit,0.0,CUSTOMER,deposit,192.168.14.80
+0,GET /api/banking/dashboard,0.0,MANAGER,market,192.168.14.180
+0,POST /api/auth/login,0.0,ACCOUNTANT,dashboard,192.168.44.210
+0,GET /api/market/overview,0.0,CUSTOMER,market,192.168.11.8
+0,GET /api/market/overview,0.0,ACCOUNTANT,deposit,192.168.9.202
+0,GET /api/market/overview,0.0,CUSTOMER,deposit,192.168.20.74
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.26.122
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.36.245
+0,POST /api/auth/login,0.0,CUSTOMER,dashboard,192.168.18.249
+0,POST /api/banking/deposit,0.0,ACCOUNTANT,market,192.168.47.161
+0,POST /api/banking/deposit,0.0,MANAGER,deposit,192.168.36.67
+0,POST /api/auth/login,0.0,ACCOUNTANT,market,192.168.33.196
+0,POST /api/banking/deposit,0.0,MANAGER,login,192.168.41.148
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,market,192.168.11.100
+0,POST /api/banking/deposit,0.0,MANAGER,market,192.168.6.184
+0,GET /api/market/overview,0.0,MANAGER,deposit,192.168.21.183
+0,GET /api/banking/dashboard,0.0,ACCOUNTANT,deposit,192.168.41.106
+0,POST /api/auth/login,0.0,MANAGER,deposit,192.168.8.20
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,CUSTOMER,market,45.156.133.6
+1,"GET / HTTP/1.1
+
+",8.1,ACCOUNTANT,deposit,45.173.127.52
+1,"GET / HTTP/1.1
+
+",8.0,MANAGER,deposit,45.5.9.226
+1,"GET / HTTP/1.1
+
+",9.2,CUSTOMER,market,45.32.110.103
+1,OPTIONS /api/admin *,7.9,CUSTOMER,deposit,45.222.211.65
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",10.0,CUSTOMER,market,45.186.172.87
+1,OPTIONS /api/admin *,9.1,ACCOUNTANT,market,45.67.229.70
+1,"GET / HTTP/1.1
+
+",9.2,MANAGER,deposit,45.120.20.179
+1,SYN_FLOOD_PACKET_BURST,7.1,ACCOUNTANT,dashboard,45.199.244.89
+1,SYN_FLOOD_PACKET_BURST,8.0,ACCOUNTANT,login,45.123.139.93
+1,"GET / HTTP/1.1
+
+",8.1,MANAGER,login,45.133.6.233
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,ACCOUNTANT,login,45.3.132.201
+1,"GET / HTTP/1.1
+
+",8.5,ACCOUNTANT,deposit,45.157.128.161
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,dashboard,45.185.74.27
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,dashboard,45.252.246.225
+1,"GET / HTTP/1.1
+
+",9.6,CUSTOMER,dashboard,45.47.189.151
+1,OPTIONS /api/admin *,7.7,MANAGER,deposit,45.175.46.56
+1,"GET / HTTP/1.1
+
+",8.9,CUSTOMER,deposit,45.128.210.216
+1,User-Agent: *; curl/7.68.0,9.5,ACCOUNTANT,login,45.207.158.212
+1,OPTIONS /api/admin *,9.9,CUSTOMER,market,45.104.58.18
+1,OPTIONS /api/admin *,8.8,ACCOUNTANT,login,45.156.166.75
+1,SYN_FLOOD_PACKET_BURST,7.4,ACCOUNTANT,login,45.151.117.109
+1,OPTIONS /api/admin *,9.9,ACCOUNTANT,market,45.175.92.49
+1,"GET / HTTP/1.1
+
+",7.8,CUSTOMER,deposit,45.109.57.210
+1,"GET / HTTP/1.1
+
+",8.9,ACCOUNTANT,deposit,45.97.204.120
+1,"GET / HTTP/1.1
+
+",8.6,MANAGER,market,45.31.161.244
+1,OPTIONS /api/admin *,7.6,ACCOUNTANT,dashboard,45.144.183.235
+1,"GET / HTTP/1.1
+
+",8.3,MANAGER,login,45.201.129.44
+1,SYN_FLOOD_PACKET_BURST,6.6,CUSTOMER,deposit,45.172.245.135
+1,User-Agent: *; curl/7.68.0,8.4,MANAGER,dashboard,45.79.124.247
+1,OPTIONS /api/admin *,6.7,CUSTOMER,dashboard,45.133.241.29
+1,"GET / HTTP/1.1
+
+",9.5,CUSTOMER,login,45.25.114.239
+1,"GET / HTTP/1.1
+
+",9.9,MANAGER,market,45.71.45.204
+1,"GET / HTTP/1.1
+
+",9.4,MANAGER,dashboard,45.46.107.191
+1,OPTIONS /api/admin *,7.7,MANAGER,dashboard,45.118.163.26
+1,SYN_FLOOD_PACKET_BURST,7.4,MANAGER,dashboard,45.136.156.132
+1,User-Agent: *; curl/7.68.0,7.9,ACCOUNTANT,dashboard,45.167.165.245
+1,"GET / HTTP/1.1
+
+",9.4,CUSTOMER,dashboard,45.84.102.73
+1,"GET / HTTP/1.1
+
+",9.8,ACCOUNTANT,dashboard,45.232.204.159
+1,"GET / HTTP/1.1
+
+",9.8,MANAGER,market,45.125.140.227
+1,SYN_FLOOD_PACKET_BURST,9.7,MANAGER,dashboard,45.193.88.230
+1,"GET / HTTP/1.1
+
+",9.4,MANAGER,dashboard,45.73.46.46
+1,User-Agent: *; curl/7.68.0,9.1,ACCOUNTANT,market,45.115.166.118
+1,User-Agent: *; curl/7.68.0,7.9,ACCOUNTANT,market,45.169.14.247
+1,OPTIONS /api/admin *,8.5,CUSTOMER,dashboard,45.170.28.70
+1,OPTIONS /api/admin *,6.8,ACCOUNTANT,login,45.9.181.219
+1,"GET / HTTP/1.1
+
+",7.6,ACCOUNTANT,deposit,45.235.252.13
+1,SYN_FLOOD_PACKET_BURST,7.0,MANAGER,deposit,45.35.31.214
+1,OPTIONS /api/admin *,9.0,CUSTOMER,deposit,45.37.54.156
+1,"GET / HTTP/1.1
+
+",7.2,MANAGER,deposit,45.102.93.148
+1,SYN_FLOOD_PACKET_BURST,7.8,CUSTOMER,deposit,45.218.49.107
+1,"GET / HTTP/1.1
+
+",8.0,CUSTOMER,deposit,45.48.181.112
+1,User-Agent: *; curl/7.68.0,6.5,ACCOUNTANT,login,45.228.187.97
+1,"GET / HTTP/1.1
+
+",6.9,CUSTOMER,market,45.193.31.55
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,CUSTOMER,dashboard,45.254.211.87
+1,User-Agent: *; curl/7.68.0,9.3,ACCOUNTANT,login,45.158.22.59
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,MANAGER,dashboard,45.46.78.47
+1,SYN_FLOOD_PACKET_BURST,7.2,MANAGER,deposit,45.104.49.161
+1,"GET / HTTP/1.1
+
+",8.8,ACCOUNTANT,deposit,45.110.155.112
+1,User-Agent: *; curl/7.68.0,6.7,MANAGER,dashboard,45.44.211.109
+1,OPTIONS /api/admin *,8.5,CUSTOMER,login,45.89.16.150
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,dashboard,45.242.59.218
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,ACCOUNTANT,login,45.232.34.223
+1,SYN_FLOOD_PACKET_BURST,7.0,ACCOUNTANT,dashboard,45.248.127.65
+1,OPTIONS /api/admin *,9.5,ACCOUNTANT,market,45.7.2.100
+1,OPTIONS /api/admin *,7.8,ACCOUNTANT,market,45.30.229.241
+1,OPTIONS /api/admin *,9.2,CUSTOMER,login,45.29.51.10
+1,User-Agent: *; curl/7.68.0,9.9,MANAGER,deposit,45.60.18.56
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,ACCOUNTANT,dashboard,45.8.238.117
+1,"GET / HTTP/1.1
+
+",7.5,CUSTOMER,login,45.222.13.24
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,MANAGER,deposit,45.244.120.127
+1,SYN_FLOOD_PACKET_BURST,9.2,ACCOUNTANT,login,45.171.127.80
+1,OPTIONS /api/admin *,9.9,MANAGER,market,45.62.158.131
+1,"GET / HTTP/1.1
+
+",9.4,ACCOUNTANT,dashboard,45.43.111.127
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,CUSTOMER,dashboard,45.17.187.56
+1,OPTIONS /api/admin *,9.6,CUSTOMER,market,45.17.74.187
+1,SYN_FLOOD_PACKET_BURST,6.7,ACCOUNTANT,dashboard,45.198.224.209
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,ACCOUNTANT,login,45.94.173.175
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,login,45.194.20.86
+1,OPTIONS /api/admin *,7.5,ACCOUNTANT,dashboard,45.136.154.107
+1,OPTIONS /api/admin *,7.8,ACCOUNTANT,market,45.92.55.102
+1,OPTIONS /api/admin *,9.3,CUSTOMER,login,45.184.241.117
+1,User-Agent: *; curl/7.68.0,8.9,MANAGER,login,45.189.97.17
+1,OPTIONS /api/admin *,8.2,ACCOUNTANT,deposit,45.53.116.142
+1,OPTIONS /api/admin *,9.7,MANAGER,login,45.78.96.194
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,MANAGER,deposit,45.161.120.108
+1,"GET / HTTP/1.1
+
+",8.6,ACCOUNTANT,deposit,45.170.44.248
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,deposit,45.157.206.80
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,ACCOUNTANT,dashboard,45.103.185.214
+1,"GET / HTTP/1.1
+
+",8.5,MANAGER,login,45.156.146.158
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,ACCOUNTANT,market,45.157.245.138
+1,OPTIONS /api/admin *,8.2,CUSTOMER,deposit,45.205.109.157
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,ACCOUNTANT,login,45.92.72.23
+1,"GET / HTTP/1.1
+
+",8.8,ACCOUNTANT,login,45.26.113.90
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",10.0,CUSTOMER,dashboard,45.219.179.34
+1,"GET / HTTP/1.1
+
+",8.6,MANAGER,login,45.2.31.157
+1,OPTIONS /api/admin *,7.1,ACCOUNTANT,login,45.56.113.12
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.2,MANAGER,dashboard,45.63.192.232
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,MANAGER,deposit,45.4.235.121
+1,"GET / HTTP/1.1
+
+",8.1,CUSTOMER,dashboard,45.128.230.232
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.0,CUSTOMER,deposit,45.93.188.171
+1,SYN_FLOOD_PACKET_BURST,8.6,MANAGER,dashboard,45.115.93.136
+1,"GET / HTTP/1.1
+
+",8.0,ACCOUNTANT,market,45.25.237.170
+1,"GET / HTTP/1.1
+
+",9.6,CUSTOMER,deposit,45.135.35.57
+1,User-Agent: *; curl/7.68.0,7.9,MANAGER,market,45.115.64.130
+1,SYN_FLOOD_PACKET_BURST,7.3,CUSTOMER,login,45.97.52.70
+1,SYN_FLOOD_PACKET_BURST,7.6,CUSTOMER,market,45.53.33.36
+1,SYN_FLOOD_PACKET_BURST,6.5,ACCOUNTANT,login,45.127.118.163
+1,SYN_FLOOD_PACKET_BURST,8.8,CUSTOMER,market,45.232.2.240
+1,"GET / HTTP/1.1
+
+",7.3,CUSTOMER,market,45.186.3.204
+1,SYN_FLOOD_PACKET_BURST,6.9,ACCOUNTANT,dashboard,45.5.213.20
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.7,ACCOUNTANT,login,45.139.135.96
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,MANAGER,login,45.182.142.235
+1,OPTIONS /api/admin *,8.5,CUSTOMER,dashboard,45.53.188.43
+1,OPTIONS /api/admin *,8.4,CUSTOMER,login,45.74.136.39
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,ACCOUNTANT,market,45.227.137.147
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.6,CUSTOMER,login,45.169.73.21
+1,User-Agent: *; curl/7.68.0,6.6,CUSTOMER,market,45.237.140.87
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,CUSTOMER,market,45.22.188.33
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,CUSTOMER,dashboard,45.4.52.81
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,dashboard,45.23.92.166
+1,OPTIONS /api/admin *,7.6,ACCOUNTANT,login,45.151.150.199
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.7,ACCOUNTANT,login,45.209.76.201
+1,User-Agent: *; curl/7.68.0,8.4,MANAGER,dashboard,45.35.208.165
+1,User-Agent: *; curl/7.68.0,6.6,ACCOUNTANT,deposit,45.184.61.217
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,ACCOUNTANT,dashboard,45.165.159.141
+1,OPTIONS /api/admin *,9.6,MANAGER,market,45.251.227.213
+1,OPTIONS /api/admin *,7.7,CUSTOMER,dashboard,45.194.208.251
+1,OPTIONS /api/admin *,9.2,CUSTOMER,dashboard,45.194.98.27
+1,"GET / HTTP/1.1
+
+",9.5,MANAGER,login,45.6.145.120
+1,SYN_FLOOD_PACKET_BURST,8.3,ACCOUNTANT,login,45.158.8.101
+1,"GET / HTTP/1.1
+
+",9.9,CUSTOMER,dashboard,45.130.158.239
+1,SYN_FLOOD_PACKET_BURST,7.3,CUSTOMER,dashboard,45.79.80.55
+1,User-Agent: *; curl/7.68.0,8.7,CUSTOMER,deposit,45.16.172.249
+1,User-Agent: *; curl/7.68.0,8.4,ACCOUNTANT,login,45.18.75.160
+1,User-Agent: *; curl/7.68.0,7.6,MANAGER,market,45.128.217.83
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,CUSTOMER,login,45.200.226.176
+1,SYN_FLOOD_PACKET_BURST,9.1,ACCOUNTANT,login,45.187.8.82
+1,"GET / HTTP/1.1
+
+",8.9,MANAGER,market,45.149.24.59
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.8,CUSTOMER,market,45.188.147.37
+1,SYN_FLOOD_PACKET_BURST,7.6,ACCOUNTANT,market,45.239.8.138
+1,User-Agent: *; curl/7.68.0,8.6,MANAGER,dashboard,45.230.224.165
+1,SYN_FLOOD_PACKET_BURST,6.6,MANAGER,login,45.127.212.212
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,CUSTOMER,deposit,45.247.21.200
+1,OPTIONS /api/admin *,8.9,ACCOUNTANT,deposit,45.23.15.46
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,CUSTOMER,login,45.252.109.222
+1,SYN_FLOOD_PACKET_BURST,7.8,MANAGER,deposit,45.197.124.119
+1,"GET / HTTP/1.1
+
+",8.2,CUSTOMER,dashboard,45.52.26.241
+1,OPTIONS /api/admin *,8.5,CUSTOMER,login,45.13.160.173
+1,OPTIONS /api/admin *,9.8,MANAGER,dashboard,45.12.27.175
+1,User-Agent: *; curl/7.68.0,6.5,CUSTOMER,dashboard,45.129.54.116
+1,User-Agent: *; curl/7.68.0,8.9,ACCOUNTANT,dashboard,45.86.87.230
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,CUSTOMER,deposit,45.3.72.93
+1,SYN_FLOOD_PACKET_BURST,9.0,MANAGER,dashboard,45.190.249.234
+1,SYN_FLOOD_PACKET_BURST,8.2,CUSTOMER,login,45.219.100.241
+1,OPTIONS /api/admin *,7.3,MANAGER,dashboard,45.69.245.234
+1,"GET / HTTP/1.1
+
+",9.3,MANAGER,dashboard,45.46.194.202
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,MANAGER,login,45.92.79.222
+1,OPTIONS /api/admin *,8.1,ACCOUNTANT,login,45.205.45.96
+1,"GET / HTTP/1.1
+
+",6.5,MANAGER,market,45.204.181.172
+1,User-Agent: *; curl/7.68.0,9.4,MANAGER,dashboard,45.118.173.127
+1,OPTIONS /api/admin *,7.6,CUSTOMER,login,45.90.173.201
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,MANAGER,market,45.222.119.43
+1,OPTIONS /api/admin *,8.6,CUSTOMER,login,45.132.224.105
+1,SYN_FLOOD_PACKET_BURST,6.8,MANAGER,deposit,45.162.21.94
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,ACCOUNTANT,login,45.167.199.153
+1,SYN_FLOOD_PACKET_BURST,8.5,MANAGER,login,45.42.182.59
+1,"GET / HTTP/1.1
+
+",8.1,MANAGER,market,45.215.189.4
+1,SYN_FLOOD_PACKET_BURST,8.0,CUSTOMER,dashboard,45.75.48.227
+1,OPTIONS /api/admin *,8.9,CUSTOMER,deposit,45.42.165.254
+1,"GET / HTTP/1.1
+
+",9.0,CUSTOMER,deposit,45.104.188.116
+1,SYN_FLOOD_PACKET_BURST,9.9,MANAGER,login,45.170.149.166
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.1,MANAGER,deposit,45.237.224.49
+1,User-Agent: *; curl/7.68.0,7.5,MANAGER,deposit,45.151.186.94
+1,SYN_FLOOD_PACKET_BURST,9.8,CUSTOMER,login,45.181.227.171
+1,User-Agent: *; curl/7.68.0,7.9,CUSTOMER,market,45.228.30.37
+1,SYN_FLOOD_PACKET_BURST,6.6,ACCOUNTANT,login,45.185.78.253
+1,SYN_FLOOD_PACKET_BURST,8.6,CUSTOMER,login,45.214.148.209
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,MANAGER,dashboard,45.210.210.215
+1,SYN_FLOOD_PACKET_BURST,8.8,CUSTOMER,market,45.44.11.32
+1,SYN_FLOOD_PACKET_BURST,9.2,MANAGER,market,45.65.81.70
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.1,MANAGER,market,45.191.37.171
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.5,ACCOUNTANT,login,45.212.55.180
+1,SYN_FLOOD_PACKET_BURST,6.7,ACCOUNTANT,deposit,45.250.232.161
+1,User-Agent: *; curl/7.68.0,7.5,CUSTOMER,dashboard,45.90.75.88
+1,OPTIONS /api/admin *,9.8,MANAGER,login,45.190.27.19
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,ACCOUNTANT,deposit,45.126.12.48
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,ACCOUNTANT,dashboard,45.162.152.183
+1,"GET / HTTP/1.1
+
+",8.0,MANAGER,dashboard,45.95.38.103
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,ACCOUNTANT,market,45.230.119.212
+1,"GET / HTTP/1.1
+
+",9.7,CUSTOMER,deposit,45.118.110.235
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,ACCOUNTANT,market,45.96.191.118
+1,SYN_FLOOD_PACKET_BURST,10.0,CUSTOMER,deposit,45.10.28.205
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.2,MANAGER,market,45.57.56.112
+1,User-Agent: *; curl/7.68.0,9.1,CUSTOMER,login,45.127.167.142
+1,"GET / HTTP/1.1
+
+",9.0,CUSTOMER,deposit,45.85.163.248
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,ACCOUNTANT,deposit,45.33.30.138
+1,User-Agent: *; curl/7.68.0,7.6,CUSTOMER,deposit,45.4.203.124
+1,OPTIONS /api/admin *,9.7,CUSTOMER,login,45.159.188.239
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,CUSTOMER,dashboard,45.145.233.40
+1,"GET / HTTP/1.1
+
+",9.8,MANAGER,deposit,45.52.125.229
+1,User-Agent: *; curl/7.68.0,7.6,ACCOUNTANT,market,45.239.104.73
+1,User-Agent: *; curl/7.68.0,9.7,MANAGER,dashboard,45.4.71.124
+1,"GET / HTTP/1.1
+
+",6.9,ACCOUNTANT,dashboard,45.128.8.110
+1,SYN_FLOOD_PACKET_BURST,7.1,ACCOUNTANT,deposit,45.57.160.173
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,ACCOUNTANT,dashboard,45.67.15.187
+1,SYN_FLOOD_PACKET_BURST,7.4,CUSTOMER,login,45.214.158.199
+1,OPTIONS /api/admin *,7.5,CUSTOMER,dashboard,45.189.169.184
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,MANAGER,login,45.168.193.13
+1,SYN_FLOOD_PACKET_BURST,9.9,MANAGER,deposit,45.41.48.56
+1,OPTIONS /api/admin *,7.2,MANAGER,login,45.37.151.254
+1,SYN_FLOOD_PACKET_BURST,6.7,ACCOUNTANT,deposit,45.32.69.192
+1,SYN_FLOOD_PACKET_BURST,9.9,ACCOUNTANT,deposit,45.155.183.30
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,ACCOUNTANT,market,45.3.235.53
+1,"GET / HTTP/1.1
+
+",7.9,CUSTOMER,deposit,45.77.209.244
+1,"GET / HTTP/1.1
+
+",8.7,ACCOUNTANT,dashboard,45.15.26.126
+1,SYN_FLOOD_PACKET_BURST,8.0,CUSTOMER,deposit,45.185.123.15
+1,OPTIONS /api/admin *,9.9,CUSTOMER,deposit,45.22.96.33
+1,User-Agent: *; curl/7.68.0,6.9,CUSTOMER,login,45.139.221.123
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,deposit,45.175.141.41
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.4,ACCOUNTANT,dashboard,45.237.43.206
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.2,CUSTOMER,login,45.192.179.113
+1,OPTIONS /api/admin *,7.3,MANAGER,dashboard,45.154.6.188
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,MANAGER,deposit,45.178.237.237
+1,"GET / HTTP/1.1
+
+",8.8,MANAGER,deposit,45.117.248.237
+1,User-Agent: *; curl/7.68.0,9.3,CUSTOMER,dashboard,45.202.242.7
+1,OPTIONS /api/admin *,8.3,MANAGER,market,45.94.179.207
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,ACCOUNTANT,dashboard,45.72.78.131
+1,SYN_FLOOD_PACKET_BURST,7.5,CUSTOMER,market,45.1.86.33
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.5,CUSTOMER,deposit,45.208.21.184
+1,"GET / HTTP/1.1
+
+",9.5,MANAGER,deposit,45.134.150.72
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,CUSTOMER,login,45.60.70.2
+1,SYN_FLOOD_PACKET_BURST,6.9,CUSTOMER,login,45.15.245.138
+1,OPTIONS /api/admin *,6.9,MANAGER,deposit,45.90.126.85
+1,"GET / HTTP/1.1
+
+",8.3,CUSTOMER,deposit,45.143.206.76
+1,SYN_FLOOD_PACKET_BURST,8.1,CUSTOMER,login,45.175.122.191
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,dashboard,45.181.129.67
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,CUSTOMER,market,45.76.223.99
+1,OPTIONS /api/admin *,8.9,ACCOUNTANT,deposit,45.183.181.89
+1,User-Agent: *; curl/7.68.0,7.7,MANAGER,market,45.196.163.26
+1,"GET / HTTP/1.1
+
+",9.1,ACCOUNTANT,deposit,45.185.110.167
+1,User-Agent: *; curl/7.68.0,9.7,ACCOUNTANT,login,45.49.190.48
+1,SYN_FLOOD_PACKET_BURST,9.2,MANAGER,dashboard,45.227.245.35
+1,OPTIONS /api/admin *,9.0,ACCOUNTANT,login,45.210.162.100
+1,User-Agent: *; curl/7.68.0,9.0,ACCOUNTANT,login,45.174.106.5
+1,User-Agent: *; curl/7.68.0,9.8,ACCOUNTANT,deposit,45.199.140.171
+1,SYN_FLOOD_PACKET_BURST,9.4,CUSTOMER,deposit,45.199.115.232
+1,"GET / HTTP/1.1
+
+",9.5,ACCOUNTANT,dashboard,45.124.40.134
+1,"GET / HTTP/1.1
+
+",9.8,MANAGER,deposit,45.15.1.244
+1,User-Agent: *; curl/7.68.0,6.8,CUSTOMER,login,45.244.161.5
+1,OPTIONS /api/admin *,9.1,MANAGER,dashboard,45.83.115.89
+1,"GET / HTTP/1.1
+
+",7.7,MANAGER,deposit,45.116.76.85
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.1,ACCOUNTANT,deposit,45.112.36.83
+1,User-Agent: *; curl/7.68.0,7.8,MANAGER,deposit,45.6.43.21
+1,SYN_FLOOD_PACKET_BURST,6.9,ACCOUNTANT,market,45.110.173.81
+1,"GET / HTTP/1.1
+
+",7.7,CUSTOMER,dashboard,45.241.186.198
+1,OPTIONS /api/admin *,8.2,ACCOUNTANT,market,45.251.34.82
+1,"GET / HTTP/1.1
+
+",7.5,MANAGER,login,45.77.131.29
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,MANAGER,market,45.28.95.207
+1,OPTIONS /api/admin *,9.1,CUSTOMER,login,45.185.105.98
+1,OPTIONS /api/admin *,7.8,ACCOUNTANT,deposit,45.153.66.84
+1,OPTIONS /api/admin *,6.7,CUSTOMER,deposit,45.244.115.26
+1,User-Agent: *; curl/7.68.0,8.0,ACCOUNTANT,deposit,45.141.55.44
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,CUSTOMER,dashboard,45.228.204.180
+1,User-Agent: *; curl/7.68.0,7.6,ACCOUNTANT,dashboard,45.124.200.146
+1,OPTIONS /api/admin *,9.0,MANAGER,login,45.118.238.174
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,MANAGER,dashboard,45.209.75.66
+1,OPTIONS /api/admin *,9.9,CUSTOMER,market,45.120.130.131
+1,"GET / HTTP/1.1
+
+",8.2,CUSTOMER,login,45.14.154.183
+1,"GET / HTTP/1.1
+
+",6.5,CUSTOMER,deposit,45.105.91.39
+1,SYN_FLOOD_PACKET_BURST,8.6,CUSTOMER,market,45.43.197.163
+1,"GET / HTTP/1.1
+
+",8.1,CUSTOMER,dashboard,45.96.25.143
+1,"GET / HTTP/1.1
+
+",6.9,MANAGER,login,45.166.158.195
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,CUSTOMER,deposit,45.118.195.113
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,market,45.237.127.156
+1,User-Agent: *; curl/7.68.0,7.5,CUSTOMER,deposit,45.12.212.209
+1,User-Agent: *; curl/7.68.0,10.0,MANAGER,login,45.2.118.76
+1,"GET / HTTP/1.1
+
+",9.8,ACCOUNTANT,deposit,45.134.58.204
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,MANAGER,deposit,45.243.229.95
+1,User-Agent: *; curl/7.68.0,7.1,MANAGER,dashboard,45.234.40.188
+1,User-Agent: *; curl/7.68.0,9.4,ACCOUNTANT,deposit,45.119.39.203
+1,User-Agent: *; curl/7.68.0,8.1,MANAGER,login,45.134.37.8
+1,User-Agent: *; curl/7.68.0,7.4,ACCOUNTANT,deposit,45.9.210.224
+1,OPTIONS /api/admin *,9.2,CUSTOMER,login,45.192.112.42
+1,"GET / HTTP/1.1
+
+",7.4,ACCOUNTANT,dashboard,45.193.24.160
+1,SYN_FLOOD_PACKET_BURST,7.4,ACCOUNTANT,dashboard,45.119.79.17
+1,SYN_FLOOD_PACKET_BURST,8.5,MANAGER,login,45.75.145.215
+1,OPTIONS /api/admin *,9.1,MANAGER,login,45.247.102.102
+1,User-Agent: *; curl/7.68.0,9.6,CUSTOMER,market,45.208.205.227
+1,"GET / HTTP/1.1
+
+",8.4,CUSTOMER,dashboard,45.7.90.25
+1,OPTIONS /api/admin *,10.0,CUSTOMER,login,45.227.4.220
+1,OPTIONS /api/admin *,8.8,CUSTOMER,dashboard,45.181.22.22
+1,OPTIONS /api/admin *,9.9,MANAGER,deposit,45.132.251.215
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,dashboard,45.179.7.149
+1,SYN_FLOOD_PACKET_BURST,9.3,ACCOUNTANT,dashboard,45.144.223.106
+1,User-Agent: *; curl/7.68.0,7.3,MANAGER,dashboard,45.237.27.64
+1,"GET / HTTP/1.1
+
+",7.0,MANAGER,login,45.239.210.181
+1,User-Agent: *; curl/7.68.0,8.5,MANAGER,deposit,45.176.204.25
+1,User-Agent: *; curl/7.68.0,9.7,MANAGER,login,45.68.216.44
+1,SYN_FLOOD_PACKET_BURST,8.6,CUSTOMER,deposit,45.18.5.185
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,ACCOUNTANT,market,45.14.135.250
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,ACCOUNTANT,market,45.165.53.233
+1,SYN_FLOOD_PACKET_BURST,9.9,MANAGER,market,45.183.101.40
+1,SYN_FLOOD_PACKET_BURST,7.3,ACCOUNTANT,deposit,45.34.75.96
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,dashboard,45.54.196.168
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,deposit,45.159.239.221
+1,OPTIONS /api/admin *,7.2,CUSTOMER,deposit,45.254.237.26
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,CUSTOMER,dashboard,45.102.246.17
+1,User-Agent: *; curl/7.68.0,9.1,CUSTOMER,dashboard,45.41.186.122
+1,OPTIONS /api/admin *,6.9,CUSTOMER,market,45.226.253.57
+1,OPTIONS /api/admin *,8.7,CUSTOMER,deposit,45.104.196.219
+1,OPTIONS /api/admin *,8.6,ACCOUNTANT,dashboard,45.88.62.53
+1,User-Agent: *; curl/7.68.0,7.4,ACCOUNTANT,login,45.137.57.127
+1,"GET / HTTP/1.1
+
+",9.2,MANAGER,market,45.241.52.203
+1,User-Agent: *; curl/7.68.0,8.0,MANAGER,market,45.208.51.164
+1,SYN_FLOOD_PACKET_BURST,9.9,CUSTOMER,deposit,45.191.76.217
+1,"GET / HTTP/1.1
+
+",7.6,ACCOUNTANT,dashboard,45.60.66.72
+1,OPTIONS /api/admin *,9.2,MANAGER,deposit,45.6.182.68
+1,SYN_FLOOD_PACKET_BURST,9.6,MANAGER,dashboard,45.226.57.47
+1,"GET / HTTP/1.1
+
+",9.0,MANAGER,deposit,45.64.106.233
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,ACCOUNTANT,dashboard,45.112.60.254
+1,OPTIONS /api/admin *,7.0,ACCOUNTANT,login,45.167.101.213
+1,User-Agent: *; curl/7.68.0,9.1,ACCOUNTANT,deposit,45.254.81.248
+1,User-Agent: *; curl/7.68.0,7.7,CUSTOMER,market,45.139.227.112
+1,OPTIONS /api/admin *,7.2,MANAGER,dashboard,45.159.18.220
+1,"GET / HTTP/1.1
+
+",8.2,ACCOUNTANT,dashboard,45.195.1.248
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,market,45.179.230.62
+1,OPTIONS /api/admin *,9.1,CUSTOMER,deposit,45.235.145.91
+1,OPTIONS /api/admin *,9.9,MANAGER,deposit,45.47.112.49
+1,SYN_FLOOD_PACKET_BURST,7.4,CUSTOMER,dashboard,45.113.77.178
+1,"GET / HTTP/1.1
+
+",7.4,MANAGER,market,45.59.113.55
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.8,MANAGER,login,45.76.196.234
+1,SYN_FLOOD_PACKET_BURST,7.1,ACCOUNTANT,market,45.75.252.191
+1,User-Agent: *; curl/7.68.0,8.9,ACCOUNTANT,login,45.186.1.59
+1,SYN_FLOOD_PACKET_BURST,8.8,ACCOUNTANT,market,45.201.177.110
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.7,ACCOUNTANT,login,45.190.10.30
+1,SYN_FLOOD_PACKET_BURST,9.2,MANAGER,market,45.173.41.190
+1,"GET / HTTP/1.1
+
+",7.8,CUSTOMER,deposit,45.196.50.78
+1,SYN_FLOOD_PACKET_BURST,9.1,ACCOUNTANT,market,45.175.137.97
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.8,CUSTOMER,market,45.73.244.225
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,dashboard,45.63.64.78
+1,User-Agent: *; curl/7.68.0,7.8,ACCOUNTANT,login,45.129.17.28
+1,OPTIONS /api/admin *,9.7,MANAGER,deposit,45.56.128.157
+1,OPTIONS /api/admin *,9.4,ACCOUNTANT,deposit,45.214.227.250
+1,OPTIONS /api/admin *,7.4,MANAGER,login,45.99.150.5
+1,OPTIONS /api/admin *,7.4,MANAGER,dashboard,45.42.172.163
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.2,ACCOUNTANT,dashboard,45.10.232.154
+1,"GET / HTTP/1.1
+
+",6.6,MANAGER,market,45.11.137.163
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,MANAGER,dashboard,45.66.166.182
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,market,45.92.215.31
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,dashboard,45.171.118.28
+1,User-Agent: *; curl/7.68.0,7.3,MANAGER,login,45.145.93.198
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.6,CUSTOMER,login,45.247.26.249
+1,OPTIONS /api/admin *,6.6,MANAGER,deposit,45.26.77.163
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,ACCOUNTANT,deposit,45.56.252.225
+1,"GET / HTTP/1.1
+
+",9.3,MANAGER,deposit,45.48.181.205
+1,OPTIONS /api/admin *,7.0,ACCOUNTANT,deposit,45.149.34.126
+1,"GET / HTTP/1.1
+
+",9.3,ACCOUNTANT,login,45.94.99.74
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,MANAGER,deposit,45.2.4.232
+1,User-Agent: *; curl/7.68.0,7.0,MANAGER,login,45.2.63.7
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,login,45.182.31.66
+1,"GET / HTTP/1.1
+
+",7.2,CUSTOMER,login,45.46.54.243
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,MANAGER,market,45.224.227.254
+1,User-Agent: *; curl/7.68.0,6.6,ACCOUNTANT,market,45.67.153.138
+1,"GET / HTTP/1.1
+
+",8.9,MANAGER,market,45.252.121.47
+1,OPTIONS /api/admin *,8.9,CUSTOMER,login,45.212.243.130
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,dashboard,45.110.131.65
+1,SYN_FLOOD_PACKET_BURST,6.7,CUSTOMER,login,45.203.136.186
+1,User-Agent: *; curl/7.68.0,7.1,CUSTOMER,deposit,45.76.169.71
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,ACCOUNTANT,dashboard,45.57.223.60
+1,"GET / HTTP/1.1
+
+",8.6,CUSTOMER,dashboard,45.114.67.28
+1,"GET / HTTP/1.1
+
+",8.0,MANAGER,deposit,45.156.181.40
+1,User-Agent: *; curl/7.68.0,9.0,CUSTOMER,dashboard,45.119.92.210
+1,OPTIONS /api/admin *,9.6,ACCOUNTANT,login,45.93.243.30
+1,User-Agent: *; curl/7.68.0,9.1,MANAGER,dashboard,45.233.144.201
+1,User-Agent: *; curl/7.68.0,8.2,MANAGER,deposit,45.126.190.212
+1,"GET / HTTP/1.1
+
+",7.3,ACCOUNTANT,market,45.105.31.188
+1,"GET / HTTP/1.1
+
+",6.8,MANAGER,market,45.59.106.210
+1,"GET / HTTP/1.1
+
+",7.5,ACCOUNTANT,deposit,45.144.254.50
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.7,ACCOUNTANT,market,45.25.242.57
+1,SYN_FLOOD_PACKET_BURST,9.9,CUSTOMER,market,45.58.135.16
+1,User-Agent: *; curl/7.68.0,8.1,MANAGER,login,45.148.40.163
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,CUSTOMER,login,45.47.138.128
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,CUSTOMER,login,45.2.142.245
+1,OPTIONS /api/admin *,8.9,CUSTOMER,market,45.204.134.59
+1,SYN_FLOOD_PACKET_BURST,9.3,ACCOUNTANT,deposit,45.24.151.66
+1,SYN_FLOOD_PACKET_BURST,8.1,ACCOUNTANT,dashboard,45.138.183.184
+1,"GET / HTTP/1.1
+
+",7.5,MANAGER,login,45.246.206.161
+1,User-Agent: *; curl/7.68.0,9.5,MANAGER,login,45.251.224.4
+1,User-Agent: *; curl/7.68.0,7.9,MANAGER,deposit,45.37.148.73
+1,"GET / HTTP/1.1
+
+",9.1,MANAGER,login,45.100.231.211
+1,"GET / HTTP/1.1
+
+",7.4,ACCOUNTANT,deposit,45.204.191.53
+1,OPTIONS /api/admin *,9.3,MANAGER,login,45.63.237.127
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,login,45.124.211.80
+1,OPTIONS /api/admin *,9.3,MANAGER,market,45.153.104.23
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,CUSTOMER,dashboard,45.88.56.47
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,CUSTOMER,deposit,45.242.224.187
+1,OPTIONS /api/admin *,6.8,CUSTOMER,dashboard,45.167.15.196
+1,User-Agent: *; curl/7.68.0,9.8,CUSTOMER,dashboard,45.250.142.109
+1,OPTIONS /api/admin *,6.7,MANAGER,login,45.247.10.162
+1,OPTIONS /api/admin *,7.3,CUSTOMER,deposit,45.223.209.240
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.7,MANAGER,login,45.20.135.25
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.6,ACCOUNTANT,login,45.174.3.57
+1,"GET / HTTP/1.1
+
+",7.7,CUSTOMER,dashboard,45.65.94.130
+1,SYN_FLOOD_PACKET_BURST,7.2,MANAGER,login,45.80.85.35
+1,User-Agent: *; curl/7.68.0,8.1,ACCOUNTANT,dashboard,45.170.111.191
+1,SYN_FLOOD_PACKET_BURST,9.2,CUSTOMER,deposit,45.163.58.18
+1,OPTIONS /api/admin *,8.1,CUSTOMER,login,45.142.117.139
+1,"GET / HTTP/1.1
+
+",8.7,MANAGER,deposit,45.200.187.68
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,ACCOUNTANT,login,45.14.230.97
+1,SYN_FLOOD_PACKET_BURST,9.8,ACCOUNTANT,market,45.112.101.39
+1,SYN_FLOOD_PACKET_BURST,7.5,CUSTOMER,deposit,45.149.33.202
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,MANAGER,login,45.133.85.15
+1,User-Agent: *; curl/7.68.0,7.4,MANAGER,market,45.80.115.16
+1,SYN_FLOOD_PACKET_BURST,9.5,CUSTOMER,market,45.37.16.17
+1,User-Agent: *; curl/7.68.0,7.7,MANAGER,market,45.110.4.120
+1,"GET / HTTP/1.1
+
+",8.2,CUSTOMER,login,45.171.103.9
+1,SYN_FLOOD_PACKET_BURST,9.0,MANAGER,login,45.218.7.232
+1,User-Agent: *; curl/7.68.0,6.8,MANAGER,login,45.12.28.82
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,CUSTOMER,dashboard,45.71.211.198
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.5,ACCOUNTANT,login,45.244.168.172
+1,SYN_FLOOD_PACKET_BURST,9.5,MANAGER,deposit,45.207.195.233
+1,OPTIONS /api/admin *,7.9,ACCOUNTANT,login,45.33.83.194
+1,User-Agent: *; curl/7.68.0,8.6,MANAGER,market,45.196.122.252
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.9,CUSTOMER,market,45.37.132.183
+1,SYN_FLOOD_PACKET_BURST,6.5,CUSTOMER,login,45.77.65.229
+1,SYN_FLOOD_PACKET_BURST,8.7,MANAGER,dashboard,45.11.166.100
+1,User-Agent: *; curl/7.68.0,9.3,MANAGER,login,45.218.125.115
+1,"GET / HTTP/1.1
+
+",7.5,ACCOUNTANT,dashboard,45.253.35.207
+1,OPTIONS /api/admin *,6.7,ACCOUNTANT,market,45.103.56.45
+1,SYN_FLOOD_PACKET_BURST,6.5,CUSTOMER,market,45.111.170.48
+1,SYN_FLOOD_PACKET_BURST,9.1,ACCOUNTANT,login,45.89.196.149
+1,SYN_FLOOD_PACKET_BURST,8.3,ACCOUNTANT,market,45.124.14.5
+1,"GET / HTTP/1.1
+
+",10.0,MANAGER,login,45.112.106.225
+1,SYN_FLOOD_PACKET_BURST,9.0,CUSTOMER,deposit,45.243.138.33
+1,"GET / HTTP/1.1
+
+",7.4,MANAGER,dashboard,45.228.205.89
+1,"GET / HTTP/1.1
+
+",7.2,CUSTOMER,market,45.134.60.185
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,deposit,45.247.15.2
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.8,MANAGER,login,45.236.122.190
+1,OPTIONS /api/admin *,8.4,MANAGER,dashboard,45.248.142.134
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,market,45.207.146.103
+1,"GET / HTTP/1.1
+
+",8.7,ACCOUNTANT,login,45.156.8.136
+1,SYN_FLOOD_PACKET_BURST,9.9,ACCOUNTANT,deposit,45.18.210.209
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,deposit,45.57.140.12
+1,User-Agent: *; curl/7.68.0,6.9,MANAGER,deposit,45.134.15.48
+1,OPTIONS /api/admin *,6.9,ACCOUNTANT,market,45.84.11.226
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,MANAGER,login,45.160.51.238
+1,"GET / HTTP/1.1
+
+",9.5,ACCOUNTANT,login,45.167.100.174
+1,"GET / HTTP/1.1
+
+",9.1,CUSTOMER,dashboard,45.90.221.36
+1,"GET / HTTP/1.1
+
+",9.8,CUSTOMER,market,45.115.220.87
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.2,CUSTOMER,login,45.108.92.161
+1,SYN_FLOOD_PACKET_BURST,9.8,CUSTOMER,dashboard,45.201.239.171
+1,OPTIONS /api/admin *,7.3,MANAGER,dashboard,45.199.79.23
+1,User-Agent: *; curl/7.68.0,6.8,ACCOUNTANT,market,45.184.220.49
+1,User-Agent: *; curl/7.68.0,8.7,MANAGER,login,45.68.119.44
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.8,ACCOUNTANT,dashboard,45.30.2.3
+1,User-Agent: *; curl/7.68.0,9.2,MANAGER,market,45.180.150.86
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,login,45.104.252.254
+1,SYN_FLOOD_PACKET_BURST,8.6,ACCOUNTANT,login,45.99.112.182
+1,SYN_FLOOD_PACKET_BURST,8.5,CUSTOMER,login,45.170.200.21
+1,SYN_FLOOD_PACKET_BURST,8.8,MANAGER,deposit,45.99.233.77
+1,OPTIONS /api/admin *,7.7,ACCOUNTANT,market,45.64.103.107
+1,SYN_FLOOD_PACKET_BURST,8.6,CUSTOMER,market,45.248.112.227
+1,"GET / HTTP/1.1
+
+",7.2,ACCOUNTANT,dashboard,45.22.87.250
+1,User-Agent: *; curl/7.68.0,9.9,ACCOUNTANT,login,45.180.149.203
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,ACCOUNTANT,login,45.155.59.116
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,MANAGER,dashboard,45.85.180.99
+1,"GET / HTTP/1.1
+
+",7.9,CUSTOMER,dashboard,45.137.161.51
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.6,MANAGER,login,45.94.177.220
+1,User-Agent: *; curl/7.68.0,7.6,MANAGER,deposit,45.56.180.180
+1,SYN_FLOOD_PACKET_BURST,8.4,ACCOUNTANT,market,45.218.54.232
+1,SYN_FLOOD_PACKET_BURST,7.7,MANAGER,deposit,45.253.61.204
+1,User-Agent: *; curl/7.68.0,9.8,ACCOUNTANT,market,45.211.30.157
+1,SYN_FLOOD_PACKET_BURST,8.4,ACCOUNTANT,dashboard,45.226.30.233
+1,User-Agent: *; curl/7.68.0,9.1,CUSTOMER,dashboard,45.43.93.148
+1,User-Agent: *; curl/7.68.0,9.8,ACCOUNTANT,login,45.33.233.148
+1,OPTIONS /api/admin *,6.6,CUSTOMER,deposit,45.69.150.60
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,dashboard,45.174.163.64
+1,"GET / HTTP/1.1
+
+",6.8,ACCOUNTANT,login,45.205.177.22
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,MANAGER,deposit,45.77.181.196
+1,SYN_FLOOD_PACKET_BURST,8.3,ACCOUNTANT,dashboard,45.96.191.235
+1,User-Agent: *; curl/7.68.0,7.2,MANAGER,market,45.26.51.52
+1,"GET / HTTP/1.1
+
+",8.5,ACCOUNTANT,dashboard,45.95.67.237
+1,SYN_FLOOD_PACKET_BURST,8.7,ACCOUNTANT,market,45.164.10.123
+1,SYN_FLOOD_PACKET_BURST,10.0,CUSTOMER,market,45.218.127.107
+1,OPTIONS /api/admin *,8.7,ACCOUNTANT,market,45.212.126.16
+1,SYN_FLOOD_PACKET_BURST,6.7,ACCOUNTANT,market,45.227.176.49
+1,OPTIONS /api/admin *,9.1,CUSTOMER,dashboard,45.56.218.134
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,dashboard,45.141.15.119
+1,SYN_FLOOD_PACKET_BURST,7.2,CUSTOMER,market,45.49.174.28
+1,SYN_FLOOD_PACKET_BURST,7.3,MANAGER,login,45.148.201.205
+1,User-Agent: *; curl/7.68.0,9.6,MANAGER,dashboard,45.32.145.54
+1,User-Agent: *; curl/7.68.0,7.0,ACCOUNTANT,deposit,45.120.46.218
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,login,45.131.1.93
+1,SYN_FLOOD_PACKET_BURST,10.0,MANAGER,dashboard,45.193.234.224
+1,"GET / HTTP/1.1
+
+",9.0,ACCOUNTANT,market,45.47.209.89
+1,"GET / HTTP/1.1
+
+",9.7,ACCOUNTANT,login,45.243.78.163
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,dashboard,45.157.168.149
+1,OPTIONS /api/admin *,9.9,MANAGER,login,45.4.172.1
+1,SYN_FLOOD_PACKET_BURST,8.5,CUSTOMER,login,45.90.232.232
+1,SYN_FLOOD_PACKET_BURST,7.5,CUSTOMER,dashboard,45.160.63.153
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,MANAGER,deposit,45.112.83.71
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",10.0,CUSTOMER,market,45.134.223.220
+1,OPTIONS /api/admin *,8.4,CUSTOMER,login,45.43.86.13
+1,"GET / HTTP/1.1
+
+",9.9,CUSTOMER,login,45.69.25.102
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,ACCOUNTANT,deposit,45.206.148.13
+1,SYN_FLOOD_PACKET_BURST,9.1,CUSTOMER,deposit,45.199.45.211
+1,"GET / HTTP/1.1
+
+",9.4,MANAGER,login,45.159.185.9
+1,OPTIONS /api/admin *,7.3,CUSTOMER,market,45.250.4.84
+1,"GET / HTTP/1.1
+
+",9.1,CUSTOMER,login,45.202.196.144
+1,OPTIONS /api/admin *,7.2,ACCOUNTANT,login,45.86.228.160
+1,OPTIONS /api/admin *,8.5,ACCOUNTANT,login,45.114.113.11
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,MANAGER,deposit,45.29.173.118
+1,OPTIONS /api/admin *,6.8,CUSTOMER,market,45.91.216.18
+1,"GET / HTTP/1.1
+
+",7.4,MANAGER,login,45.184.146.80
+1,User-Agent: *; curl/7.68.0,9.0,ACCOUNTANT,deposit,45.181.147.119
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,CUSTOMER,dashboard,45.54.19.148
+1,User-Agent: *; curl/7.68.0,8.2,ACCOUNTANT,dashboard,45.167.140.169
+1,SYN_FLOOD_PACKET_BURST,8.4,MANAGER,market,45.97.37.193
+1,"GET / HTTP/1.1
+
+",7.3,MANAGER,dashboard,45.64.197.81
+1,User-Agent: *; curl/7.68.0,7.2,MANAGER,login,45.110.138.176
+1,SYN_FLOOD_PACKET_BURST,7.7,ACCOUNTANT,market,45.200.138.96
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,deposit,45.172.24.145
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.2,CUSTOMER,login,45.68.100.119
+1,User-Agent: *; curl/7.68.0,8.5,ACCOUNTANT,deposit,45.105.150.51
+1,User-Agent: *; curl/7.68.0,7.1,ACCOUNTANT,dashboard,45.122.46.158
+1,OPTIONS /api/admin *,6.7,ACCOUNTANT,market,45.88.134.244
+1,"GET / HTTP/1.1
+
+",9.5,MANAGER,market,45.238.213.6
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,ACCOUNTANT,login,45.203.24.234
+1,"GET / HTTP/1.1
+
+",6.7,CUSTOMER,dashboard,45.104.223.151
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,market,45.15.173.195
+1,SYN_FLOOD_PACKET_BURST,9.8,CUSTOMER,login,45.110.39.8
+1,"GET / HTTP/1.1
+
+",8.8,MANAGER,deposit,45.29.162.186
+1,OPTIONS /api/admin *,8.0,ACCOUNTANT,deposit,45.35.2.9
+1,OPTIONS /api/admin *,8.9,MANAGER,dashboard,45.10.201.191
+1,"GET / HTTP/1.1
+
+",8.9,CUSTOMER,deposit,45.89.84.251
+1,SYN_FLOOD_PACKET_BURST,8.6,ACCOUNTANT,login,45.33.232.112
+1,SYN_FLOOD_PACKET_BURST,6.5,ACCOUNTANT,deposit,45.24.229.203
+1,OPTIONS /api/admin *,7.6,ACCOUNTANT,dashboard,45.79.253.151
+1,User-Agent: *; curl/7.68.0,8.1,MANAGER,market,45.142.174.212
+1,OPTIONS /api/admin *,9.0,ACCOUNTANT,login,45.117.212.157
+1,"GET / HTTP/1.1
+
+",6.8,ACCOUNTANT,login,45.179.181.78
+1,SYN_FLOOD_PACKET_BURST,6.6,ACCOUNTANT,login,45.188.179.41
+1,User-Agent: *; curl/7.68.0,9.4,CUSTOMER,market,45.163.223.35
+1,User-Agent: *; curl/7.68.0,10.0,ACCOUNTANT,login,45.180.118.179
+1,User-Agent: *; curl/7.68.0,8.7,ACCOUNTANT,dashboard,45.58.94.70
+1,SYN_FLOOD_PACKET_BURST,9.1,MANAGER,dashboard,45.64.98.198
+1,User-Agent: *; curl/7.68.0,8.1,CUSTOMER,market,45.240.187.92
+1,SYN_FLOOD_PACKET_BURST,6.9,ACCOUNTANT,dashboard,45.168.186.196
+1,"GET / HTTP/1.1
+
+",7.4,MANAGER,login,45.230.53.232
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,ACCOUNTANT,deposit,45.62.79.124
+1,User-Agent: *; curl/7.68.0,9.9,CUSTOMER,deposit,45.64.104.212
+1,"GET / HTTP/1.1
+
+",8.0,ACCOUNTANT,deposit,45.120.44.254
+1,User-Agent: *; curl/7.68.0,7.2,MANAGER,deposit,45.20.253.23
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,deposit,45.57.27.109
+1,"GET / HTTP/1.1
+
+",7.4,ACCOUNTANT,login,45.249.156.233
+1,OPTIONS /api/admin *,7.8,CUSTOMER,login,45.135.63.94
+1,OPTIONS /api/admin *,9.4,CUSTOMER,deposit,45.236.113.126
+1,User-Agent: *; curl/7.68.0,6.6,MANAGER,market,45.67.196.107
+1,User-Agent: *; curl/7.68.0,8.9,CUSTOMER,deposit,45.73.176.48
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,ACCOUNTANT,deposit,45.108.217.241
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,ACCOUNTANT,dashboard,45.85.251.188
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.7,ACCOUNTANT,market,45.33.237.18
+1,SYN_FLOOD_PACKET_BURST,9.3,CUSTOMER,dashboard,45.43.139.165
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,CUSTOMER,dashboard,45.147.220.132
+1,SYN_FLOOD_PACKET_BURST,8.2,ACCOUNTANT,dashboard,45.210.226.230
+1,User-Agent: *; curl/7.68.0,9.7,ACCOUNTANT,market,45.245.25.90
+1,"GET / HTTP/1.1
+
+",8.3,MANAGER,login,45.218.91.234
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,market,45.21.35.42
+1,User-Agent: *; curl/7.68.0,9.0,ACCOUNTANT,market,45.108.58.64
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.4,ACCOUNTANT,market,45.124.215.230
+1,OPTIONS /api/admin *,9.5,ACCOUNTANT,market,45.28.178.58
+1,"GET / HTTP/1.1
+
+",8.1,ACCOUNTANT,market,45.26.99.170
+1,User-Agent: *; curl/7.68.0,8.5,ACCOUNTANT,market,45.134.18.197
+1,SYN_FLOOD_PACKET_BURST,9.9,MANAGER,deposit,45.190.135.92
+1,SYN_FLOOD_PACKET_BURST,7.6,ACCOUNTANT,market,45.53.184.254
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,CUSTOMER,deposit,45.130.146.253
+1,OPTIONS /api/admin *,9.4,CUSTOMER,deposit,45.71.51.221
+1,OPTIONS /api/admin *,7.8,ACCOUNTANT,login,45.133.199.166
+1,SYN_FLOOD_PACKET_BURST,6.5,ACCOUNTANT,market,45.182.79.22
+1,"GET / HTTP/1.1
+
+",9.2,ACCOUNTANT,login,45.86.231.130
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,MANAGER,login,45.226.105.196
+1,"GET / HTTP/1.1
+
+",7.0,MANAGER,market,45.126.254.87
+1,User-Agent: *; curl/7.68.0,10.0,ACCOUNTANT,market,45.195.64.166
+1,User-Agent: *; curl/7.68.0,8.6,MANAGER,market,45.253.111.63
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,ACCOUNTANT,market,45.75.3.155
+1,"GET / HTTP/1.1
+
+",7.3,CUSTOMER,dashboard,45.28.207.106
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,CUSTOMER,deposit,45.102.33.253
+1,OPTIONS /api/admin *,7.2,MANAGER,market,45.153.166.53
+1,SYN_FLOOD_PACKET_BURST,6.8,CUSTOMER,login,45.239.232.198
+1,OPTIONS /api/admin *,8.9,MANAGER,market,45.11.134.36
+1,SYN_FLOOD_PACKET_BURST,9.8,CUSTOMER,deposit,45.92.166.70
+1,OPTIONS /api/admin *,7.1,MANAGER,market,45.169.7.184
+1,User-Agent: *; curl/7.68.0,9.2,ACCOUNTANT,login,45.80.208.150
+1,"GET / HTTP/1.1
+
+",7.3,ACCOUNTANT,market,45.59.135.203
+1,User-Agent: *; curl/7.68.0,8.3,ACCOUNTANT,deposit,45.183.10.14
+1,OPTIONS /api/admin *,8.0,CUSTOMER,deposit,45.194.233.39
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,CUSTOMER,dashboard,45.29.190.112
+1,User-Agent: *; curl/7.68.0,6.9,CUSTOMER,deposit,45.80.6.39
+1,SYN_FLOOD_PACKET_BURST,8.0,CUSTOMER,login,45.166.29.121
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,CUSTOMER,dashboard,45.79.133.102
+1,SYN_FLOOD_PACKET_BURST,7.4,CUSTOMER,market,45.12.156.160
+1,SYN_FLOOD_PACKET_BURST,8.5,MANAGER,market,45.245.127.145
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,CUSTOMER,login,45.173.225.132
+1,User-Agent: *; curl/7.68.0,8.4,ACCOUNTANT,dashboard,45.173.250.133
+1,User-Agent: *; curl/7.68.0,7.9,CUSTOMER,login,45.105.81.189
+1,"GET / HTTP/1.1
+
+",8.7,ACCOUNTANT,dashboard,45.247.28.75
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.0,MANAGER,market,45.146.223.90
+1,"GET / HTTP/1.1
+
+",9.7,CUSTOMER,login,45.134.230.171
+1,SYN_FLOOD_PACKET_BURST,8.3,ACCOUNTANT,market,45.88.205.112
+1,OPTIONS /api/admin *,8.7,MANAGER,dashboard,45.133.174.61
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,MANAGER,deposit,45.87.173.163
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,login,45.82.35.129
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,ACCOUNTANT,deposit,45.228.198.107
+1,User-Agent: *; curl/7.68.0,8.4,ACCOUNTANT,deposit,45.56.48.222
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,login,45.123.56.42
+1,SYN_FLOOD_PACKET_BURST,9.2,CUSTOMER,dashboard,45.109.72.182
+1,"GET / HTTP/1.1
+
+",8.7,ACCOUNTANT,deposit,45.124.130.224
+1,OPTIONS /api/admin *,9.3,MANAGER,deposit,45.225.166.59
+1,User-Agent: *; curl/7.68.0,8.7,CUSTOMER,dashboard,45.9.119.190
+1,User-Agent: *; curl/7.68.0,7.9,ACCOUNTANT,login,45.186.30.191
+1,"GET / HTTP/1.1
+
+",8.4,CUSTOMER,market,45.124.203.191
+1,User-Agent: *; curl/7.68.0,7.7,MANAGER,deposit,45.11.184.195
+1,"GET / HTTP/1.1
+
+",9.6,ACCOUNTANT,deposit,45.42.19.2
+1,SYN_FLOOD_PACKET_BURST,8.9,ACCOUNTANT,dashboard,45.135.164.101
+1,OPTIONS /api/admin *,7.2,MANAGER,login,45.139.147.217
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,MANAGER,deposit,45.178.24.11
+1,User-Agent: *; curl/7.68.0,8.3,MANAGER,dashboard,45.182.69.47
+1,"GET / HTTP/1.1
+
+",8.6,MANAGER,market,45.219.176.86
+1,"GET / HTTP/1.1
+
+",9.0,MANAGER,deposit,45.159.218.149
+1,SYN_FLOOD_PACKET_BURST,9.5,ACCOUNTANT,dashboard,45.69.61.211
+1,"GET / HTTP/1.1
+
+",7.8,MANAGER,market,45.234.128.227
+1,SYN_FLOOD_PACKET_BURST,7.0,MANAGER,market,45.67.240.103
+1,OPTIONS /api/admin *,8.1,ACCOUNTANT,login,45.106.246.173
+1,SYN_FLOOD_PACKET_BURST,7.1,ACCOUNTANT,deposit,45.191.56.130
+1,User-Agent: *; curl/7.68.0,7.7,MANAGER,login,45.166.63.34
+1,OPTIONS /api/admin *,9.2,MANAGER,deposit,45.78.245.112
+1,"GET / HTTP/1.1
+
+",9.0,ACCOUNTANT,market,45.132.19.167
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,dashboard,45.137.237.242
+1,User-Agent: *; curl/7.68.0,9.2,ACCOUNTANT,dashboard,45.80.47.157
+1,SYN_FLOOD_PACKET_BURST,7.0,CUSTOMER,login,45.77.125.17
+1,"GET / HTTP/1.1
+
+",8.6,ACCOUNTANT,market,45.208.32.84
+1,SYN_FLOOD_PACKET_BURST,9.8,MANAGER,dashboard,45.218.8.57
+1,OPTIONS /api/admin *,9.5,MANAGER,login,45.173.183.37
+1,"GET / HTTP/1.1
+
+",8.4,CUSTOMER,login,45.150.39.166
+1,OPTIONS /api/admin *,7.9,ACCOUNTANT,market,45.139.13.57
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.4,ACCOUNTANT,market,45.25.142.227
+1,SYN_FLOOD_PACKET_BURST,7.9,MANAGER,login,45.249.128.64
+1,User-Agent: *; curl/7.68.0,7.5,CUSTOMER,deposit,45.174.150.124
+1,"GET / HTTP/1.1
+
+",9.9,CUSTOMER,dashboard,45.243.227.200
+1,SYN_FLOOD_PACKET_BURST,6.7,MANAGER,dashboard,45.13.166.164
+1,"GET / HTTP/1.1
+
+",8.6,CUSTOMER,deposit,45.40.12.28
+1,OPTIONS /api/admin *,7.8,CUSTOMER,dashboard,45.219.217.9
+1,OPTIONS /api/admin *,9.3,MANAGER,deposit,45.94.202.197
+1,OPTIONS /api/admin *,10.0,MANAGER,market,45.128.114.253
+1,SYN_FLOOD_PACKET_BURST,7.3,MANAGER,dashboard,45.236.162.104
+1,"GET / HTTP/1.1
+
+",8.9,ACCOUNTANT,market,45.101.212.97
+1,User-Agent: *; curl/7.68.0,8.3,ACCOUNTANT,dashboard,45.198.59.241
+1,SYN_FLOOD_PACKET_BURST,8.0,MANAGER,login,45.78.161.2
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,MANAGER,market,45.209.61.209
+1,"GET / HTTP/1.1
+
+",8.9,ACCOUNTANT,login,45.2.179.157
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.7,MANAGER,dashboard,45.132.142.30
+1,SYN_FLOOD_PACKET_BURST,7.9,MANAGER,deposit,45.131.104.181
+1,OPTIONS /api/admin *,7.5,CUSTOMER,login,45.226.145.142
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,ACCOUNTANT,deposit,45.13.28.94
+1,SYN_FLOOD_PACKET_BURST,9.2,MANAGER,market,45.240.230.243
+1,User-Agent: *; curl/7.68.0,7.8,ACCOUNTANT,market,45.66.120.222
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.0,CUSTOMER,deposit,45.20.118.30
+1,User-Agent: *; curl/7.68.0,9.5,ACCOUNTANT,dashboard,45.40.180.80
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,market,45.234.39.180
+1,"GET / HTTP/1.1
+
+",7.8,MANAGER,dashboard,45.87.35.183
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,MANAGER,market,45.29.99.27
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,login,45.124.202.76
+1,"GET / HTTP/1.1
+
+",7.4,CUSTOMER,market,45.89.16.163
+1,OPTIONS /api/admin *,6.6,MANAGER,dashboard,45.116.22.115
+1,OPTIONS /api/admin *,6.9,CUSTOMER,login,45.99.119.202
+1,SYN_FLOOD_PACKET_BURST,9.1,ACCOUNTANT,dashboard,45.132.172.50
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.6,ACCOUNTANT,deposit,45.141.168.32
+1,"GET / HTTP/1.1
+
+",8.2,CUSTOMER,deposit,45.32.53.247
+1,OPTIONS /api/admin *,8.9,MANAGER,dashboard,45.253.2.180
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,ACCOUNTANT,dashboard,45.48.130.32
+1,OPTIONS /api/admin *,9.7,CUSTOMER,login,45.15.236.16
+1,SYN_FLOOD_PACKET_BURST,9.2,ACCOUNTANT,market,45.242.123.37
+1,SYN_FLOOD_PACKET_BURST,9.6,ACCOUNTANT,dashboard,45.221.225.104
+1,User-Agent: *; curl/7.68.0,9.6,CUSTOMER,dashboard,45.200.136.209
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,CUSTOMER,deposit,45.168.80.182
+1,SYN_FLOOD_PACKET_BURST,6.7,CUSTOMER,dashboard,45.37.116.133
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.6,CUSTOMER,dashboard,45.222.200.45
+1,User-Agent: *; curl/7.68.0,8.4,MANAGER,login,45.162.202.254
+1,SYN_FLOOD_PACKET_BURST,8.1,ACCOUNTANT,login,45.191.88.118
+1,"GET / HTTP/1.1
+
+",7.1,CUSTOMER,login,45.56.221.175
+1,OPTIONS /api/admin *,6.7,ACCOUNTANT,login,45.171.95.137
+1,"GET / HTTP/1.1
+
+",8.2,MANAGER,market,45.72.56.224
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,market,45.166.2.88
+1,OPTIONS /api/admin *,7.3,CUSTOMER,deposit,45.231.61.178
+1,OPTIONS /api/admin *,6.6,CUSTOMER,login,45.21.241.183
+1,SYN_FLOOD_PACKET_BURST,7.1,ACCOUNTANT,dashboard,45.245.138.221
+1,"GET / HTTP/1.1
+
+",7.1,MANAGER,login,45.101.127.192
+1,"GET / HTTP/1.1
+
+",8.3,ACCOUNTANT,login,45.123.117.149
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,ACCOUNTANT,market,45.105.199.75
+1,SYN_FLOOD_PACKET_BURST,9.5,ACCOUNTANT,dashboard,45.99.67.57
+1,User-Agent: *; curl/7.68.0,9.8,CUSTOMER,login,45.68.223.162
+1,OPTIONS /api/admin *,8.3,ACCOUNTANT,market,45.21.133.109
+1,SYN_FLOOD_PACKET_BURST,9.6,ACCOUNTANT,dashboard,45.134.210.196
+1,"GET / HTTP/1.1
+
+",7.2,ACCOUNTANT,deposit,45.196.26.131
+1,User-Agent: *; curl/7.68.0,9.4,ACCOUNTANT,market,45.19.194.138
+1,SYN_FLOOD_PACKET_BURST,8.7,CUSTOMER,deposit,45.11.103.127
+1,OPTIONS /api/admin *,9.7,CUSTOMER,market,45.55.185.174
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,ACCOUNTANT,deposit,45.165.7.2
+1,User-Agent: *; curl/7.68.0,6.6,ACCOUNTANT,dashboard,45.41.121.127
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.5,ACCOUNTANT,deposit,45.38.207.219
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,dashboard,45.138.102.241
+1,"GET / HTTP/1.1
+
+",8.8,MANAGER,market,45.201.186.53
+1,"GET / HTTP/1.1
+
+",9.2,CUSTOMER,market,45.229.154.183
+1,SYN_FLOOD_PACKET_BURST,7.9,ACCOUNTANT,login,45.75.79.55
+1,"GET / HTTP/1.1
+
+",7.6,ACCOUNTANT,dashboard,45.214.173.134
+1,User-Agent: *; curl/7.68.0,8.1,CUSTOMER,dashboard,45.190.150.9
+1,"GET / HTTP/1.1
+
+",8.8,ACCOUNTANT,login,45.160.93.201
+1,SYN_FLOOD_PACKET_BURST,9.1,CUSTOMER,market,45.208.15.104
+1,User-Agent: *; curl/7.68.0,7.4,CUSTOMER,dashboard,45.142.252.172
+1,OPTIONS /api/admin *,10.0,CUSTOMER,deposit,45.175.51.162
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,ACCOUNTANT,login,45.32.114.171
+1,OPTIONS /api/admin *,9.3,MANAGER,dashboard,45.4.56.86
+1,SYN_FLOOD_PACKET_BURST,6.8,ACCOUNTANT,dashboard,45.86.152.6
+1,User-Agent: *; curl/7.68.0,7.8,ACCOUNTANT,dashboard,45.245.110.140
+1,OPTIONS /api/admin *,7.8,MANAGER,dashboard,45.211.110.180
+1,User-Agent: *; curl/7.68.0,7.8,CUSTOMER,deposit,45.155.247.81
+1,OPTIONS /api/admin *,7.9,CUSTOMER,market,45.45.101.6
+1,"GET / HTTP/1.1
+
+",9.6,CUSTOMER,dashboard,45.65.127.172
+1,OPTIONS /api/admin *,8.6,MANAGER,login,45.65.93.54
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,CUSTOMER,login,45.56.58.47
+1,OPTIONS /api/admin *,9.0,CUSTOMER,dashboard,45.121.254.178
+1,OPTIONS /api/admin *,10.0,CUSTOMER,deposit,45.113.82.188
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,ACCOUNTANT,login,45.187.198.252
+1,User-Agent: *; curl/7.68.0,6.8,MANAGER,login,45.142.3.248
+1,OPTIONS /api/admin *,6.6,CUSTOMER,dashboard,45.168.254.222
+1,"GET / HTTP/1.1
+
+",7.2,ACCOUNTANT,deposit,45.58.176.37
+1,OPTIONS /api/admin *,8.7,CUSTOMER,deposit,45.209.30.152
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.9,MANAGER,market,45.31.155.81
+1,"GET / HTTP/1.1
+
+",7.9,CUSTOMER,market,45.42.216.60
+1,User-Agent: *; curl/7.68.0,9.7,ACCOUNTANT,login,45.6.76.62
+1,User-Agent: *; curl/7.68.0,8.3,MANAGER,dashboard,45.93.9.90
+1,"GET / HTTP/1.1
+
+",8.3,CUSTOMER,dashboard,45.161.27.239
+1,User-Agent: *; curl/7.68.0,8.4,CUSTOMER,market,45.164.68.33
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.2,ACCOUNTANT,market,45.200.187.34
+1,"GET / HTTP/1.1
+
+",7.2,MANAGER,dashboard,45.132.154.19
+1,User-Agent: *; curl/7.68.0,7.7,ACCOUNTANT,deposit,45.74.29.77
+1,SYN_FLOOD_PACKET_BURST,8.4,ACCOUNTANT,market,45.145.162.240
+1,User-Agent: *; curl/7.68.0,7.6,MANAGER,login,45.111.199.129
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,CUSTOMER,deposit,45.28.127.203
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.9,MANAGER,market,45.31.120.52
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,login,45.126.237.221
+1,User-Agent: *; curl/7.68.0,8.6,CUSTOMER,dashboard,45.105.137.49
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,ACCOUNTANT,login,45.219.202.35
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,deposit,45.53.2.231
+1,"GET / HTTP/1.1
+
+",9.8,MANAGER,deposit,45.180.133.10
+1,"GET / HTTP/1.1
+
+",7.0,MANAGER,dashboard,45.39.56.103
+1,"GET / HTTP/1.1
+
+",7.2,CUSTOMER,market,45.43.111.242
+1,SYN_FLOOD_PACKET_BURST,7.4,ACCOUNTANT,market,45.57.228.241
+1,"GET / HTTP/1.1
+
+",8.0,CUSTOMER,deposit,45.26.80.251
+1,OPTIONS /api/admin *,8.8,MANAGER,dashboard,45.32.212.138
+1,SYN_FLOOD_PACKET_BURST,8.5,ACCOUNTANT,login,45.23.170.181
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,login,45.110.14.238
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,ACCOUNTANT,deposit,45.72.213.139
+1,OPTIONS /api/admin *,8.2,CUSTOMER,login,45.178.253.132
+1,OPTIONS /api/admin *,7.0,MANAGER,market,45.40.225.171
+1,"GET / HTTP/1.1
+
+",8.8,CUSTOMER,market,45.120.223.113
+1,OPTIONS /api/admin *,7.0,MANAGER,dashboard,45.1.50.83
+1,User-Agent: *; curl/7.68.0,7.9,MANAGER,deposit,45.204.193.3
+1,User-Agent: *; curl/7.68.0,6.8,MANAGER,login,45.63.145.120
+1,SYN_FLOOD_PACKET_BURST,7.7,ACCOUNTANT,market,45.199.28.1
+1,SYN_FLOOD_PACKET_BURST,7.6,CUSTOMER,dashboard,45.199.221.95
+1,SYN_FLOOD_PACKET_BURST,8.3,MANAGER,market,45.34.120.153
+1,SYN_FLOOD_PACKET_BURST,8.8,ACCOUNTANT,login,45.23.64.191
+1,User-Agent: *; curl/7.68.0,9.4,ACCOUNTANT,deposit,45.232.207.220
+1,"GET / HTTP/1.1
+
+",8.7,MANAGER,login,45.234.26.6
+1,User-Agent: *; curl/7.68.0,9.8,ACCOUNTANT,dashboard,45.169.202.81
+1,User-Agent: *; curl/7.68.0,8.6,MANAGER,dashboard,45.219.170.120
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.2,MANAGER,login,45.211.195.112
+1,SYN_FLOOD_PACKET_BURST,7.7,ACCOUNTANT,dashboard,45.200.124.78
+1,User-Agent: *; curl/7.68.0,8.0,MANAGER,login,45.198.21.182
+1,SYN_FLOOD_PACKET_BURST,9.8,MANAGER,deposit,45.172.14.206
+1,SYN_FLOOD_PACKET_BURST,8.1,ACCOUNTANT,market,45.59.218.231
+1,SYN_FLOOD_PACKET_BURST,9.2,CUSTOMER,login,45.70.61.176
+1,User-Agent: *; curl/7.68.0,9.4,ACCOUNTANT,market,45.124.19.69
+1,"GET / HTTP/1.1
+
+",9.4,CUSTOMER,dashboard,45.168.174.109
+1,OPTIONS /api/admin *,9.9,MANAGER,dashboard,45.122.40.228
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,MANAGER,market,45.142.149.167
+1,"GET / HTTP/1.1
+
+",9.3,CUSTOMER,dashboard,45.45.217.156
+1,User-Agent: *; curl/7.68.0,7.7,ACCOUNTANT,market,45.172.66.99
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,CUSTOMER,deposit,45.37.210.65
+1,"GET / HTTP/1.1
+
+",9.3,CUSTOMER,dashboard,45.54.192.172
+1,SYN_FLOOD_PACKET_BURST,8.3,MANAGER,login,45.3.144.39
+1,SYN_FLOOD_PACKET_BURST,7.8,MANAGER,deposit,45.210.18.244
+1,"GET / HTTP/1.1
+
+",8.2,CUSTOMER,deposit,45.183.127.108
+1,OPTIONS /api/admin *,6.5,CUSTOMER,dashboard,45.22.8.99
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,ACCOUNTANT,deposit,45.35.43.48
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,MANAGER,market,45.131.86.246
+1,User-Agent: *; curl/7.68.0,7.9,MANAGER,deposit,45.191.99.162
+1,OPTIONS /api/admin *,7.9,CUSTOMER,login,45.199.145.242
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.7,CUSTOMER,market,45.250.71.96
+1,SYN_FLOOD_PACKET_BURST,9.7,MANAGER,login,45.27.44.108
+1,OPTIONS /api/admin *,9.4,ACCOUNTANT,market,45.159.74.111
+1,OPTIONS /api/admin *,9.6,CUSTOMER,dashboard,45.185.30.214
+1,"GET / HTTP/1.1
+
+",7.7,ACCOUNTANT,dashboard,45.168.123.29
+1,OPTIONS /api/admin *,9.3,ACCOUNTANT,deposit,45.166.223.38
+1,OPTIONS /api/admin *,7.4,CUSTOMER,market,45.143.124.40
+1,User-Agent: *; curl/7.68.0,9.3,MANAGER,deposit,45.50.164.9
+1,"GET / HTTP/1.1
+
+",6.5,CUSTOMER,login,45.48.163.95
+1,"GET / HTTP/1.1
+
+",9.3,MANAGER,market,45.109.6.189
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,CUSTOMER,deposit,45.83.108.180
+1,OPTIONS /api/admin *,6.8,ACCOUNTANT,dashboard,45.73.153.85
+1,"GET / HTTP/1.1
+
+",8.1,CUSTOMER,dashboard,45.41.7.132
+1,"GET / HTTP/1.1
+
+",9.7,CUSTOMER,dashboard,45.254.126.75
+1,OPTIONS /api/admin *,8.0,ACCOUNTANT,deposit,45.254.28.230
+1,SYN_FLOOD_PACKET_BURST,6.6,MANAGER,dashboard,45.3.133.3
+1,SYN_FLOOD_PACKET_BURST,7.0,CUSTOMER,deposit,45.220.228.167
+1,SYN_FLOOD_PACKET_BURST,9.9,CUSTOMER,deposit,45.229.130.56
+1,User-Agent: *; curl/7.68.0,7.7,CUSTOMER,deposit,45.169.38.214
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,ACCOUNTANT,market,45.146.47.7
+1,"GET / HTTP/1.1
+
+",7.2,CUSTOMER,market,45.40.105.82
+1,"GET / HTTP/1.1
+
+",7.0,CUSTOMER,login,45.70.63.234
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,ACCOUNTANT,login,45.180.133.38
+1,SYN_FLOOD_PACKET_BURST,9.2,ACCOUNTANT,dashboard,45.90.34.91
+1,"GET / HTTP/1.1
+
+",7.1,CUSTOMER,login,45.108.239.150
+1,"GET / HTTP/1.1
+
+",8.6,MANAGER,dashboard,45.109.67.144
+1,User-Agent: *; curl/7.68.0,8.0,CUSTOMER,deposit,45.194.215.240
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,CUSTOMER,dashboard,45.129.75.145
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,CUSTOMER,login,45.103.251.126
+1,User-Agent: *; curl/7.68.0,9.5,MANAGER,login,45.188.232.132
+1,OPTIONS /api/admin *,7.9,MANAGER,deposit,45.163.36.40
+1,"GET / HTTP/1.1
+
+",9.1,CUSTOMER,login,45.52.231.145
+1,"GET / HTTP/1.1
+
+",9.0,MANAGER,deposit,45.66.111.1
+1,User-Agent: *; curl/7.68.0,9.3,CUSTOMER,login,45.16.175.3
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.3,MANAGER,login,45.132.161.175
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.8,MANAGER,deposit,45.94.128.172
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,ACCOUNTANT,dashboard,45.218.150.131
+1,"GET / HTTP/1.1
+
+",9.8,CUSTOMER,login,45.39.132.113
+1,"GET / HTTP/1.1
+
+",9.7,CUSTOMER,login,45.172.216.180
+1,SYN_FLOOD_PACKET_BURST,8.9,ACCOUNTANT,login,45.216.237.123
+1,SYN_FLOOD_PACKET_BURST,7.0,MANAGER,market,45.133.201.57
+1,SYN_FLOOD_PACKET_BURST,9.6,MANAGER,dashboard,45.109.4.66
+1,OPTIONS /api/admin *,6.8,MANAGER,dashboard,45.166.180.107
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,CUSTOMER,login,45.145.80.54
+1,User-Agent: *; curl/7.68.0,7.5,CUSTOMER,deposit,45.98.209.203
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,MANAGER,market,45.235.11.39
+1,SYN_FLOOD_PACKET_BURST,8.8,MANAGER,login,45.176.154.198
+1,User-Agent: *; curl/7.68.0,7.0,ACCOUNTANT,market,45.178.91.174
+1,OPTIONS /api/admin *,7.7,CUSTOMER,login,45.179.12.102
+1,User-Agent: *; curl/7.68.0,8.4,ACCOUNTANT,login,45.155.211.226
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,login,45.5.11.200
+1,OPTIONS /api/admin *,9.9,MANAGER,dashboard,45.61.214.3
+1,User-Agent: *; curl/7.68.0,9.7,CUSTOMER,login,45.44.15.192
+1,SYN_FLOOD_PACKET_BURST,8.5,MANAGER,deposit,45.67.95.47
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,MANAGER,dashboard,45.21.240.124
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.5,ACCOUNTANT,market,45.141.114.24
+1,SYN_FLOOD_PACKET_BURST,7.2,ACCOUNTANT,dashboard,45.125.51.82
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,CUSTOMER,login,45.120.88.119
+1,User-Agent: *; curl/7.68.0,7.2,ACCOUNTANT,deposit,45.137.250.75
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.4,ACCOUNTANT,dashboard,45.201.72.166
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.9,CUSTOMER,dashboard,45.172.130.239
+1,OPTIONS /api/admin *,8.8,MANAGER,deposit,45.176.8.74
+1,"GET / HTTP/1.1
+
+",8.3,CUSTOMER,dashboard,45.98.145.237
+1,"GET / HTTP/1.1
+
+",8.7,ACCOUNTANT,login,45.205.41.109
+1,"GET / HTTP/1.1
+
+",8.1,MANAGER,login,45.107.197.1
+1,SYN_FLOOD_PACKET_BURST,6.9,CUSTOMER,deposit,45.168.192.224
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.4,CUSTOMER,login,45.41.131.62
+1,OPTIONS /api/admin *,7.5,ACCOUNTANT,deposit,45.153.197.49
+1,"GET / HTTP/1.1
+
+",8.8,CUSTOMER,deposit,45.152.29.217
+1,"GET / HTTP/1.1
+
+",7.3,ACCOUNTANT,market,45.238.33.25
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.3,CUSTOMER,deposit,45.125.94.210
+1,User-Agent: *; curl/7.68.0,6.9,CUSTOMER,market,45.135.61.174
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.0,MANAGER,login,45.110.114.57
+1,OPTIONS /api/admin *,8.6,CUSTOMER,login,45.34.21.155
+1,SYN_FLOOD_PACKET_BURST,7.5,ACCOUNTANT,deposit,45.67.8.238
+1,OPTIONS /api/admin *,7.9,CUSTOMER,dashboard,45.73.220.214
+1,"GET / HTTP/1.1
+
+",9.9,MANAGER,dashboard,45.235.69.245
+1,OPTIONS /api/admin *,7.6,ACCOUNTANT,login,45.147.76.79
+1,OPTIONS /api/admin *,7.8,ACCOUNTANT,deposit,45.163.149.156
+1,User-Agent: *; curl/7.68.0,8.5,CUSTOMER,dashboard,45.162.230.104
+1,SYN_FLOOD_PACKET_BURST,8.3,CUSTOMER,market,45.235.236.184
+1,OPTIONS /api/admin *,8.1,CUSTOMER,login,45.206.208.5
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,CUSTOMER,deposit,45.50.150.139
+1,"GET / HTTP/1.1
+
+",6.7,ACCOUNTANT,deposit,45.165.118.17
+1,OPTIONS /api/admin *,9.4,ACCOUNTANT,login,45.186.77.213
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.6,MANAGER,dashboard,45.217.71.89
+1,User-Agent: *; curl/7.68.0,7.9,CUSTOMER,dashboard,45.52.210.60
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.7,MANAGER,dashboard,45.49.87.47
+1,User-Agent: *; curl/7.68.0,8.7,ACCOUNTANT,deposit,45.230.232.235
+1,SYN_FLOOD_PACKET_BURST,8.1,MANAGER,login,45.10.16.164
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.9,MANAGER,login,45.40.167.63
+1,SYN_FLOOD_PACKET_BURST,7.5,CUSTOMER,market,45.43.113.44
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,MANAGER,deposit,45.42.251.227
+1,User-Agent: *; curl/7.68.0,7.6,CUSTOMER,market,45.35.115.140
+1,OPTIONS /api/admin *,6.6,MANAGER,login,45.16.223.77
+1,OPTIONS /api/admin *,8.9,ACCOUNTANT,dashboard,45.172.210.66
+1,User-Agent: *; curl/7.68.0,6.6,MANAGER,login,45.48.29.135
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.8,MANAGER,login,45.63.154.251
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.8,CUSTOMER,market,45.166.140.9
+1,"GET / HTTP/1.1
+
+",8.3,MANAGER,dashboard,45.125.37.176
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,dashboard,45.221.130.211
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.8,MANAGER,market,45.106.158.61
+1,SYN_FLOOD_PACKET_BURST,9.5,ACCOUNTANT,dashboard,45.129.102.238
+1,OPTIONS /api/admin *,9.9,ACCOUNTANT,login,45.152.112.46
+1,"GET / HTTP/1.1
+
+",7.9,MANAGER,market,45.34.220.92
+1,OPTIONS /api/admin *,8.0,ACCOUNTANT,market,45.164.91.216
+1,SYN_FLOOD_PACKET_BURST,8.8,MANAGER,login,45.14.144.112
+1,OPTIONS /api/admin *,8.1,CUSTOMER,market,45.204.249.159
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,MANAGER,dashboard,45.210.240.170
+1,User-Agent: *; curl/7.68.0,9.5,MANAGER,market,45.79.164.69
+1,"GET / HTTP/1.1
+
+",8.0,MANAGER,deposit,45.65.146.126
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.1,CUSTOMER,dashboard,45.7.210.189
+1,SYN_FLOOD_PACKET_BURST,9.1,MANAGER,dashboard,45.161.78.245
+1,SYN_FLOOD_PACKET_BURST,8.3,CUSTOMER,deposit,45.45.62.195
+1,SYN_FLOOD_PACKET_BURST,9.8,CUSTOMER,market,45.134.10.9
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,ACCOUNTANT,market,45.230.49.214
+1,SYN_FLOOD_PACKET_BURST,9.5,MANAGER,market,45.124.231.62
+1,SYN_FLOOD_PACKET_BURST,8.3,MANAGER,deposit,45.188.60.251
+1,OPTIONS /api/admin *,9.9,CUSTOMER,dashboard,45.209.120.16
+1,User-Agent: *; curl/7.68.0,8.4,CUSTOMER,dashboard,45.48.61.253
+1,"GET / HTTP/1.1
+
+",9.5,MANAGER,dashboard,45.66.152.206
+1,OPTIONS /api/admin *,7.9,CUSTOMER,login,45.248.117.121
+1,OPTIONS /api/admin *,9.3,MANAGER,dashboard,45.132.134.93
+1,"GET / HTTP/1.1
+
+",7.3,ACCOUNTANT,dashboard,45.32.77.64
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,MANAGER,dashboard,45.46.67.88
+1,User-Agent: *; curl/7.68.0,9.1,MANAGER,market,45.71.125.103
+1,"GET / HTTP/1.1
+
+",7.9,ACCOUNTANT,market,45.143.56.210
+1,OPTIONS /api/admin *,8.5,CUSTOMER,dashboard,45.161.7.62
+1,User-Agent: *; curl/7.68.0,6.6,CUSTOMER,market,45.248.213.57
+1,OPTIONS /api/admin *,8.9,MANAGER,login,45.98.212.153
+1,OPTIONS /api/admin *,9.7,ACCOUNTANT,market,45.146.204.124
+1,User-Agent: *; curl/7.68.0,8.6,ACCOUNTANT,dashboard,45.9.44.64
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.4,ACCOUNTANT,dashboard,45.136.88.161
+1,"GET / HTTP/1.1
+
+",8.5,MANAGER,login,45.48.159.115
+1,OPTIONS /api/admin *,6.5,ACCOUNTANT,market,45.69.178.105
+1,SYN_FLOOD_PACKET_BURST,8.9,MANAGER,deposit,45.172.115.229
+1,SYN_FLOOD_PACKET_BURST,7.9,ACCOUNTANT,dashboard,45.19.61.61
+1,OPTIONS /api/admin *,9.4,CUSTOMER,login,45.114.199.69
+1,SYN_FLOOD_PACKET_BURST,8.9,MANAGER,deposit,45.244.65.132
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.3,MANAGER,login,45.49.187.251
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.0,CUSTOMER,login,45.175.51.124
+1,OPTIONS /api/admin *,8.1,MANAGER,dashboard,45.17.166.200
+1,User-Agent: *; curl/7.68.0,8.2,MANAGER,login,45.60.150.32
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.9,ACCOUNTANT,dashboard,45.23.173.168
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.8,MANAGER,dashboard,45.210.13.38
+1,SYN_FLOOD_PACKET_BURST,9.5,CUSTOMER,deposit,45.155.106.168
+1,SYN_FLOOD_PACKET_BURST,6.8,CUSTOMER,deposit,45.45.251.157
+1,"GET / HTTP/1.1
+
+",9.5,ACCOUNTANT,deposit,45.3.158.136
+1,OPTIONS /api/admin *,7.8,CUSTOMER,login,45.64.173.201
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.7,ACCOUNTANT,market,45.96.66.104
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.6,MANAGER,deposit,45.12.136.184
+1,User-Agent: *; curl/7.68.0,6.6,CUSTOMER,market,45.7.127.95
+1,OPTIONS /api/admin *,9.1,CUSTOMER,deposit,45.137.124.153
+1,SYN_FLOOD_PACKET_BURST,9.2,MANAGER,dashboard,45.103.96.167
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.4,ACCOUNTANT,dashboard,45.18.80.6
+1,"GET / HTTP/1.1
+
+",8.8,MANAGER,login,45.185.128.124
+1,SYN_FLOOD_PACKET_BURST,6.8,CUSTOMER,market,45.220.139.132
+1,OPTIONS /api/admin *,7.1,CUSTOMER,dashboard,45.108.66.70
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.2,MANAGER,login,45.33.125.58
+1,"GET / HTTP/1.1
+
+",8.4,CUSTOMER,login,45.207.106.76
+1,User-Agent: *; curl/7.68.0,8.8,ACCOUNTANT,market,45.33.194.6
+1,"GET / HTTP/1.1
+
+",8.9,MANAGER,deposit,45.93.154.32
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,ACCOUNTANT,deposit,45.110.60.122
+1,SYN_FLOOD_PACKET_BURST,9.2,CUSTOMER,login,45.201.196.226
+1,OPTIONS /api/admin *,8.0,ACCOUNTANT,login,45.13.132.133
+1,SYN_FLOOD_PACKET_BURST,9.2,ACCOUNTANT,deposit,45.240.12.79
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.1,CUSTOMER,login,45.112.160.14
+1,OPTIONS /api/admin *,9.1,ACCOUNTANT,market,45.167.229.73
+1,OPTIONS /api/admin *,9.5,MANAGER,dashboard,45.210.115.185
+1,User-Agent: *; curl/7.68.0,7.1,MANAGER,deposit,45.81.62.197
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.1,MANAGER,market,45.124.96.245
+1,OPTIONS /api/admin *,9.0,MANAGER,market,45.237.237.121
+1,"GET / HTTP/1.1
+
+",9.2,ACCOUNTANT,market,45.172.11.38
+1,SYN_FLOOD_PACKET_BURST,8.9,MANAGER,dashboard,45.40.136.181
+1,"GET / HTTP/1.1
+
+",7.9,ACCOUNTANT,market,45.120.252.198
+1,User-Agent: *; curl/7.68.0,6.6,ACCOUNTANT,deposit,45.77.61.74
+1,"GET / HTTP/1.1
+
+",7.1,MANAGER,deposit,45.199.193.128
+1,OPTIONS /api/admin *,9.4,MANAGER,deposit,45.84.108.43
+1,OPTIONS /api/admin *,9.8,ACCOUNTANT,dashboard,45.251.156.145
+1,OPTIONS /api/admin *,9.5,ACCOUNTANT,deposit,45.179.163.212
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",6.7,ACCOUNTANT,dashboard,45.190.4.141
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",7.5,MANAGER,dashboard,45.13.104.31
+1,"GET / HTTP/1.1
+
+",9.9,MANAGER,deposit,45.74.118.37
+1,OPTIONS /api/admin *,7.7,MANAGER,deposit,45.128.178.98
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",8.2,MANAGER,login,45.82.20.75
+1,User-Agent: *; curl/7.68.0,7.7,MANAGER,deposit,45.237.52.8
+1,OPTIONS /api/admin *,9.8,MANAGER,dashboard,45.194.9.236
+1,OPTIONS /api/admin *,6.6,MANAGER,deposit,45.184.171.180
+1,OPTIONS /api/admin *,7.8,MANAGER,dashboard,45.49.253.178
+1,User-Agent: *; curl/7.68.0,8.9,ACCOUNTANT,market,45.128.155.172
+1,"GET / HTTP/1.1
+
+",9.2,CUSTOMER,deposit,45.173.183.2
+1,OPTIONS /api/admin *,7.1,MANAGER,dashboard,45.220.150.109
+1,OPTIONS /api/admin *,8.3,ACCOUNTANT,deposit,45.113.41.38
+1,"X-Forwarded-For: 127.0.0.1, 45.22.33.11",9.6,ACCOUNTANT,login,45.54.144.7
+1,"GET / HTTP/1.1
+
+",9.6,MANAGER,login,45.254.36.206
+1,User-Agent: *; curl/7.68.0,8.0,CUSTOMER,dashboard,45.192.39.71
+1,User-Agent: *; curl/7.68.0,9.2,ACCOUNTANT,market,45.233.234.134
+1,SYN_FLOOD_PACKET_BURST,9.6,ACCOUNTANT,dashboard,45.124.74.57
+1,"GET / HTTP/1.1
+
+",8.6,CUSTOMER,market,45.178.81.22
+1,"GET / HTTP/1.1
+
+",6.8,MANAGER,deposit,45.50.42.113

@@ -1,0 +1,36 @@
+spring:
+  application:
+    name: chimera-platform-api
+
+server:
+  port: 8080
+
+chimera:
+  ai-brain:
+    # Overridden in Docker Compose to the python service name.
+    base-url: ${AI_BRAIN_BASE_URL:http://localhost:8000}
+  auth:
+    # Replace through MANAGER_AUTH_KEY outside local development.
+    manager:
+      key: ${MANAGER_AUTH_KEY:manager-local-key}
+  datasets:
+    # CSV files uploaded through the manager-only validation endpoint are kept
+    # locally. Do not point this at a production-data directory.
+    path: ${CHIMERA_DATASETS_PATH:./datasets/uploads}
+  market:
+    # Use a licensed/approved quote API in a deployment. The local default
+    # reports the quote as unavailable instead of inventing a NIFTY value.
+    quote-url: ${NIFTY_QUOTE_URL:}
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      show-details: always
+
+logging:
+  level:
+    com.chimera.bank: INFO

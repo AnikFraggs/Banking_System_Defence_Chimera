@@ -1,0 +1,49 @@
+services:
+  # The Python "AI brain" — existing optional triage service.
+  ai-brain:
+    build:
+      context: ../chimera-defense-lab
+    image: chimera-ai-brain:local
+    environment:
+      ENABLE_LLM_SUMMARIES: ${ENABLE_LLM_SUMMARIES:-false}
+      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
+    expose:
+      - "8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"]
+      interval: 30s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+  platform-api:
+    build:
+      context: .
+    image: chimera-platform-api:local
+    environment:
+      AI_BRAIN_BASE_URL: http://ai-brain:8000
+      CHIMERA_DATASETS_PATH: /app/datasets
+      MANAGER_AUTH_KEY: ${MANAGER_AUTH_KEY:-manager-local-key}
+      # Set this only to an approved/licensed feed returning
+      # { symbol, price, source }. Blank means no quote is displayed.
+      NIFTY_QUOTE_URL: ${NIFTY_QUOTE_URL:-}
+    ports:
+      - "127.0.0.1:8080:8080"
+    volumes:
+      - ./datasets:/app/datasets
+    depends_on:
+      ai-brain:
+        condition: service_started
+
+  web:
+    build:
+      context: ./web
+      args:
+        VITE_API_URL: /api
+    image: chimera-bank-web:local
+    ports:
+      - "127.0.0.1:5173:80"
+    depends_on:
+      - platform-api
