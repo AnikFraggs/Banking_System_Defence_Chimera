@@ -12,7 +12,7 @@ and measurable CSV/RAG validation.
 <img width="1667" height="825" alt="image" src="https://github.com/user-attachments/assets/074df453-2409-4f6f-a40e-6578c5101649" />
 
 
-```
+
 <img width="1470" height="622" alt="image" src="https://github.com/user-attachments/assets/c155fbf1-bd23-420d-9cf0-0f12239f2df6" />
 
  Local demo sign-in
