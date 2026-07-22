@@ -1,49 +1,86 @@
 services:
-  # The Python "AI brain" — existing optional triage service.
-  ai-brain:
-    build:
-      context: ../chimera-defense-lab
-    image: chimera-ai-brain:local
-    environment:
-      ENABLE_LLM_SUMMARIES: ${ENABLE_LLM_SUMMARIES:-false}
-      LLM_PROVIDER: ${LLM_PROVIDER:-openai}
-      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
-      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
-    expose:
-      - "8000"
-    healthcheck:
-      test: ["CMD", "python", "-c", "import urllib.request,sys; sys.exit(0 if urllib.request.urlopen('http://127.0.0.1:8000/health').status==200 else 1)"]
-      interval: 30s
-      timeout: 5s
-      retries: 5
-      start_period: 20s
-
+  # 1. Java Backend (Spring Boot + JPA + PostgreSQL)
   platform-api:
     build:
       context: .
+      dockerfile: Dockerfile
     image: chimera-platform-api:local
-    environment:
-      AI_BRAIN_BASE_URL: http://ai-brain:8000
-      CHIMERA_DATASETS_PATH: /app/datasets
-      MANAGER_AUTH_KEY: ${MANAGER_AUTH_KEY:-manager-local-key}
-      # Set this only to an approved/licensed feed returning
-      # { symbol, price, source }. Blank means no quote is displayed.
-      NIFTY_QUOTE_URL: ${NIFTY_QUOTE_URL:-}
     ports:
-      - "127.0.0.1:8080:8080"
-    volumes:
-      - ./datasets:/app/datasets
+      - "8080:8080"
     depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
       ai-brain:
         condition: service_started
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/chimera_db
+      - SPRING_DATASOURCE_USERNAME=chimera
+      - SPRING_DATASOURCE_PASSWORD=pass
+      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
+      - AI_BRAIN_BASE_URL=http://ai-brain:8000
 
+  # 2. PostgreSQL
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: chimera
+      POSTGRES_PASSWORD: pass
+      POSTGRES_DB: chimera_db
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U chimera -d chimera_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  # 3. React Frontend
   web:
     build:
       context: ./web
-      args:
-        VITE_API_URL: /api
+      dockerfile: Dockerfile
     image: chimera-bank-web:local
     ports:
-      - "127.0.0.1:5173:80"
+      - "5173:80"
     depends_on:
       - platform-api
+
+  # 4. Express BFF
+  chimera-bff:
+    build:
+      context: ./bff-express
+      dockerfile: Dockerfile
+    image: chimera-bff:local
+    ports:
+      - "5000:5000"
+    environment:
+      - DATABASE_URL=postgres://chimera:pass@postgres:5432/chimera_db
+      - REDIS_URL=redis://redis:6379
+      - JAVA_API_URL=http://platform-api:8080
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_started
+
+  # 5. Redis
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6380:6379"
+
+  # 6. Python GenAI Brain (cybersecurity triage: heuristic model + RAG)
+  ai-brain:
+    build:
+      context: ./ai-brain
+      dockerfile: Dockerfile
+    image: chimera-ai-brain:local
+    ports:
+      - "8000:8000"
+
+volumes:
+  pgdata:

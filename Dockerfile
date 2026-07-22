@@ -20,6 +20,9 @@ FROM eclipse-temurin:21-jre AS runtime
 WORKDIR /app
 RUN useradd --create-home --uid 10001 chimera
 COPY --from=build /workspace/platform-api/target/platform-api-*.jar /app/app.jar
+# The app creates ./datasets/uploads under WORKDIR at startup; give the
+# non-root runtime user ownership of /app so directory creation succeeds.
+RUN mkdir -p /app/datasets/uploads && chown -R chimera:chimera /app
 USER chimera
 EXPOSE 8080
 ENTRYPOINT ["java", "-jar", "/app/app.jar"]

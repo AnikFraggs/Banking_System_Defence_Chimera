@@ -53,6 +53,40 @@ public class AiBrainClient {
             boolean fromFallback) {
     }
 
+    /**
+     * Full triage response including the manager-facing action and detected
+     * threats. Used by the manager threat console; degrades to the same
+     * conservative fallback as {@link #triage} when the brain is down.
+     */
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> triageDetailed(Map<String, Object> telemetry) {
+        try {
+            Map<String, Object> response = client.post()
+                    .uri("/v1/triage")
+                    .body(Map.of("telemetry", telemetry, "include_llm_summary", false))
+                    .retrieve()
+                    .onStatus(HttpStatusCode::isError, (req, res) -> {
+                        throw new IllegalStateException("brain returned " + res.getStatusCode());
+                    })
+                    .body(Map.class);
+            lastCallOk = true;
+            return response == null ? Map.of() : response;
+        } catch (Exception e) {
+            lastCallOk = false;
+            log.warn("AI brain unavailable ({}); using conservative local fallback.", e.toString());
+            BrainVerdict v = conservativeFallback(telemetry);
+            return Map.of(
+                    "risk_score", v.riskScore(),
+                    "enforced_recommendation", v.enforcedRecommendation(),
+                    "requires_human_approval", v.requiresHumanApproval(),
+                    "detected_threats", java.util.List.of(),
+                    "manager_action", "AI brain offline — applying conservative local policy: "
+                            + v.enforcedRecommendation() + ".",
+                    "summary", "AI brain unreachable; local fallback verdict.",
+                    "from_fallback", true);
+        }
+    }
+
     /** Returns model-artifact readiness from the brain's /health, or false if down. */
     public boolean brainHealthy() {
         try {
