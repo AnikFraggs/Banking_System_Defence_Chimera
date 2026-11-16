@@ -1,0 +1,6 @@
+# Host node_modules contain Windows-native binaries (esbuild, rollup,
+# lightningcss) that would overwrite the Linux ones installed by `npm ci`.
+node_modules
+dist
+.env
+.env.*

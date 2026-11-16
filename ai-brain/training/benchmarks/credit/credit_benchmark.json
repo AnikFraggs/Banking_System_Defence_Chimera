@@ -1,0 +1,115 @@
+{
+  "caveat": "SYNTHETIC DATA ONLY. Metrics show recovery of the generator's signal, not real-world fraud-detection quality. No public real credit-boost/CPN dataset exists.",
+  "features": [
+    "identity_gap_years_log",
+    "id_first_seen_log",
+    "file_age_log",
+    "thin_file",
+    "au_ratio",
+    "au_added_90d_log",
+    "seasoning_gap_log",
+    "au_limit_log",
+    "score_norm",
+    "score_jump",
+    "disputes_log",
+    "derogs_removed_log",
+    "inquiries_log",
+    "unknown_furnisher_primaries",
+    "ecbsv_match",
+    "ecbsv_no_match",
+    "id_linked_other_identity",
+    "id_deceased_record",
+    "income_verified",
+    "income_verify_failed",
+    "doc_tamper_score",
+    "loan_to_income_log",
+    "asset_to_income_log",
+    "address_mismatch",
+    "phone_age_log",
+    "email_age_log",
+    "device_extra_identities_log",
+    "thin_file_x_score",
+    "product_credit_card",
+    "product_bnpl",
+    "product_personal_loan",
+    "product_auto_loan",
+    "product_apartment_rental",
+    "product_mortgage"
+  ],
+  "rows": {
+    "train": 24028,
+    "val": 7944,
+    "test": 8028,
+    "adaptive_holdout": 10000
+  },
+  "positives": {
+    "test": 651,
+    "adaptive": 741
+  },
+  "data_sha256": {
+    "credit_apps": "504af712082f696205bd9a935538b67a3c5f501a06b041de7789770f34cf2aaf",
+    "adaptive": "65222ae31c9db7d51a6b31667d8fd4b14a7aed1bf9a9d6e6ce5860eb82c179aa"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "models": {
+    "lr_shipped": {
+      "test": {
+        "roc_auc": 0.9756,
+        "pr_auc": 0.9595
+      },
+      "adaptive": {
+        "roc_auc": 0.9579,
+        "pr_auc": 0.886
+      },
+      "latency_ms": {
+        "p50": 0.0668,
+        "p95": 0.0915
+      }
+    },
+    "hgb": {
+      "test": {
+        "roc_auc": 0.9754,
+        "pr_auc": 0.9583
+      },
+      "adaptive": {
+        "roc_auc": 0.94,
+        "pr_auc": 0.8782
+      },
+      "latency_ms": {
+        "p50": 0.6324,
+        "p95": 3.0142
+      }
+    },
+    "xgboost": {
+      "test": {
+        "roc_auc": 0.9744,
+        "pr_auc": 0.9585
+      },
+      "adaptive": {
+        "roc_auc": 0.9596,
+        "pr_auc": 0.8976
+      },
+      "latency_ms": {
+        "p50": 0.456,
+        "p95": 1.2785
+      }
+    },
+    "lightgbm": {
+      "test": {
+        "roc_auc": 0.9748,
+        "pr_auc": 0.9574
+      },
+      "adaptive": {
+        "roc_auc": 0.9666,
+        "pr_auc": 0.9289
+      },
+      "latency_ms": {
+        "p50": 0.4345,
+        "p95": 0.9371
+      }
+    }
+  }
+}

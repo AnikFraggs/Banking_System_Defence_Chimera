@@ -1,0 +1,132 @@
+{
+  "dataset": "ULB creditcard.csv (Kaggle, real)",
+  "data_sha256": "76274b691b16a6c49d3f159c883398e03ccd6d1ee12d9d8ee38f4b4b98551a89",
+  "split": "temporal 70/15/15 sorted by Time",
+  "rows": {
+    "train": 199364,
+    "validation": 42721,
+    "test": 42722
+  },
+  "fraud_rate": {
+    "train": 0.001926,
+    "test": 0.001217
+  },
+  "features": [
+    "V1",
+    "V2",
+    "V3",
+    "V4",
+    "V5",
+    "V6",
+    "V7",
+    "V8",
+    "V9",
+    "V10",
+    "V11",
+    "V12",
+    "V13",
+    "V14",
+    "V15",
+    "V16",
+    "V17",
+    "V18",
+    "V19",
+    "V20",
+    "V21",
+    "V22",
+    "V23",
+    "V24",
+    "V25",
+    "V26",
+    "V27",
+    "V28",
+    "Amount"
+  ],
+  "validation_fpr_budget": 0.01,
+  "threshold_chosen_on": "validation only",
+  "seed": 42,
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "versions": {
+      "sklearn": "1.9.0",
+      "numpy": "2.5.2",
+      "pandas": "3.0.5",
+      "hgb_production": "sklearn",
+      "xgboost": "xgboost",
+      "lightgbm": "lightgbm"
+    }
+  },
+  "models": {
+    "hgb_production": {
+      "roc_auc": 0.95705,
+      "pr_auc": 0.75065,
+      "brier": 0.000538,
+      "threshold": 0.001601,
+      "recall": 0.82692,
+      "precision": 0.11653,
+      "fpr": 0.00764,
+      "tp": 43,
+      "fp": 326,
+      "fn": 9,
+      "tn": 42344,
+      "fpr_budget_met": true,
+      "val_pr_auc": 0.87139,
+      "train_seconds": 10.32,
+      "latency_ms": {
+        "p50": 0.762,
+        "p95": 0.8677,
+        "p99": 1.3312,
+        "samples": 1000
+      }
+    },
+    "xgboost": {
+      "roc_auc": 0.97932,
+      "pr_auc": 0.76746,
+      "brier": 0.000474,
+      "threshold": 0.014175,
+      "recall": 0.76923,
+      "precision": 0.24845,
+      "fpr": 0.002836,
+      "tp": 40,
+      "fp": 121,
+      "fn": 12,
+      "tn": 42549,
+      "fpr_budget_met": true,
+      "val_pr_auc": 0.85027,
+      "train_seconds": 1.79,
+      "latency_ms": {
+        "p50": 0.1858,
+        "p95": 0.2143,
+        "p99": 0.3744,
+        "samples": 1000
+      }
+    },
+    "lightgbm": {
+      "roc_auc": 0.87252,
+      "pr_auc": 0.65773,
+      "brier": 0.000668,
+      "threshold": 0.00326,
+      "recall": 0.76923,
+      "precision": 0.11111,
+      "fpr": 0.007499,
+      "tp": 40,
+      "fp": 320,
+      "fn": 12,
+      "tn": 42350,
+      "fpr_budget_met": true,
+      "val_pr_auc": 0.76116,
+      "train_seconds": 0.94,
+      "latency_ms": {
+        "p50": 0.1846,
+        "p95": 0.204,
+        "p99": 0.2482,
+        "samples": 1000
+      }
+    }
+  },
+  "literature_reference_not_reproduced": {
+    "note": "Published ULB results vary by split/metric; compare PR-AUC and recall@FPR, not accuracy.",
+    "typical_strong_tree_pr_auc": "0.80-0.90 on random splits; temporal splits are harder"
+  }
+}

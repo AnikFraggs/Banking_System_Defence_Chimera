@@ -1,0 +1,339 @@
+{
+  "caveat": "SYNTHETIC DATA ONLY. Shows recovery of the generator's signal, not real-world quality.",
+  "shipped_model": "credit-brain-lr-v2",
+  "splits_verified_against_model_file": true,
+  "rows": {
+    "train": 28067,
+    "val": 8985,
+    "test": 8028,
+    "adaptive_holdout": 4920
+  },
+  "positives": {
+    "test": 651,
+    "adaptive_holdout": 298
+  },
+  "onnx_lr_parity": {
+    "max_abs_prob_diff": {
+      "test": 2.858699471031123e-07,
+      "holdout": 3.2607177036236834e-07
+    },
+    "test_decision_agreement": 1.0
+  },
+  "onnx_files": {
+    "lr": "credit_brain_v2_lr.onnx",
+    "mlp": "credit_brain_mlp.onnx"
+  },
+  "environment": {
+    "python": "3.14.6",
+    "onnxruntime": "1.31.1",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "ort_threads": 1
+  },
+  "models": {
+    "json_lr_shipped": {
+      "thresholds": {
+        "t_low": 0.111598,
+        "t_high": 0.201926,
+        "chosen_on": "val"
+      },
+      "test": {
+        "roc_auc": 0.9733,
+        "pr_auc": 0.9576,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0199,
+          0.017,
+          0.0234
+        ],
+        "fpr_manual_review": [
+          0.0133,
+          0.0109,
+          0.0162
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9535,
+        "pr_auc": 0.9189,
+        "recall_any_action": [
+          0.896,
+          0.8561,
+          0.9257
+        ],
+        "recall_manual_review": [
+          0.8523,
+          0.8076,
+          0.8881
+        ],
+        "fpr_any_action": [
+          0.0169,
+          0.0135,
+          0.021
+        ],
+        "fpr_manual_review": [
+          0.0121,
+          0.0093,
+          0.0157
+        ]
+      },
+      "latency_ms_single_row_featurize_plus_score": {
+        "p50": 0.0073,
+        "p95": 0.008,
+        "p99": 0.0084
+      },
+      "latency_ms_full_assess": {
+        "p50": 0.0112,
+        "p95": 0.0166,
+        "p99": 0.0194
+      }
+    },
+    "onnx_lr": {
+      "thresholds": {
+        "t_low": 0.111598,
+        "t_high": 0.201926,
+        "chosen_on": "val"
+      },
+      "test": {
+        "roc_auc": 0.9733,
+        "pr_auc": 0.9576,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0199,
+          0.017,
+          0.0234
+        ],
+        "fpr_manual_review": [
+          0.0133,
+          0.0109,
+          0.0162
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9535,
+        "pr_auc": 0.9189,
+        "recall_any_action": [
+          0.896,
+          0.8561,
+          0.9257
+        ],
+        "recall_manual_review": [
+          0.8523,
+          0.8076,
+          0.8881
+        ],
+        "fpr_any_action": [
+          0.0169,
+          0.0135,
+          0.021
+        ],
+        "fpr_manual_review": [
+          0.0121,
+          0.0093,
+          0.0157
+        ]
+      },
+      "latency_ms_single_row_featurize_plus_score": {
+        "p50": 0.0102,
+        "p95": 0.0108,
+        "p99": 0.0112
+      }
+    },
+    "onnx_mlp_64x32": {
+      "thresholds": {
+        "t_low": 0.022556,
+        "t_high": 0.090068,
+        "chosen_on": "val"
+      },
+      "test": {
+        "roc_auc": 0.9796,
+        "pr_auc": 0.9601,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0331,
+          0.0292,
+          0.0374
+        ],
+        "fpr_manual_review": [
+          0.0148,
+          0.0123,
+          0.0178
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9604,
+        "pr_auc": 0.931,
+        "recall_any_action": [
+          0.9295,
+          0.8947,
+          0.9534
+        ],
+        "recall_manual_review": [
+          0.9161,
+          0.8791,
+          0.9425
+        ],
+        "fpr_any_action": [
+          0.0307,
+          0.0261,
+          0.0361
+        ],
+        "fpr_manual_review": [
+          0.0121,
+          0.0093,
+          0.0157
+        ]
+      },
+      "latency_ms_single_row_featurize_plus_score": {
+        "p50": 0.011,
+        "p95": 0.0115,
+        "p99": 0.0119
+      }
+    },
+    "hgb_python": {
+      "thresholds": {
+        "t_low": 0.010346,
+        "t_high": 0.040156,
+        "chosen_on": "val"
+      },
+      "test": {
+        "roc_auc": 0.9774,
+        "pr_auc": 0.96,
+        "recall_any_action": [
+          0.9539,
+          0.935,
+          0.9675
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0529,
+          0.048,
+          0.0582
+        ],
+        "fpr_manual_review": [
+          0.0149,
+          0.0124,
+          0.0179
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.963,
+        "pr_auc": 0.9354,
+        "recall_any_action": [
+          0.9329,
+          0.8986,
+          0.9561
+        ],
+        "recall_manual_review": [
+          0.9161,
+          0.8791,
+          0.9425
+        ],
+        "fpr_any_action": [
+          0.0547,
+          0.0485,
+          0.0617
+        ],
+        "fpr_manual_review": [
+          0.0113,
+          0.0086,
+          0.0147
+        ]
+      },
+      "latency_ms_single_row_featurize_plus_score": {
+        "p50": 0.2951,
+        "p95": 0.4095,
+        "p99": 0.4882
+      }
+    },
+    "lightgbm_python": {
+      "thresholds": {
+        "t_low": 0.010413,
+        "t_high": 0.014313,
+        "chosen_on": "val"
+      },
+      "test": {
+        "roc_auc": 0.976,
+        "pr_auc": 0.9575,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0184,
+          0.0156,
+          0.0218
+        ],
+        "fpr_manual_review": [
+          0.0159,
+          0.0133,
+          0.019
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9596,
+        "pr_auc": 0.9369,
+        "recall_any_action": [
+          0.9262,
+          0.8908,
+          0.9507
+        ],
+        "recall_manual_review": [
+          0.9262,
+          0.8908,
+          0.9507
+        ],
+        "fpr_any_action": [
+          0.0151,
+          0.012,
+          0.0191
+        ],
+        "fpr_manual_review": [
+          0.0123,
+          0.0095,
+          0.0159
+        ]
+      },
+      "latency_ms_single_row_featurize_plus_score": {
+        "p50": 0.2035,
+        "p95": 0.2762,
+        "p99": 0.3485
+      }
+    }
+  }
+}

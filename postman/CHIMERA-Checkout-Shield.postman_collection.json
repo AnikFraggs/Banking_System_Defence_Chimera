@@ -1,0 +1,582 @@
+{
+  "info": {
+    "_postman_id": "1db92b6d-1920-4cf1-9652-e24b54ef2c24",
+    "name": "CHIMERA Checkout Shield - Local Stub",
+    "description": "Local API workflow through the bounded Express BFF at localhost:5000 for the default PayPal stub. Sandbox demo only: never use real cards or real PayPal accounts. Run requests in folder order. Customer, analyst, and manager tokens are collection variables populated by the login requests. A real trained creditcard HGB artifact is required before CAPTURE and receipt issuance are possible; without it, scoring fails closed to CHALLENGE. The receipt request is applicable only after an order reports receiptAvailable=true.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{customerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "item": [
+    {
+      "name": "0. Local setup and readiness",
+      "item": [
+        {
+          "name": "Customer login (local demo)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"client\",\n  \"password\": \"demo-pass\",\n  \"role\": \"CUSTOMER\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Seeded local-only demo identity. Local bearer sessions are persisted in PostgreSQL as SHA-256 token hashes and survive platform-api restarts."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Customer session issued', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.token).to.be.a('string').and.not.empty;",
+                  "  pm.collectionVariables.set('customerToken', body.token);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Analyst login (local demo)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"accountant\",\n  \"password\": \"demo-pass\",\n  \"role\": \"ACCOUNTANT\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Creates an ACCOUNTANT session for the analyst order-list endpoint."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Analyst session issued', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.token).to.be.a('string').and.not.empty;",
+                  "  pm.collectionVariables.set('analystToken', body.token);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Fraud gate readiness",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{fraudGateUrl}}/ready",
+              "host": ["{{fraudGateUrl}}"],
+              "path": ["ready"]
+            },
+            "description": "200 means the configured model loaded. 503 is expected before a real artifact is mounted; it is not a healthy CAPTURE configuration."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Readiness responds explicitly', function () {",
+                  "  pm.expect([200, 503]).to.include(pm.response.code);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('model_loaded');",
+                  "  if (pm.response.code === 503) pm.expect(body.model_loaded).to.eql(false);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "1. Local stub order to receipt",
+      "item": [
+        {
+          "name": "Create benign simulated stub order",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"amount\": 25.00,\n  \"currency\": \"USD\",\n  \"note\": \"Local stub checkout; no real funds\",\n  \"purpose\": \"CHECKOUT\",\n  \"scenarioId\": \"benign\",\n  \"telemetry\": {\n    \"keystrokeIntervalsMs\": [182, 241, 197, 318, 224, 276],\n    \"mouseMovements\": [\n      { \"dx\": 4, \"dy\": 2, \"dtMs\": 91 },\n      { \"dx\": 7, \"dy\": -1, \"dtMs\": 126 }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders"]
+            },
+            "description": "The benign scenario supplies simulated model features and overrides the amount/note to its catalog values. With PAYPAL_MODE=stub, creation performs no PayPal network call."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Stub order created', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.id).to.be.a('string').and.not.empty;",
+                  "  pm.expect(body.simulated).to.eql(true);",
+                  "  pm.collectionVariables.set('orderId', body.id);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get created order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders/{{orderId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders", "{{orderId}}"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Order is visible to its owner', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  pm.expect(pm.response.json().id).to.eql(pm.collectionVariables.get('orderId'));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Simulated approval and authorize",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"telemetry\": {\n    \"keystrokeIntervalsMs\": [205, 290, 176, 264, 233, 301],\n    \"mouseMovements\": [\n      { \"dx\": 8, \"dy\": 3, \"dtMs\": 104 },\n      { \"dx\": 3, \"dy\": 5, \"dtMs\": 147 }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders/{{orderId}}/authorize",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders", "{{orderId}}", "authorize"]
+            },
+            "description": "In stub mode, the backend simulates buyer APPROVED status, authorizes, scores INITIAL, and either captures after QUICK_RECHECK, voids, or enters STEP_UP. This is not a PayPal approval."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Authorization returns an explicit risk outcome', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body).to.have.property('state');",
+                  "  pm.expect(body).to.have.property('action');",
+                  "  if (body.demoOtp) pm.collectionVariables.set('orderOtp', body.demoOtp);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get scored order",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders/{{orderId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders", "{{orderId}}"]
+            },
+            "description": "Poll this endpoint for persisted state. Asynchronous Redis explanations are separate and never change settlement."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Persisted order returned', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.id).to.eql(pm.collectionVariables.get('orderId'));",
+                  "  pm.collectionVariables.set('receiptAvailable', String(body.receiptAvailable));",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Get signed receipt (or expected 404)",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/receipts/{{orderId}}",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "receipts", "{{orderId}}"]
+            },
+            "description": "When receiptAvailable=true, this verifies the returned signature. Otherwise 404 is the expected fail-closed result; a missing model must not be bypassed to make a receipt available."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Receipt availability matches the order outcome', function () {",
+                  "  const available = pm.collectionVariables.get('receiptAvailable') === 'true';",
+                  "  pm.response.to.have.status(available ? 200 : 404);",
+                  "  if (available) {",
+                  "    const body = pm.response.json();",
+                  "    pm.expect(body.valid).to.eql(true);",
+                  "    pm.expect(body.payload).to.be.a('string');",
+                  "  }",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "2. Step-up verification",
+      "item": [
+        {
+          "name": "Start bot-checkout scenario",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"scenarioId\": \"bot-checkout\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/simulator/sessions",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "simulator", "sessions"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Step-up scenario created', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  pm.collectionVariables.set('stepUpOrderId', pm.response.json().id);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Authorize bot checkout and receive demo OTP",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders/{{stepUpOrderId}}/authorize",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders", "{{stepUpOrderId}}", "authorize"]
+            },
+            "description": "Uniform simulated telemetry triggers CHALLENGE and a local demo OTP. Missing-model fallback also challenges; step-up never converts an unavailable model into CAPTURE."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Step-up challenge issued', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.stepUpRequired).to.eql(true);",
+                  "  pm.expect(body.demoOtp).to.match(/^\\d{6}$/);",
+                  "  pm.collectionVariables.set('stepUpOtp', body.demoOtp);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Verify six-digit demo OTP and rescore",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"code\": \"{{stepUpOtp}}\",\n  \"telemetry\": {\n    \"keystrokeIntervalsMs\": [182, 241, 197, 318, 224, 276, 205, 290],\n    \"mouseMovements\": [\n      { \"dx\": 0, \"dy\": 0, \"dtMs\": 80 },\n      { \"dx\": 7, \"dy\": 4, \"dtMs\": 93 },\n      { \"dx\": 14, \"dy\": 0, \"dtMs\": 106 }\n    ]\n  }\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/checkout/orders/{{stepUpOrderId}}/step-up/verify",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "checkout", "orders", "{{stepUpOrderId}}", "step-up", "verify"]
+            },
+            "description": "Successful verification triggers RESCORE. The returned state depends on the mounted real model and other risk components; no particular CAPTURE result is assumed."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Verification returns a new persisted outcome', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.id).to.eql(pm.collectionVariables.get('stepUpOrderId'));",
+                  "  pm.expect(body).to.have.property('action');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "3. Six simulated scenarios",
+      "item": [
+        {
+          "name": "List scenario catalog",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/scenarios",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "scenarios"]
+            }
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Exactly six labeled simulations are exposed', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  const body = pm.response.json();",
+                  "  pm.expect(body.map(item => item.id)).to.have.members(['benign', 'card-testing-burst', 'bot-checkout', 'injection-note', 'privilege-escalation', 'ai-receipt']);",
+                  "});"
+                ]
+              }
+            }
+          ]
+        },
+        {
+          "name": "Scenario - benign",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"benign\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        },
+        {
+          "name": "Scenario - card-testing-burst",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"card-testing-burst\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        },
+        {
+          "name": "Scenario - bot-checkout",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"bot-checkout\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        },
+        {
+          "name": "Scenario - injection-note",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"injection-note\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        },
+        {
+          "name": "Scenario - privilege-escalation",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"privilege-escalation\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        },
+        {
+          "name": "Scenario - ai-receipt",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": { "mode": "raw", "raw": "{\n  \"scenarioId\": \"ai-receipt\"\n}" },
+            "url": { "raw": "{{baseUrl}}/api/simulator/sessions", "host": ["{{baseUrl}}"], "path": ["api", "simulator", "sessions"] }
+          }
+        }
+      ]
+    },
+    {
+      "name": "4. Analyst",
+      "item": [
+        {
+          "name": "List recent checkout orders",
+          "request": {
+            "auth": {
+              "type": "bearer",
+              "bearer": [{ "key": "token", "value": "{{analystToken}}", "type": "string" }]
+            },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/analyst/orders",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "analyst", "orders"]
+            },
+            "description": "Requires the ACCOUNTANT or MANAGER role; a CUSTOMER token receives 403. The list is capped at the 100 most recent orders."
+          },
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Analyst order list returned', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "  pm.expect(pm.response.json()).to.be.an('array');",
+                  "});"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "5. Manager authentication",
+      "item": [
+        {
+          "name": "Manager login (local demo)",
+          "request": {
+            "auth": { "type": "noauth" },
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"manager\",\n  \"password\": \"demo-pass\",\n  \"role\": \"MANAGER\",\n  \"authKey\": \"{{managerAuthKey}}\"\n}"
+            },
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "login"]
+            },
+            "description": "Local demo manager authentication. Set managerAuthKey to the configured MANAGER_AUTH_KEY. External OAuth/OIDC JWTs are configured separately through the platform-api issuer/JWK settings."
+          },
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Manager session issued', function () {",
+                "  pm.response.to.have.status(200);",
+                "  const body = pm.response.json();",
+                "  pm.expect(body.role).to.eql('MANAGER');",
+                "  pm.collectionVariables.set('managerToken', body.token);",
+                "});"
+              ]
+            }
+          }]
+        },
+        {
+          "name": "Resolve manager session",
+          "request": {
+            "auth": { "type": "bearer", "bearer": [{ "key": "token", "value": "{{managerToken}}", "type": "string" }] },
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/auth/me",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "auth", "me"]
+            }
+          },
+          "event": [{
+            "listen": "test",
+            "script": {
+              "type": "text/javascript",
+              "exec": [
+                "pm.test('Persisted manager principal resolves', function () {",
+                "  pm.response.to.have.status(200);",
+                "  pm.expect(pm.response.json().role).to.eql('MANAGER');",
+                "});"
+              ]
+            }
+          }]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" },
+    { "key": "fraudGateUrl", "value": "http://localhost:8001" },
+    { "key": "customerToken", "value": "" },
+    { "key": "analystToken", "value": "" },
+    { "key": "managerToken", "value": "" },
+    { "key": "managerAuthKey", "value": "manager-local-key" },
+    { "key": "orderId", "value": "" },
+    { "key": "orderOtp", "value": "" },
+    { "key": "receiptAvailable", "value": "false" },
+    { "key": "stepUpOrderId", "value": "" },
+    { "key": "stepUpOtp", "value": "" }
+  ]
+}

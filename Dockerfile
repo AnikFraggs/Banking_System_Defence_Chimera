@@ -13,7 +13,12 @@ RUN mvn -B -q dependency:go-offline || true
 COPY common/src common/src
 COPY defense-pipeline/src defense-pipeline/src
 COPY platform-api/src platform-api/src
-RUN mvn -B clean package
+# gRPC stubs are generated from contracts/fraud_gate.proto (protoSourceRoot
+# is ../contracts in platform-api/pom.xml); omitting it breaks compilation.
+COPY contracts contracts
+# Unit/integration tests run in the local + CI gate; the image build only
+# produces the runtime jar, so test sources are not compiled here either.
+RUN mvn -B clean package -Dmaven.test.skip=true
 
 # --- Runtime stage: slim JRE, non-root ---
 FROM eclipse-temurin:21-jre AS runtime

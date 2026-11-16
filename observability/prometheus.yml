@@ -1,0 +1,102 @@
+# Prometheus scrape config for CHIMERA Checkout Shield. SANDBOX ONLY.
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+  external_labels:
+    app: chimera-checkout-shield
+    environment: sandbox
+
+rule_files:
+  - "/etc/prometheus/alerts.yml"
+
+alerting:
+  alertmanagers:
+    - static_configs:
+        - targets: []
+
+scrape_configs:
+  # platform-api (Spring Boot / Micrometer).
+  # Confirmed in source: application.yml exposes health,info,prometheus,metrics
+  # with percentiles-histogram.http.server.requests=true, and platform-api/pom.xml
+  # includes micrometer-registry-prometheus, so /actuator/prometheus serves
+  # metrics (including _bucket series).
+  - job_name: platform-api
+    metrics_path: /actuator/prometheus
+    static_configs:
+      - targets: ["platform-api:8080"]
+        labels:
+          service: platform-api
+
+  # fraud-gate (FastAPI, HTTP transport). /metrics is served by prometheus_client
+  # (app/main.py). In compose the HTTP app listens on 8001 because compose.yaml
+  # overrides the Dockerfile CMD with --port 8001; render.yaml uses the image
+  # default 8080. Scoring counters/histograms are recorded in the shared
+  # DecisionService, so they populate on whichever transport receives traffic.
+  - job_name: fraud-gate
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["fraud-gate:8001"]
+        labels:
+          service: fraud-gate
+          transport: http
+
+  # fraud-gate-grpc (the default transport). The gRPC process exposes the same
+  # prometheus_client registry via start_http_server on METRICS_PORT (8082).
+  - job_name: fraud-gate-grpc
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["fraud-gate-grpc:8082"]
+        labels:
+          service: fraud-gate-grpc
+          transport: grpc
+
+  # ai-brain (FastAPI). It does not expose a Prometheus endpoint; verified
+  # GET /metrics returns 404, so the job is disabled to avoid a permanently
+  # down target. Re-enable once a metrics exporter is added.
+  # - job_name: ai-brain
+  #   metrics_path: /metrics
+  #   static_configs:
+  #     - targets: ["ai-brain:8000"]
+  #       labels:
+  #         service: ai-brain
+
+  - job_name: postgres
+    static_configs:
+      - targets: ["postgres-exporter:9187"]
+        labels:
+          service: postgres
+
+  - job_name: redis
+    static_configs:
+      - targets: ["redis-exporter:9121"]
+        labels:
+          service: redis
+
+  - job_name: fraud-gate-worker
+    static_configs:
+      - targets: ["fraud-gate-worker:8084"]
+
+  - job_name: grafana
+    static_configs:
+      - targets: ["grafana:3000"]
+
+  - job_name: jaeger
+    static_configs:
+      - targets: ["jaeger:14269"]
+
+  # cadvisor for container metrics
+  - job_name: cadvisor
+    metrics_path: /metrics
+    static_configs:
+      - targets: ["cadvisor:8080"]
+        labels:
+          service: cadvisor
+
+  # node-exporter is not deployed in the default stack; its placeholder job was
+  # removed so Prometheus has no perpetually-down target. Add an exporter and a
+  # job here if host-level metrics are wanted.
+
+  # Prometheus self-scrape.
+  - job_name: prometheus
+    static_configs:
+      - targets: ["localhost:9090"]

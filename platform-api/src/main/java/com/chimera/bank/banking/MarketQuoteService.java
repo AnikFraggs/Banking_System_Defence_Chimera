@@ -10,15 +10,16 @@ public class MarketQuoteService {
     public record MarketOverview(List<MarketQuote> assets, String bankInterestRate) { }
 
     // In production, replace this with a real API call (e.g., Alpha Vantage, Yahoo Finance)
+    // wired to chimera.market.quote-url. Until then, quotes are explicitly simulated.
     public MarketOverview getOverview() {
         Instant now = Instant.now();
         return new MarketOverview(
             List.of(
-                new MarketQuote("NIFTY 50", 22350.45, now, "Simulated Feed", true, "Live market data"),
-                new MarketQuote("GOLD (10g)", 74250.00, now, "Simulated Feed", true, "MCX rates"),
-                new MarketQuote("USD / INR", 83.45, now, "Simulated Feed", true, "Forex rates"),
-                new MarketQuote("HDFC BANK", 1502.30, now, "Simulated Feed", true, "Equity"),
-                new MarketQuote("BTC / INR", 6250000.00, now, "Simulated Feed", true, "Crypto")
+                new MarketQuote("NIFTY 50", 22350.45, now, "Simulated Feed", false, "Simulated market data — no live feed configured"),
+                new MarketQuote("GOLD (10g)", 74250.00, now, "Simulated Feed", false, "Simulated market data — no live feed configured"),
+                new MarketQuote("USD / INR", 83.45, now, "Simulated Feed", false, "Simulated market data — no live feed configured"),
+                new MarketQuote("HDFC BANK", 1502.30, now, "Simulated Feed", false, "Simulated market data — no live feed configured"),
+                new MarketQuote("BTC / INR", 6250000.00, now, "Simulated Feed", false, "Simulated market data — no live feed configured")
             ),
             "3.50% p.a. (Savings) | 8.40% p.a. (Fixed Deposit)"
         );

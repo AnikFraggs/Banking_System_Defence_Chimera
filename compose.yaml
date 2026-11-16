@@ -1,86 +1,327 @@
+name: chimera-checkout-shield
+
 services:
-  # 1. Java Backend (Spring Boot + JPA + PostgreSQL)
+  postgres:
+    image: postgres:15-alpine
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-chimera}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      POSTGRES_DB: ${POSTGRES_DB:-chimera_db}
+    ports:
+      - "127.0.0.1:${POSTGRES_HOST_PORT:-5433}:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U \"$${POSTGRES_USER}\" -d \"$${POSTGRES_DB}\""]
+      interval: 5s
+      timeout: 5s
+      retries: 12
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--appendonly", "yes"]
+    ports:
+      - "127.0.0.1:${REDIS_HOST_PORT:-6380}:6379"
+    volumes:
+      - redisdata:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 12
+
+  fraud-gate:
+    build:
+      context: ./fraud-gate
+      dockerfile: Dockerfile
+    image: chimera-fraud-gate:local
+    command: ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8001"]
+    environment:
+      MODEL_ARTIFACT_PATH: ${MODEL_ARTIFACT_PATH:-/artifacts/creditcard_hgb.joblib}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      SAFE_LCB_POLICY_PATH: ${SAFE_LCB_POLICY_PATH:-}
+      GRAPH_COUNTERS_ENABLED: ${GRAPH_COUNTERS_ENABLED:-false}
+      METRICS_PORT: ${METRICS_PORT:-8081}
+      # Optional auxiliary defence layers (synthetic-data research models). Each
+      # fails closed to CHALLENGE if its artifact is absent. Mounted read-only.
+      ACCOUNT_OPENING_MODEL_DIR: ${ACCOUNT_OPENING_MODEL_DIR:-/aux-artifacts/account_opening_fraud}
+      AML_MODEL_DIR: ${AML_MODEL_DIR:-/aux-artifacts/aml_laundering}
+      WEB_ATTACK_MODEL_DIR: ${WEB_ATTACK_MODEL_DIR:-/aux-artifacts/web_attack_guard}
+    volumes:
+      - ./fraud-gate/artifacts:/artifacts:ro
+      - ./fraud-gate/training/artifacts:/aux-artifacts:ro
+    ports:
+      - "127.0.0.1:${FRAUD_GATE_HOST_PORT:-8001}:8001"
+    depends_on:
+      redis:
+        condition: service_healthy
+    # Readiness deliberately fails while the operator-supplied model is absent.
+    # Other services still start and every score fails closed to CHALLENGE.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8001/ready', timeout=2).read()"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
+
+  fraud-gate-grpc:
+    build:
+      context: ./fraud-gate
+      dockerfile: Dockerfile
+    image: chimera-fraud-gate:local
+    command: ["python", "-m", "app.grpc_server"]
+    environment:
+      MODEL_ARTIFACT_PATH: ${MODEL_ARTIFACT_PATH:-/artifacts/creditcard_hgb.joblib}
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      GRPC_TARGET: 0.0.0.0:50051
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+      SAFE_LCB_POLICY_PATH: ${SAFE_LCB_POLICY_PATH:-}
+      GRAPH_COUNTERS_ENABLED: ${GRAPH_COUNTERS_ENABLED:-false}
+      METRICS_PORT: ${METRICS_PORT:-8082}
+    volumes:
+      - ./fraud-gate/artifacts:/artifacts:ro
+    ports:
+      - "127.0.0.1:${FRAUD_GATE_GRPC_HOST_PORT:-50051}:50051"
+      - "127.0.0.1:8082:8082"
+    depends_on:
+      redis:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import socket; socket.create_connection(('127.0.0.1', 50051), 2).close()"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 10s
+
+  fraud-gate-worker:
+    build:
+      context: ./fraud-gate
+      dockerfile: Dockerfile
+    image: chimera-fraud-gate:local
+    command: ["python", "-m", "app.worker"]
+    environment:
+      REDIS_URL: ${REDIS_URL:-redis://redis:6379/0}
+      WORKER_NAME: ${WORKER_NAME:-fraud-gate-worker-local}
+      METRICS_PORT: 8084
+      EXPLANATION_BACKEND_URL: ${EXPLANATION_BACKEND_URL:-}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
+    depends_on:
+      redis:
+        condition: service_healthy
+
   platform-api:
     build:
       context: .
       dockerfile: Dockerfile
     image: chimera-platform-api:local
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-chimera_db}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-chimera}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-pass}
+      SPRING_JPA_HIBERNATE_DDL_AUTO: update
+      SPRING_DATA_REDIS_HOST: redis
+      SPRING_DATA_REDIS_PORT: 6379
+      # gRPC is the default transport and never silently falls back to HTTP.
+      CHIMERA_CHECKOUT_FRAUD_GATE_TRANSPORT: ${FRAUD_GATE_TRANSPORT:-grpc}
+      CHIMERA_CHECKOUT_FRAUD_GATE_GRPC_TARGET: ${FRAUD_GATE_GRPC_TARGET:-fraud-gate-grpc:50051}
+      CHIMERA_CHECKOUT_FRAUD_GATE_TIMEOUT_MS: ${FRAUD_GATE_TIMEOUT_MS:-300}
+      CHIMERA_CHECKOUT_FRAUD_GATE_BASE_URL: ${FRAUD_GATE_BASE_URL:-http://fraud-gate:8001}
+      CHIMERA_CASES_ASYNC_RESULTS_ENABLED: ${CHIMERA_CASES_ASYNC_RESULTS_ENABLED:-true}
+      CHIMERA_CASES_FEEDBACK_ENABLED: ${CHIMERA_CASES_FEEDBACK_ENABLED:-true}
+      PAYPAL_MODE: ${PAYPAL_MODE:-stub}
+      PAYPAL_BASE_URL: ${PAYPAL_BASE_URL:-https://api-m.sandbox.paypal.com}
+      PAYPAL_CLIENT_ID: ${PAYPAL_CLIENT_ID:-}
+      PAYPAL_CLIENT_SECRET: ${PAYPAL_CLIENT_SECRET:-}
+      PAYPAL_WEBHOOK_ID: ${PAYPAL_WEBHOOK_ID:-}
+      AUDIT_HMAC_KEY: ${AUDIT_HMAC_KEY:-}
+      AUDIT_KEY_VERSION: ${AUDIT_KEY_VERSION:-local-v1}
+      MANAGER_AUTH_KEY: ${MANAGER_AUTH_KEY:-manager-local-key}
+      # Checkout and short REQUIRES_NEW audit writes need separate connections.
+      DB_POOL_MAX: ${DB_POOL_MAX:-40}
+      DB_POOL_MIN_IDLE: ${DB_POOL_MIN_IDLE:-5}
+      DB_CONNECTION_TIMEOUT_MS: ${DB_CONNECTION_TIMEOUT_MS:-10000}
+      # OpenTelemetry traces export to the Jaeger all-in-one OTLP receiver below.
+      CHIMERA_TRACE_SAMPLING: ${CHIMERA_TRACE_SAMPLING:-1.0}
+      OTEL_EXPORTER_OTLP_ENDPOINT: ${OTEL_EXPORTER_OTLP_ENDPOINT:-http://jaeger:4318/v1/traces}
+      # L4 semantic injection guard: mounted v6 distilled MiniLM-L12 int8 ONNX
+      # (33M params), read-only. Threshold is v6's calibration-only operating
+      # point (softmax probability >= 3.3335e-06, logit margin -12.61, max calib
+      # FPR 2%); NOT the generic 0.65 default. Java re-qualified 2026-11-16:
+      # external recall .574 / FPR .016, internal recall .967 / FPR .024 (the
+      # extra internal FPs are pre-existing deterministic scanner hits). p50~10ms.
+      # The guard fails safe to CHALLENGE if the artifacts are absent. The prior
+      # codesagar-v1 guard is retained at artifacts/l4_semantic_guard for rollback.
+      L4_SEMANTIC_MODEL_PATH: ${L4_SEMANTIC_MODEL_PATH:-/opt/chimera/l4/model.int8.onnx}
+      L4_SEMANTIC_VOCAB_PATH: ${L4_SEMANTIC_VOCAB_PATH:-/opt/chimera/l4/vocab.txt}
+      L4_SEMANTIC_TIMEOUT_MS: ${L4_SEMANTIC_TIMEOUT_MS:-250}
+      L4_SEMANTIC_THRESHOLD: ${L4_SEMANTIC_THRESHOLD:-3.3335218994773995e-06}
+      # Without this the client defaults to localhost:8000, which is unreachable from the container.
+      AI_BRAIN_BASE_URL: ${AI_BRAIN_BASE_URL:-http://ai-brain:8000}
+    volumes:
+      - ./fraud-gate/training/artifacts/l4_semantic_guard_v6:/opt/chimera/l4:ro
     ports:
-      - "8080:8080"
+      - "127.0.0.1:${PLATFORM_API_HOST_PORT:-8080}:8080"
     depends_on:
       postgres:
         condition: service_healthy
       redis:
+        condition: service_healthy
+      fraud-gate:
+        # Do not require a model for startup: missing-model scoring is CHALLENGE.
+        condition: service_started
+      fraud-gate-grpc:
         condition: service_started
       ai-brain:
+        # Optional: triage degrades to a local fallback and credit scoring fails closed.
         condition: service_started
-    environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://postgres:5432/chimera_db
-      - SPRING_DATASOURCE_USERNAME=chimera
-      - SPRING_DATASOURCE_PASSWORD=pass
-      - SPRING_JPA_HIBERNATE_DDL_AUTO=update
-      - AI_BRAIN_BASE_URL=http://ai-brain:8000
-
-  # 2. PostgreSQL
-  postgres:
-    image: postgres:15-alpine
-    environment:
-      POSTGRES_USER: chimera
-      POSTGRES_PASSWORD: pass
-      POSTGRES_DB: chimera_db
-    ports:
-      - "5433:5432"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U chimera -d chimera_db"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - pgdata:/var/lib/postgresql/data
+      test: ["CMD", "curl", "-fsS", "-o", "/dev/null", "http://127.0.0.1:8080/actuator/health"]
+      interval: 10s
+      timeout: 3s
+      retries: 12
+      start_period: 30s
 
-  # 3. React Frontend
-  web:
-    build:
-      context: ./web
-      dockerfile: Dockerfile
-    image: chimera-bank-web:local
-    ports:
-      - "5173:80"
-    depends_on:
-      - platform-api
-
-  # 4. Express BFF
-  chimera-bff:
+  bff-express:
     build:
       context: ./bff-express
       dockerfile: Dockerfile
     image: chimera-bff:local
-    ports:
-      - "5000:5000"
     environment:
-      - DATABASE_URL=postgres://chimera:pass@postgres:5432/chimera_db
-      - REDIS_URL=redis://redis:6379
-      - JAVA_API_URL=http://platform-api:8080
-    depends_on:
-      postgres:
-        condition: service_healthy
-      redis:
-        condition: service_started
-
-  # 5. Redis
-  redis:
-    image: redis:7-alpine
+      PORT: 5000
+      JAVA_API_URL: http://platform-api:8080
+      API_TIMEOUT_MS: ${BFF_API_TIMEOUT_MS:-10000}
+      BFF_MAX_IN_FLIGHT: ${BFF_MAX_IN_FLIGHT:-32}
+      CORS_ORIGINS: ${BFF_CORS_ORIGINS:-http://localhost:5173,http://127.0.0.1:5173}
     ports:
-      - "6380:6379"
+      - "127.0.0.1:${BFF_HOST_PORT:-5000}:5000"
+    depends_on:
+      platform-api:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "node", "-e", "fetch('http://127.0.0.1:5000/health').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
 
-  # 6. Python GenAI Brain (cybersecurity triage: heuristic model + RAG)
+  web:
+    build:
+      context: ./web
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: ${VITE_API_URL:-/api}
+        VITE_PAYPAL_STUB: ${VITE_PAYPAL_STUB:-true}
+        VITE_PAYPAL_CLIENT_ID: ${VITE_PAYPAL_CLIENT_ID:-}
+        VITE_PAYPAL_SDK_URL: ${VITE_PAYPAL_SDK_URL:-}
+    image: chimera-checkout-web:local
+    ports:
+      - "127.0.0.1:${WEB_HOST_PORT:-5173}:80"
+    depends_on:
+      - bff-express
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1/"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+
   ai-brain:
     build:
       context: ./ai-brain
       dockerfile: Dockerfile
     image: chimera-ai-brain:local
+    command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+    environment:
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
     ports:
-      - "8000:8000"
+      - "127.0.0.1:8000:8000"
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health', timeout=2).read()"]
+      interval: 10s
+      timeout: 3s
+      retries: 6
+      start_period: 20s
+
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.15.0
+    environment:
+      DATA_SOURCE_URI: postgres:5432/${POSTGRES_DB:-chimera_db}?sslmode=disable
+      DATA_SOURCE_USER: ${POSTGRES_USER:-chimera}
+      DATA_SOURCE_PASS: ${POSTGRES_PASSWORD:-pass}
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.62.0
+    environment:
+      REDIS_ADDR: redis://redis:6379
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  prometheus:
+    image: prom/prometheus:v2.54.1
+    volumes:
+      - ./observability/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - ./observability/alerts.yml:/etc/prometheus/alerts.yml:ro
+    ports:
+      - "127.0.0.1:${PROMETHEUS_HOST_PORT:-9090}:9090"
+    depends_on:
+      - platform-api
+      - fraud-gate
+      - fraud-gate-grpc
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--web.enable-lifecycle'
+
+  grafana:
+    image: grafana/grafana:11.2.0
+    volumes:
+      - ./observability/grafana/provisioning:/etc/grafana/provisioning:ro
+      - ./observability/grafana/dashboards:/var/lib/grafana/dashboards:ro
+    ports:
+      # Host 3000 is occupied on this machine; Grafana is published on 3001.
+      - "127.0.0.1:${GRAFANA_HOST_PORT:-3001}:3000"
+    environment:
+      GF_SECURITY_ADMIN_USER: ${GRAFANA_ADMIN_USER:-admin}
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-admin}
+      GF_AUTH_ANONYMOUS_ENABLED: "false"
+      GF_INSTALL_PLUGINS: "grafana-piechart-panel"
+    depends_on:
+      - prometheus
+    healthcheck:
+      test: ["CMD", "wget", "--spider", "-q", "http://127.0.0.1:3000/api/health"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  jaeger:
+    image: jaegertracing/all-in-one:1.60
+    environment:
+      COLLECTOR_OTLP_ENABLED: "true"
+    ports:
+      - "127.0.0.1:${JAEGER_HOST_PORT:-16686}:16686"
+      - "127.0.0.1:4318:4318"
+      - "127.0.0.1:14268:14268"
+
+  cadvisor:
+    image: ghcr.io/google/cadvisor:0.55.1
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    ports:
+      - "127.0.0.1:8083:8080"
+    devices:
+      - /dev/kmsg:/dev/kmsg
+    privileged: true
+    command: ["--docker_only=true"]
 
 volumes:
   pgdata:
+  redisdata:

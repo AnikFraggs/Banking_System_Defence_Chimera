@@ -2,4 +2,53 @@
 web/node_modules/
 web/dist/
 datasets/uploads/
-.envbuild-check/
+.env
+build-check/
+fraud-gate/model_artifacts/*.joblib
+fraud-gate/model_artifacts/*.json
+fraud-gate/artifacts/*.joblib
+fraud-gate/artifacts/*.onnx
+fraud-gate/artifacts/*.json
+fraud-gate/artifacts/vocab.txt
+fraud-gate/training-output/
+fraud-gate/.pytest_cache/
+fraud-gate/**/__pycache__/
+ai-brain/models/bge_small/
+ai-brain/**/__pycache__/
+ai-brain/.pytest_cache/
+# Local-only benchmark outputs: rival weights, trained joblib models, pip cache
+.pip-cache/
+fraud-gate/training/benchmarks/rivals/
+fraud-gate/training/benchmarks/**/*.joblib
+
+# Version 2 policy: raw/generated datasets, trained model artifacts and local
+# binaries stay local. Source, docs, configs and measured benchmark JSON/MD ship.
+datasets/*.csv
+datasets/*.log
+datasets/IBM_AMLworld/
+datasets/feedzai_bank_account_fraud/
+datasets/synthetic_credit_boost/
+datasets/new_datasets_v2/
+datasets/new_custom_datasets/raw/
+datasets/new_custom_datasets/out/
+datasets/new_custom_datasets/chimera_datasets/
+datasets/new_custom_datasets/*.log
+datasets/new_datset_generator_v3/chimera_datasets/
+*.onnx
+*.joblib
+*.pkl
+*.safetensors
+ai-brain/models/
+ai-brain/benchmarks/rag/rag_reranker_*.json
+defense-pipeline/src/main/resources/models/
+fraud-gate/training/artifacts/
+kubectl.exe
+kubectl.exe.sha256
+*.tfstate
+*.tfstate.*
+*.tfvars
+
+# Python caches anywhere in the tree
+__pycache__/
+*.pyc
+.pytest_cache/

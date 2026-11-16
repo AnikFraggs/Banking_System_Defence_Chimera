@@ -1,0 +1,30 @@
+# HorizontalPodAutoscaler for platform-api (CPU target). SANDBOX ONLY. UNTESTED.
+# Requires metrics-server installed in the cluster and CPU requests set on the
+# platform-api container (they are; see platform-api.yaml). The 70% target is a
+# demo starting point, NOT a measured/benchmarked value. Tune after observing
+# real behavior. minReplicas matches the Deployment's replicas: 2.
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: platform-api
+  namespace: chimera
+  labels:
+    app: platform-api
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: platform-api
+  minReplicas: 2
+  maxReplicas: 6
+  metrics:
+    - type: Resource
+      resource:
+        name: cpu
+        target:
+          type: Utilization
+          averageUtilization: 70
+  behavior:
+    scaleDown:
+      stabilizationWindowSeconds: 300

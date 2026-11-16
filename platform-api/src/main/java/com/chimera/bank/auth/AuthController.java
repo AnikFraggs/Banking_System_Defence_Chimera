@@ -32,4 +32,10 @@ public class AuthController {
     public AuthService.Principal me(@RequestHeader(value = "Authorization", required = false) String authorization) {
         return auth.require(authorization);
     }
+
+    @PostMapping("/logout")
+    public ResponseEntity<Void> logout(@RequestHeader(value = "Authorization", required = false) String authorization) {
+        auth.logout(authorization);
+        return ResponseEntity.noContent().build();
+    }
 }

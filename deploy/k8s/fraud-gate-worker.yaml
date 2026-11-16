@@ -1,0 +1,69 @@
+# Fraud gate async worker (Redis Stream consumer). SANDBOX ONLY. UNTESTED.
+# Image chimera-fraud-gate:local is a LOCAL BUILD tag; push to a registry and
+# replace image: below before applying to a cluster.
+# Command mirrors compose.yaml (python -m app.worker).
+#
+# Metrics expose scrape health, not Redis consumer progress.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-gate-worker
+  namespace: chimera
+  labels:
+    app: fraud-gate-worker
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: fraud-gate-worker
+  template:
+    metadata:
+      labels:
+        app: fraud-gate-worker
+        app.kubernetes.io/part-of: chimera-checkout-shield
+    spec:
+      containers:
+        - name: fraud-gate-worker
+          image: chimera-fraud-gate:local # TODO: push to a registry and replace
+          imagePullPolicy: IfNotPresent
+          command: ["python", "-m", "app.worker"]
+          ports:
+            - name: metrics
+              containerPort: 8084
+          env:
+            - name: METRICS_PORT
+              value: "8084"
+          envFrom:
+            - configMapRef:
+                name: chimera-config
+          resources:
+            requests:
+              cpu: "100m"
+              memory: "256Mi"
+            limits:
+              cpu: "500m"
+              memory: "512Mi"
+          livenessProbe:
+            exec:
+              command:
+                - python
+                - -c
+                - "import sys; sys.exit(0 if b'app.worker' in open('/proc/1/cmdline','rb').read() else 1)"
+            initialDelaySeconds: 20
+            periodSeconds: 30
+            timeoutSeconds: 5
+            failureThreshold: 6
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-gate-worker
+  namespace: chimera
+spec:
+  selector:
+    app: fraud-gate-worker
+  ports:
+    - name: metrics
+      port: 8084
+      targetPort: 8084

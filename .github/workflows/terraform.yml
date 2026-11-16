@@ -1,0 +1,32 @@
+name: Terraform
+
+# Manual only. Validates the AWS scaffold in infra/terraform/.
+# It runs fmt + validate ONLY. It NEVER plans against real credentials and
+# NEVER applies. SANDBOX ONLY; the scaffold is untested and creates billable
+# resources if someone later chooses to apply it.
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  terraform:
+    name: Terraform fmt and validate
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: infra/terraform
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.9.8"
+          terraform_wrapper: false
+      - name: Terraform fmt (check only)
+        run: terraform fmt -check -recursive
+      - name: Terraform init (no backend, no credentials)
+        run: terraform init -backend=false -input=false
+      - name: Terraform validate
+        run: terraform validate -no-color

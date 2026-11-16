@@ -1,0 +1,16 @@
+# Grafana datasource provisioning for CHIMERA Checkout Shield. SANDBOX ONLY.
+# UNTESTED. Mount this directory into Grafana at
+# /etc/grafana/provisioning/datasources (the main agent adds the compose service).
+apiVersion: 1
+
+datasources:
+  - name: Prometheus
+    uid: prometheus
+    type: prometheus
+    access: proxy
+    url: http://prometheus:9090
+    isDefault: true
+    editable: true
+    jsonData:
+      timeInterval: "15s"
+      httpMethod: POST

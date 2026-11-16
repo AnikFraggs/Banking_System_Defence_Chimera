@@ -1,0 +1,81 @@
+# AI brain (FastAPI triage + hybrid RAG + credit v3). SANDBOX ONLY.
+# Image chimera-ai-brain:local is a LOCAL BUILD tag: load it into kind
+# (`kind load docker-image chimera-ai-brain:local --name chimera`) or push it to
+# a registry and replace image: below.
+# platform-api reaches it through AI_BRAIN_BASE_URL=http://ai-brain:8000 in
+# configmap.yaml. The brain only ever escalates severity; if it is unreachable,
+# triage uses the conservative local fallback and credit scoring returns
+# manual_review, so platform-api does not depend on it to start.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ai-brain
+  namespace: chimera
+  labels:
+    app: ai-brain
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ai-brain
+  template:
+    metadata:
+      labels:
+        app: ai-brain
+        app.kubernetes.io/part-of: chimera-checkout-shield
+    spec:
+      containers:
+        - name: ai-brain
+          image: chimera-ai-brain:local # TODO: push to a registry and replace
+          imagePullPolicy: IfNotPresent
+          command: ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+          ports:
+            - name: http
+              containerPort: 8000
+          env:
+            - name: LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  name: chimera-config
+                  key: LOG_LEVEL
+          resources:
+            requests:
+              cpu: "250m"
+              memory: "384Mi"
+            limits:
+              cpu: "1"
+              memory: "1Gi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8000
+            initialDelaySeconds: 30
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 6
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ai-brain
+  namespace: chimera
+  labels:
+    app: ai-brain
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  type: ClusterIP
+  selector:
+    app: ai-brain
+  ports:
+    - name: http
+      port: 8000
+      targetPort: 8000

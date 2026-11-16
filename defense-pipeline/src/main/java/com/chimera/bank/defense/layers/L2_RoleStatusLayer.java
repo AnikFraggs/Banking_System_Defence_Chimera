@@ -22,12 +22,12 @@ import java.util.Set;
 public class L2_RoleStatusLayer implements DefenseLayer {
 
     private static final Map<Role, Set<String>> ALLOWED_PURPOSES = Map.of(
-            Role.CUSTOMER, Set.of("transfer", "deposit", "withdraw", "view_own"),
-            Role.ACCOUNTANT, Set.of("transfer", "deposit", "withdraw", "view_own",
+            Role.CUSTOMER, Set.of("transfer", "deposit", "withdraw", "view_own", "checkout"),
+            Role.ACCOUNTANT, Set.of("transfer", "deposit", "withdraw", "view_own", "checkout",
                     "fraud_review", "view_customer"),
-            Role.MANAGER, Set.of("transfer", "deposit", "withdraw", "view_own",
+            Role.MANAGER, Set.of("transfer", "deposit", "withdraw", "view_own", "checkout",
                     "fraud_review", "view_customer", "config_change", "health_admin",
-                    "vault_access", "override")
+                    "vault_access", "override", "manager_override")
     );
 
     @Override

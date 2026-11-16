@@ -2,6 +2,7 @@ package com.chimera.bank.ai;
 
 import com.chimera.bank.auth.AuthService;
 import com.chimera.bank.common.rbac.Role;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
@@ -14,6 +15,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/api/ai-brain")
+@PreAuthorize("hasAnyRole('ACCOUNTANT', 'MANAGER')")
 public class AiBrainController {
 
     private final AuthService auth;
@@ -37,5 +39,13 @@ public class AiBrainController {
         auth.requireOneOf(authorization, Role.MANAGER, Role.ACCOUNTANT);
         Map<String, Object> payload = new HashMap<>(telemetry == null ? Map.of() : telemetry);
         return brain.triageDetailed(payload);
+    }
+
+    @PostMapping("/credit-application")
+    public Map<String, Object> scoreCreditApplication(
+            @RequestHeader(value = "Authorization", required = false) String authorization,
+            @RequestBody Map<String, Object> application) {
+        auth.requireOneOf(authorization, Role.MANAGER, Role.ACCOUNTANT);
+        return brain.scoreCreditApplication(new HashMap<>(application == null ? Map.of() : application));
     }
 }

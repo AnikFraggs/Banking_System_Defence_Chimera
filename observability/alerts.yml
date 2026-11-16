@@ -1,0 +1,117 @@
+groups:
+  - name: chimera-platform-api
+    interval: 30s
+    rules:
+      - alert: PlatformAPIDown
+        expr: up{job="platform-api"} == 0 or absent(up{job="platform-api"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: Platform API metrics unavailable
+      - alert: PlatformAPIHighErrorRate
+        expr: sum(rate(http_server_requests_seconds_count{job="platform-api",status=~"5.."}[5m])) / sum(rate(http_server_requests_seconds_count{job="platform-api"}[5m])) > 0.05
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: Platform API 5xx rate above 5%
+      - alert: PlatformAPIHighLatency
+        expr: histogram_quantile(0.95, sum by (le) (rate(http_server_requests_seconds_bucket{job="platform-api"}[5m]))) > 0.5
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: Platform API P95 latency above 500ms
+      - alert: PlatformAPIHighMemoryUsage
+        expr: (jvm_memory_used_bytes{job="platform-api",area="heap"} / (jvm_memory_max_bytes{job="platform-api",area="heap"} > 0)) > 0.85
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: JVM heap pool usage above 85% of a defined maximum
+      - alert: PlatformAPIDBPoolExhausted
+        expr: hikaricp_connections_active{job="platform-api"} / (hikaricp_connections_max{job="platform-api"} > 0) > 0.9
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: Database pool above 90% utilization
+      - alert: PlatformAPILowCacheHitRatio
+        expr: sum(rate(cache_gets_total{job="platform-api",result="hit"}[5m])) / sum(rate(cache_gets_total{job="platform-api"}[5m])) < 0.5
+        for: 5m
+        labels: {severity: info}
+        annotations:
+          summary: Cache hit ratio below 50% while cache is used
+  - name: chimera-fraud-gate
+    interval: 30s
+    rules:
+      - alert: FraudGateDown
+        expr: up{job="fraud-gate"} == 0 or absent(up{job="fraud-gate"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: Fraud Gate HTTP metrics unavailable
+      - alert: FraudGateGRPCDown
+        expr: up{job="fraud-gate-grpc"} == 0 or absent(up{job="fraud-gate-grpc"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: Fraud Gate gRPC metrics unavailable
+          description: Metrics scrape health does not prove gRPC scoring readiness.
+      - alert: FraudGateWorkerDown
+        expr: up{job="fraud-gate-worker"} == 0 or absent(up{job="fraud-gate-worker"})
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Asynchronous worker metrics unavailable
+      - alert: FraudGateModelUnavailable
+        expr: chimera_fraud_gate_model_loaded == 0 or absent(chimera_fraud_gate_model_loaded{job="fraud-gate"}) or absent(chimera_fraud_gate_model_loaded{job="fraud-gate-grpc"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: Fraud Gate card model unavailable or unobserved
+          description: This is the card model, not the Java L4 semantic guard.
+      - alert: FraudGateHighScoringLatency
+        expr: histogram_quantile(0.95, sum by (le, transport) (rate(chimera_fraud_gate_score_latency_ms_bucket[5m]))) > 300
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: Fraud Gate service P95 scoring latency above 300ms
+      - alert: FraudGateHighChallengeRate
+        expr: sum(rate(chimera_fraud_gate_scores_total{action="CHALLENGE"}[5m])) / sum(rate(chimera_fraud_gate_scores_total[5m])) > 0.5
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: More than 50% of completed scoring decisions are CHALLENGE
+      - alert: FraudGateFallbackScoring
+        expr: sum(rate(chimera_fraud_gate_scores_total{fallback="true"}[5m])) > 0
+        for: 1m
+        labels: {severity: warning}
+        annotations:
+          summary: Fraud Gate is returning fail-closed fallback scores
+  - name: chimera-system
+    interval: 30s
+    rules:
+      - alert: PostgresDown
+        expr: pg_up{job="postgres"} == 0 or up{job="postgres"} == 0 or absent(pg_up{job="postgres"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: PostgreSQL unreachable from exporter or exporter unavailable
+      - alert: RedisDown
+        expr: redis_up{job="redis"} == 0 or up{job="redis"} == 0 or absent(redis_up{job="redis"})
+        for: 1m
+        labels: {severity: critical}
+        annotations:
+          summary: Redis unreachable from exporter or exporter unavailable
+          description: This is not an application-to-Redis connection probe.
+      - alert: ContainerMetricsMissing
+        expr: absent(container_last_seen{job="cadvisor",name!=""})
+        for: 2m
+        labels: {severity: warning}
+        annotations:
+          summary: cAdvisor is not discovering named Docker containers
+          description: VM totals alone must not be mistaken for container telemetry.
+      - alert: ContainerHighMemory
+        expr: container_memory_usage_bytes{job="cadvisor",name!=""} / (container_spec_memory_limit_bytes{job="cadvisor",name!=""} > 0) > 0.85
+        for: 5m
+        labels: {severity: warning}
+        annotations:
+          summary: Container memory above 85% of reported limit
+          description: Unrestricted containers may report the Docker VM memory limit.

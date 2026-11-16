@@ -1,0 +1,80 @@
+{
+  "schemaVersion": "1.1",
+  "status": "NOT_MEASURED",
+  "instructions": [
+    "Copy this template to a separate local results file; do not present null values as zero or as achieved results.",
+    "Train and evaluate an operator-supplied Kaggle-format creditcard.csv; no raw data or production model is bundled.",
+    "From fraud-gate, run: python -m training.evaluate_creditcard_hgb --data /absolute/path/creditcard.csv --artifact /absolute/path/creditcard_hgb.joblib --max-fpr 0.01",
+    "Copy only observed held-out output into modelEvaluation and latency, and retain the unedited console output at evidence.evaluationOutputPath.",
+    "Measure the configured gRPC or HTTP gate transport and each synchronous defense module separately on the intended deployment hardware, including payload mix and concurrency. The 300 ms value is a target, not an achieved benchmark.",
+    "Measure the optional quantized ONNX L4 guard and card model only with their actual quantized artifacts; design estimates such as 8-12 ms or <2 ms are not results.",
+    "Record dataset/model hashes, split semantics, sample counts, timestamps, hardware, and command output before changing status to MEASURED.",
+    "Do not fill production-readiness, real PayPal, Render, or browser fields from stub tests or synthetic unit-test fixtures."
+  ],
+  "dataset": {
+    "name": null,
+    "source": "Operator-supplied Kaggle-format creditcard.csv",
+    "sha256": null,
+    "rowCount": null,
+    "split": "Chronological 70% train / 15% validation / 15% test after sorting by Time",
+    "licenseOrAuthorization": null
+  },
+  "model": {
+    "version": null,
+    "artifactSha256": null,
+    "trainingCommand": null,
+    "validationMaxFprBudget": null
+  },
+  "modelEvaluation": {
+    "measuredAt": null,
+    "testRecall": null,
+    "testPrecision": null,
+    "testFalsePositiveRate": null,
+    "truePositives": null,
+    "falsePositives": null,
+    "falseNegatives": null,
+    "trueNegatives": null
+  },
+  "latency": {
+    "scope": null,
+    "environment": null,
+    "sampleCount": null,
+    "concurrency": null,
+    "transport": null,
+    "cardInferenceBackend": null,
+    "p50Ms": null,
+    "p95Ms": null,
+    "p99Ms": null,
+    "synchronousTargetMsPerGateCall": 300,
+    "targetAchieved": null,
+    "components": {
+      "semanticL4P95Ms": null,
+      "biometricsP95Ms": null,
+      "graphFeaturesP95Ms": null,
+      "cardModelP95Ms": null,
+      "evidenceScreenP95Ms": null,
+      "parallelGateP95Ms": null,
+      "asyncCaseMatchingP95Ms": null
+    }
+  },
+  "modelQuality": {
+    "semanticGuardVersion": null,
+    "semanticGuardQuantization": null,
+    "heldOutInjectionRecall": null,
+    "heldOutBenignFalsePositiveRate": null,
+    "debateFalseEscalationRate": null,
+    "caseRetrievalRecallAtK": null,
+    "safeRouterHeldOutSampleCount": null
+  },
+  "deploymentVerification": {
+    "realPayPalSandboxVerified": null,
+    "renderVerified": null,
+    "browserVerified": null,
+    "notes": null
+  },
+  "evidence": {
+    "evaluationOutputPath": null,
+    "loadTestOutputPath": null,
+    "measuredBy": null
+  }
+}

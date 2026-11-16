@@ -1,0 +1,4 @@
+datasets>=2.19      # Hugging Face fetch
+kaggle>=1.6          # Kaggle fetch (needs ~/.kaggle/kaggle.json)
+pandas>=2.0          # tabular splits and parquet reading
+pyarrow>=14          # only if a source ships parquet

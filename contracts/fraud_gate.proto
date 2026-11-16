@@ -1,0 +1,78 @@
+syntax = "proto3";
+
+package chimera.fraud.v1;
+
+option java_package = "com.chimera.bank.fraud.grpc";
+option java_outer_classname = "FraudGateProto";
+option java_multiple_files = true;
+
+service FraudGate {
+  rpc ScorePreCapture(ScoreRequest) returns (ScoreResponse);
+}
+
+message ScoreRequest {
+  string order_id = 1;
+  string paypal_authorization_id = 2;
+  string mode = 3;
+  string amount = 4;
+  string currency = 5;
+  string timestamp = 6;
+  string rail = 7;
+  map<string, double> card_features = 8;
+  Telemetry telemetry = 9;
+  repeated HistoryEvent history = 10;
+  Evidence evidence = 11;
+  ScoreContext context = 12;
+}
+
+message Telemetry {
+  repeated double keystroke_intervals_ms = 1;
+  repeated MouseMovement mouse_movements = 2;
+  repeated double keystroke_dwell_ms = 3;
+}
+
+message MouseMovement {
+  double x = 1;
+  double y = 2;
+  double interval_ms = 3;
+}
+
+message HistoryEvent {
+  string device_id = 1;
+  string destination = 2;
+  string amount = 3;
+  string timestamp = 4;
+}
+
+message Evidence {
+  map<string, string> metadata = 1;
+  string ocr_text = 2;
+  string generator_marker = 3;
+  double pixel_residual = 4;
+  bytes image_payload = 5;
+}
+
+message ScoreContext {
+  bool step_up_verified = 1;
+  double prior_evidence_score = 2;
+  string scenario_id = 3;
+}
+
+message ScoreResponse {
+  string decision_id = 1;
+  double score = 2;
+  string action = 3;
+  repeated ScoreReason reasons = 4;
+  map<string, double> component_scores = 5;
+  string model_version = 6;
+  string feature_hash = 7;
+  bool fallback = 8;
+  double latency_ms = 9;
+}
+
+message ScoreReason {
+  string code = 1;
+  string message = 2;
+  string component = 3;
+  double score = 4;
+}

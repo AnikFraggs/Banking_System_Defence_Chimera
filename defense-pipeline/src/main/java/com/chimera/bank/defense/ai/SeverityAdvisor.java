@@ -7,7 +7,8 @@ import java.util.Map;
 /**
  * Seam through which the AI-security layers (L4 injection/leak, L5 human
  * verification) can have their locally-computed severity refined by the external
- * "AI brain" (the Python XGBoost + RAG + RL triage service).
+ * "AI brain" (the Python ai-brain service; its triage endpoint is a heuristic
+ * signature + anomaly scorer, not a trained model).
  *
  * <p>The defense-pipeline module deliberately does NOT depend on platform-api or
  * on any HTTP client. It only knows this interface; platform-api provides the

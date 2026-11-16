@@ -1,0 +1,10 @@
+# kind cluster for the CHIMERA k8s manifests. ARTIFACTS_DIR is substituted by k8s_smoke.sh (envsubst)
+# because kind wants an absolute host path. The mount is what replaces fraud-gate's emptyDir /artifacts.
+kind: Cluster
+apiVersion: kind.x-k8s.io/v1alpha4
+nodes:
+  - role: control-plane
+    extraMounts:
+      - hostPath: ${ARTIFACTS_DIR}
+        containerPath: /artifacts
+        readOnly: true

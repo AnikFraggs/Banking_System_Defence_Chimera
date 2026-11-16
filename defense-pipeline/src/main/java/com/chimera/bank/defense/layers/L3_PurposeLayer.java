@@ -21,7 +21,8 @@ public class L3_PurposeLayer implements DefenseLayer {
 
     private static final Set<String> KNOWN = Set.of(
             "transfer", "deposit", "withdraw", "view_own", "view_customer",
-            "fraud_review", "config_change", "health_admin", "vault_access", "override");
+            "fraud_review", "config_change", "health_admin", "vault_access", "override",
+            "checkout", "manager_override");
 
     @Override
     public int order() {

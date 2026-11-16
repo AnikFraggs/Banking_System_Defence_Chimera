@@ -5,18 +5,69 @@ spring:
     url: jdbc:postgresql://postgres:5432/chimera_db
     username: chimera
     password: pass
+    hikari:
+      # Audit appends use a short REQUIRES_NEW transaction while checkout owns its
+      # transaction connection. Keep headroom for that second connection under load.
+      maximum-pool-size: ${DB_POOL_MAX:40}
+      minimum-idle: ${DB_POOL_MIN_IDLE:5}
+      connection-timeout: ${DB_CONNECTION_TIMEOUT_MS:10000}
+      max-lifetime: ${DB_MAX_LIFETIME_MS:1800000}
+      pool-name: ChimeraPool
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: ${DB_SHOW_SQL:false}
+    open-in-view: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
+        # Batch writes so the outbox/saga/idempotency inserts amortize round-trips.
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+  # Flyway owns the engineering tables (idempotency, outbox, saga). Hibernate
+  # ddl-auto=update still creates the JPA entity tables; CREATE TABLE IF NOT
+  # EXISTS in the migration keeps the two from colliding.
+  flyway:
+    enabled: ${CHIMERA_FLYWAY_ENABLED:true}
+    baseline-on-migrate: true
+    baseline-version: 0
+    locations: classpath:db/migration
+  data:
+    redis:
+      host: ${REDIS_HOST:localhost}
+      port: ${REDIS_PORT:6379}
+      timeout: ${REDIS_TIMEOUT_MS:200ms}
+      connect-timeout: ${REDIS_CONNECT_TIMEOUT_MS:200ms}
+  kafka:
+    bootstrap-servers: ${KAFKA_BOOTSTRAP_SERVERS:localhost:9092}
+    producer:
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      properties:
+        enable.idempotence: true
 
 server:
   port: 8080
+  forward-headers-strategy: framework
 
 chimera:
+  checkout:
+    fraud-gate:
+      base-url: ${FRAUD_GATE_BASE_URL:http://localhost:8001}
+      timeout-ms: ${FRAUD_GATE_TIMEOUT_MS:300}
+    paypal:
+      mode: ${PAYPAL_MODE:stub}
+      base-url: ${PAYPAL_BASE_URL:https://api-m.sandbox.paypal.com}
+      client-id: ${PAYPAL_CLIENT_ID:}
+      client-secret: ${PAYPAL_CLIENT_SECRET:}
+      webhook-id: ${PAYPAL_WEBHOOK_ID:}
+    audit:
+      hmac-key: ${AUDIT_HMAC_KEY:}
+      key-version: ${AUDIT_KEY_VERSION:local-v1}
+      postgres-lock: ${AUDIT_POSTGRES_LOCK:true}
   ai-brain:
     # Overridden in Docker Compose to the python service name.
     base-url: ${AI_BRAIN_BASE_URL:http://localhost:8000}
@@ -24,6 +75,29 @@ chimera:
     # Replace through MANAGER_AUTH_KEY outside local development.
     manager:
       key: ${MANAGER_AUTH_KEY:manager-local-key}
+    jwt:
+      # Off by default: local dev uses the session-token surface. Enable and
+      # point at a real OIDC issuer (or JWKS) to accept OAuth2/OIDC bearer JWTs.
+      enabled: ${CHIMERA_JWT_ENABLED:false}
+      issuer-uri: ${CHIMERA_JWT_ISSUER_URI:}
+      jwk-set-uri: ${CHIMERA_JWT_JWK_SET_URI:}
+      role-claim: ${CHIMERA_JWT_ROLE_CLAIM:role}
+  cache:
+    order:
+      enabled: ${CHIMERA_ORDER_CACHE_ENABLED:true}
+      ttl-seconds: ${CHIMERA_ORDER_CACHE_TTL_SECONDS:30}
+  outbox:
+    relay:
+      enabled: ${CHIMERA_OUTBOX_RELAY_ENABLED:true}
+      poll-ms: ${CHIMERA_OUTBOX_POLL_MS:1000}
+      max-attempts: ${CHIMERA_OUTBOX_MAX_ATTEMPTS:5}
+    kafka:
+      # Redis Streams is the default outbox transport. Set true to use Kafka.
+      enabled: ${CHIMERA_OUTBOX_KAFKA_ENABLED:false}
+      topic: ${CHIMERA_OUTBOX_TOPIC:chimera.outbox}
+      dlq-topic: ${CHIMERA_OUTBOX_DLQ_TOPIC:chimera.outbox.dlq}
+    stream: ${CHIMERA_OUTBOX_STREAM:chimera:outbox}
+    dlq-stream: ${CHIMERA_OUTBOX_DLQ_STREAM:chimera:outbox:dlq}
   datasets:
     # CSV files uploaded through the manager-only validation endpoint are kept
     # locally. Do not point this at a production-data directory.
@@ -32,15 +106,52 @@ chimera:
     # Use a licensed/approved quote API in a deployment. The local default
     # reports the quote as unavailable instead of inventing a NIFTY value.
     quote-url: ${NIFTY_QUOTE_URL:}
+  defense:
+    l4:
+      semantic:
+        # Opt-in ONNX semantic injection guard. Stays disabled unless BOTH paths
+        # are set (mount the trained artifacts read-only). The timeout is tuned to
+        # measured CPU inference for the int8 bert-mini guard (p50~56ms, p95~66ms
+        # on the eval host); the old 50ms default would fail-closed to CHALLENGE on
+        # most calls. Recall/FPR and latency are recorded in datasets EVALUATION.md.
+        model-path: ${L4_SEMANTIC_MODEL_PATH:}
+        vocab-path: ${L4_SEMANTIC_VOCAB_PATH:}
+        max-sequence-length: ${L4_SEMANTIC_MAX_SEQ:128}
+        max-input-chars: ${L4_SEMANTIC_MAX_CHARS:8192}
+        timeout-ms: ${L4_SEMANTIC_TIMEOUT_MS:250}
+        threshold: ${L4_SEMANTIC_THRESHOLD:0.65}
+        # LRU of model verdicts keyed by SHA-256(text); 0 disables. Timeouts/errors are never cached.
+        cache-size: ${L4_SEMANTIC_CACHE_SIZE:4096}
 
 management:
   endpoints:
     web:
       exposure:
-        include: health,info
+        include: health,info,prometheus,metrics
   endpoint:
     health:
       show-details: always
+    prometheus:
+      access: read_only
+  metrics:
+    tags:
+      application: chimera-platform-api
+    distribution:
+      # Publish latency histograms so Prometheus can compute P95/P99 server-side.
+      percentiles-histogram:
+        http.server.requests: true
+      slo:
+        http.server.requests: 50ms,100ms,200ms,300ms,500ms,1s
+  tracing:
+    sampling:
+      probability: ${CHIMERA_TRACE_SAMPLING:1.0}
+  otlp:
+    tracing:
+      endpoint: ${OTEL_EXPORTER_OTLP_ENDPOINT:http://localhost:4318/v1/traces}
+  prometheus:
+    metrics:
+      export:
+        enabled: true
 
 logging:
   level:

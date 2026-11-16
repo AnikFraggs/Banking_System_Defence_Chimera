@@ -1,0 +1,53 @@
+name: AI Brain CI
+
+# Additive workflow closing C1 (ai-brain had no CI job) and part of C2 (its image was
+# never built). Kept separate from ci.yml so it does not disturb the existing pipeline.
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ai-brain-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  ai-brain-tests:
+    name: Python 3.12 ai-brain tests + import smoke
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ai-brain
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+          cache-dependency-path: ai-brain/requirements.txt
+      - name: Install dependencies
+        run: pip install --no-cache-dir -r requirements.txt
+      - name: Run ai-brain tests
+        run: pytest -q
+      - name: Import smoke (app wires without a model file; credit must fail closed)
+        run: |
+          python -c "import app; assert app.app.title == 'CHIMERA AI Brain'"
+          python -c "import app; h=app.health(); assert h['status']=='ok'; print('health', h)"
+
+  ai-brain-image:
+    name: Docker image build (ai-brain)
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: docker/setup-buildx-action@v3
+      - name: Build ai-brain runtime image
+        uses: docker/build-push-action@v6
+        with:
+          context: ./ai-brain
+          file: ./ai-brain/Dockerfile
+          push: false
+          tags: chimera-ai-brain:ci
+          cache-from: type=gha
+          cache-to: type=gha,mode=max

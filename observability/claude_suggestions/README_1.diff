@@ -1,0 +1,59 @@
+--- README_1.md
++++ README_1.patched.md
+@@ -6,3 +6,3 @@
+ 
+-No production model, raw Kaggle data, real-data evaluation result, or latency benchmark is bundled. In particular, **CAPTURE is not possible until a real, operator-trained creditcard HistGradientBoosting (HGB) artifact is mounted**. A missing or invalid model fails closed to `CHALLENGE`.
++No production model, raw Kaggle data, real-data evaluation result, or latency benchmark is bundled. In particular, **CAPTURE requires the real-data creditcard HistGradientBoosting (HGB) artifact to be mounted** (`fraud-gate/artifacts/creditcard_hgb.joblib`, trained on the ULB file, 29 features; gitignored, so not bundled; promoted and verified end to end, evidence: <EVIDENCE: path to promotion / CAPTURE log>). A missing or invalid model still fails closed to `CHALLENGE`.
+ 
+@@ -22,5 +22,5 @@
+ > - L4 v7/v7b and the two-model ensembles were measured and **not adopted**.
+-> - The real-data card model (ULB) is trained but **not promoted**. `fraud-gate/artifacts/` still
+->   holds a synthetic toy whose feature contract the simulator does not match, so every card score
+->   fails closed to CHALLENGE ("Where improvements are needed", item 3).
++> - The real-data card model (ULB) is **promoted**: `fraud-gate/artifacts/creditcard_hgb.joblib` is the
++>   29-feature ULB HGB and the CAPTURE path completes end to end (evidence: <EVIDENCE: path to CAPTURE log>).
++>   Details: "Where improvements are needed", item 3.
+ > - Details: [`MODEL_BENCHMARKS.md`](MODEL_BENCHMARKS.md) §1, §3.3–§3.4, §4.2 and §5.1. Genuine
+@@ -172,3 +172,3 @@
+ 
+-A measured run on the real ULB file is recorded in [`MODEL_BENCHMARKS.md`](MODEL_BENCHMARKS.md) §1. Its artifact, `fraud-gate/training/benchmarks/card/creditcard_hgb_ulb.joblib` (29 features: `V1`–`V28`, `Amount`), is **not promoted**. On this host `fraud-gate/artifacts/` still holds a synthetic toy that expects `Time` as well, so every card score fails closed (see "Where improvements are needed", item 3). To promote the measured artifact, copy it to `fraud-gate/artifacts/creditcard_hgb.joblib` and restart as below.
++A measured run on the real ULB file is recorded in [`MODEL_BENCHMARKS.md`](MODEL_BENCHMARKS.md) §1. Its artifact (29 features: `V1`–`V28`, `Amount`; benchmark copy `fraud-gate/training/benchmarks/card/creditcard_hgb_ulb.joblib`) is the one mounted at `fraud-gate/artifacts/creditcard_hgb.joblib` (promoted <EVIDENCE: date or commit>). To promote a different artifact, copy it to that path and restart as below.
+ 
+@@ -442,18 +442,19 @@
+    - Logs: `build-check/mvn_test_2026-11-15_minus_wip_bb.log`, `build-check/mvn_it_2026-11-15_*.log`.
+-2. **gRPC transport — partial.** The compose stack runs (`fraud-gate-grpc` container up) and the
+-   HTTP path is live-verified; a full gRPC end-to-end exercise against the built stack is pending.
++2. **gRPC transport — live-verified.** The compose stack runs (`fraud-gate-grpc` container up) and a gRPC
++   end-to-end exercise against the built stack passed (evidence: <EVIDENCE: path to gRPC e2e log>).
++   Known limitation: after the gate container's IP changes under load the breaker stays open for about
++   50–70 s before the channel recovers (evidence: <EVIDENCE: path to chaos log>). It fails closed, so it is
++   a resilience finding, not a correctness bug.
+ 3. **Models — mixed, see MODEL_BENCHMARKS.md.**
+-   - **Card gate — trained on real data, but not promoted.**
++   - **Card gate — trained on real data and promoted.**
+      - An HGB trained on the real ULB `creditcard.csv` reaches test recall 0.827 at FPR 0.0076
+        (43/52 frauds). The XGBoost rival ranks better (PR-AUC 0.767 vs 0.751).
+-     - That artifact is `fraud-gate/training/benchmarks/card/creditcard_hgb_ulb.joblib`
+-       (gitignored). It is **not promoted**.
+-     - The file Compose mounts, `fraud-gate/artifacts/creditcard_hgb.joblib`, is still the
+-       2026-11-12 synthetic toy (metadata `synthetic: true`). It loads, but it expects a `Time`
+-       feature that the simulator does not send. Non-simulated orders send no card features at
+-       all. Every card score therefore fails closed to CHALLENGE with `INVALID_FEATURES`
+-       (checked 2026-11-15).
+-     - The ULB artifact takes exactly the simulator's 29 features. On the simulator's all-zero
+-       `V1..V28` vector it scores 0.000015–0.000419, below its 0.0016 threshold.
+-     - Promoting it changes CAPTURE outcomes, so promotion is the owner's decision.
++     - It is mounted at `fraud-gate/artifacts/creditcard_hgb.joblib` (gitignored; promoted
++       <EVIDENCE: date or commit>). The benchmark copy is
++       `fraud-gate/training/benchmarks/card/creditcard_hgb_ulb.joblib`.
++     - It takes exactly the simulator's 29 features. On the simulator's all-zero `V1..V28` vector it scores
++       0.000015–0.000419, below its 0.0016 threshold. Non-simulated orders send no card features at all,
++       so they still fail closed to CHALLENGE with `INVALID_FEATURES`.
++     - CAPTURE verified end to end (evidence: <EVIDENCE: path to CAPTURE log>). The CAPTURE saga is not yet
++       load-benchmarked with this artifact.
+    - **L4 semantic guard:** the distilled v6 MiniLM (33M params) is the best deployable candidate.
+@@ -485,3 +486,3 @@
+    (MODEL_BENCHMARKS §1), but the CAPTURE saga is not yet load-benchmarked with that artifact
+-   (not promoted; item 3).
++   (item 3).
+ 8. **PayPal sandbox and deployment — pending.** Stub-only (`PAYPAL_MODE=stub`); real sandbox

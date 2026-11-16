@@ -1,0 +1,12 @@
+# Base dependencies used by the HGB augmentation entrypoint and lightweight tests.
+-r requirements.txt
+
+# Optional heavyweight dependencies for train_contrastive.py and train_lora_verdicts.py.
+# Install them only when those commands are needed; synthesis, validation and
+# Safe-LCB training use the Python standard library plus the base dependencies.
+torch>=2.4,<3
+transformers>=4.44,<6
+sentence-transformers>=3.0,<6
+peft>=0.12,<1
+accelerate>=0.33,<2
+safetensors>=0.4,<1

@@ -1,0 +1,10 @@
+# The runtime never imports training outputs; models are mounted at /artifacts.
+artifacts/
+training/artifacts/
+training/benchmarks/
+**/__pycache__
+**/*.pyc
+.pytest_cache
+.venv
+.env
+.env.*

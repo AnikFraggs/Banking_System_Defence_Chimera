@@ -1,0 +1,222 @@
+groups:
+  - name: chimera-platform-api
+    interval: 30s
+    rules:
+      # Service availability
+      - alert: PlatformAPIDown
+        expr: up{job="platform-api"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Platform API is down"
+          description: "Platform API has been down for more than 1 minute"
+
+      # High error rate
+      - alert: PlatformAPIHighErrorRate
+        expr: |
+          sum(rate(http_server_requests_seconds_count{job="platform-api",status=~"5.."}[5m])) 
+          / 
+          sum(rate(http_server_requests_seconds_count{job="platform-api"}[5m])) > 0.05
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Platform API high error rate"
+          description: "Error rate is above 5% for the last 5 minutes"
+
+      # High latency
+      - alert: PlatformAPIHighLatency
+        expr: |
+          histogram_quantile(0.95, 
+            sum(rate(http_server_requests_seconds_bucket{job="platform-api"}[5m])) by (le)
+          ) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Platform API high P95 latency"
+          description: "P95 latency is above 500ms for the last 5 minutes"
+
+      # JVM memory pressure
+      - alert: PlatformAPIHighMemoryUsage
+        expr: |
+          (jvm_memory_used_bytes{job="platform-api",area="heap"} / jvm_memory_max_bytes{job="platform-api",area="heap"}) > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Platform API high heap memory usage"
+          description: "JVM heap usage is above 85%"
+
+      # Database connection pool exhaustion
+      - alert: PlatformAPIDBPoolExhausted
+        expr: |
+          hikaricp_connections_active{job="platform-api"} / hikaricp_connections_max{job="platform-api"} > 0.9
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Platform API database pool near exhaustion"
+          description: "Active connections are above 90% of max pool size"
+
+      # Cache hit ratio
+      - alert: PlatformAPILowCacheHitRatio
+        expr: |
+          sum(rate(cache_gets_total{job="platform-api",result="hit"}[5m]))
+          /
+          sum(rate(cache_gets_total{job="platform-api"}[5m])) < 0.5
+        for: 5m
+        labels:
+          severity: info
+        annotations:
+          summary: "Platform API low cache hit ratio"
+          description: "Cache hit ratio is below 50%"
+
+  - name: chimera-fraud-gate
+    interval: 30s
+    rules:
+      # Service availability
+      - alert: FraudGateDown
+        expr: up{job="fraud-gate"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fraud Gate (HTTP) is down"
+          description: "Fraud Gate HTTP service has been down for more than 1 minute"
+
+      - alert: FraudGateGRPCDown
+        expr: up{job="fraud-gate-grpc"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fraud Gate (gRPC) is down"
+          description: "Fraud Gate gRPC service has been down for more than 1 minute"
+
+      # Model unavailable
+      - alert: FraudGateModelUnavailable
+        expr: |
+          chimera_fraud_gate_model_loaded == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fraud Gate model unavailable"
+          description: "The fraud scoring model is not loaded - all requests will fail closed to CHALLENGE"
+
+      # High scoring latency
+      - alert: FraudGateHighScoringLatency
+        expr: |
+          histogram_quantile(0.95,
+            sum(rate(chimera_fraud_gate_score_latency_ms_bucket[5m])) by (le)
+          ) > 300
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Fraud Gate high scoring latency"
+          description: "P95 scoring latency is above 300 ms (metric is in milliseconds)"
+
+      # High challenge rate
+      - alert: FraudGateHighChallengeRate
+        expr: |
+          sum(rate(chimera_fraud_gate_scores_total{action="CHALLENGE"}[5m]))
+          /
+          sum(rate(chimera_fraud_gate_scores_total[5m])) > 0.5
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Fraud Gate high challenge rate"
+          description: "More than 50% of decisions are CHALLENGE - model may be unavailable or too conservative"
+
+      # Redis connectivity
+      # UNRESOLVED: fraud_gate_redis_connected is not a confirmed metric name (the app emits chimera_fraud_gate_*).
+      # Find the real name: python tools/metric_contract.py names --exposition fraud-gate=http://localhost:8001/metrics
+      - alert: FraudGateRedisDown
+        expr: fraud_gate_redis_connected == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Fraud Gate Redis connection lost"
+          description: "Fraud Gate cannot connect to Redis - velocity counters and case memory unavailable"
+
+  - name: chimera-system
+    interval: 30s
+    rules:
+      # PostgreSQL
+      - alert: PostgresDown
+        expr: |
+          pg_up{job="postgres"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "PostgreSQL is down"
+          description: "postgres_exporter cannot reach PostgreSQL (pg_up == 0) for more than 1 minute"
+
+      # Redis
+      - alert: RedisDown
+        expr: |
+          redis_up{job="redis"} == 0
+        for: 1m
+        labels:
+          severity: critical
+        annotations:
+          summary: "Redis is down"
+          description: "redis_exporter cannot reach Redis (redis_up == 0) for more than 1 minute"
+
+      # Container resource usage
+      - alert: ContainerHighCPU
+        expr: |
+          sum by (name) (rate(container_cpu_usage_seconds_total{name!=""}[5m]))
+          / on (name)
+          (sum by (name) (container_spec_cpu_quota{name!=""} > 0) / on (name) sum by (name) (container_spec_cpu_period{name!=""}))
+          > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Container high CPU usage"
+          description: "Container {{ $labels.name }} CPU usage is above 85% of its CPU limit"
+
+      - alert: ContainerHighMemory
+        expr: |
+          sum by (name) (container_memory_usage_bytes{name!=""})
+          / on (name)
+          sum by (name) (container_spec_memory_limit_bytes{name!=""} > 0)
+          > 0.85
+        for: 5m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Container high memory usage"
+          description: "Container {{ $labels.name }} memory usage is above 85% of its limit"
+
+  - name: chimera-meta
+    interval: 30s
+    rules:
+      # `up == 0` alerts never fire when the job does not exist at all; catch that.
+      - alert: ScrapeJobMissing
+        expr: |
+          absent(up{job="platform-api"}) or absent(up{job="fraud-gate"}) or absent(up{job="fraud-gate-grpc"})
+          or absent(up{job="postgres"}) or absent(up{job="redis"})
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "A scrape job has no targets"
+          description: "No `up` series exists for {{ $labels.job }}; its alerts and dashboard panels cannot work"
+
+      # pg_up / redis_up come from the exporters, so the exporters themselves need an alert.
+      - alert: ExporterDown
+        expr: up{job=~"postgres|redis|grafana"} == 0
+        for: 2m
+        labels:
+          severity: warning
+        annotations:
+          summary: "Exporter {{ $labels.job }} is down"
+          description: "Prometheus cannot scrape {{ $labels.job }}; dependent dashboards and alerts are blind"

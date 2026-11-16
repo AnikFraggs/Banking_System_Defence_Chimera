@@ -1,0 +1,49 @@
+# Non-secret environment shared by the CHIMERA services.
+# Values mirror compose.yaml / .env.example. SANDBOX ONLY.
+# UNTESTED: never applied to a cluster. Secrets live in secret.example.yaml
+# (copy to secret.yaml, fill with throwaway local values, DO NOT COMMIT).
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: chimera-config
+  namespace: chimera
+  labels:
+    app.kubernetes.io/part-of: chimera-checkout-shield
+data:
+  # --- PostgreSQL (non-secret parts) ---
+  POSTGRES_DB: "chimera_db"
+  POSTGRES_USER: "chimera"
+  SPRING_DATASOURCE_URL: "jdbc:postgresql://postgres:5432/chimera_db"
+  SPRING_DATASOURCE_USERNAME: "chimera"
+  SPRING_JPA_HIBERNATE_DDL_AUTO: "update"
+
+  # --- Redis ---
+  SPRING_DATA_REDIS_HOST: "redis"
+  SPRING_DATA_REDIS_PORT: "6379"
+  REDIS_URL: "redis://redis:6379/0"
+
+  # --- Fraud gate (REST + gRPC + worker) ---
+  MODEL_ARTIFACT_PATH: "/artifacts/creditcard_hgb.joblib"
+  LOG_LEVEL: "INFO"
+  GRPC_TARGET: "0.0.0.0:50051"
+  WORKER_NAME: "fraud-gate-worker"
+  EXPLANATION_BACKEND_URL: ""
+  SAFE_LCB_POLICY_PATH: ""
+  GRAPH_COUNTERS_ENABLED: "false"
+
+  # --- platform-api -> fraud gate transport (gRPC default, no silent fallback) ---
+  CHIMERA_CHECKOUT_FRAUD_GATE_TRANSPORT: "grpc"
+  CHIMERA_CHECKOUT_FRAUD_GATE_GRPC_TARGET: "fraud-gate-grpc:50051"
+  CHIMERA_CHECKOUT_FRAUD_GATE_TIMEOUT_MS: "300"
+  CHIMERA_CHECKOUT_FRAUD_GATE_BASE_URL: "http://fraud-gate:8001"
+  CHIMERA_CASES_ASYNC_RESULTS_ENABLED: "true"
+  CHIMERA_CASES_FEEDBACK_ENABLED: "true"
+
+  # --- platform-api -> ai-brain (escalate-only severity advisor + credit v3) ---
+  # Without this the client defaults to localhost:8000 inside the pod.
+  AI_BRAIN_BASE_URL: "http://ai-brain:8000"
+
+  # --- PayPal: STUB mode by default. Sandbox HTTP only if an operator opts in. ---
+  PAYPAL_MODE: "stub"
+  PAYPAL_BASE_URL: "https://api-m.sandbox.paypal.com"
+  AUDIT_KEY_VERSION: "local-v1"

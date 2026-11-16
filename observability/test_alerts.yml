@@ -1,0 +1,55 @@
+rule_files:
+  - alerts.yml
+evaluation_interval: 15s
+tests:
+  - name: healthy database exporter
+    interval: 15s
+    input_series:
+      - series: 'up{job="postgres",instance="db"}'
+        values: '1+0x8'
+      - series: 'pg_up{job="postgres",instance="db"}'
+        values: '1+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: PostgresDown
+        exp_alerts: []
+  - name: scrape success does not hide database failure
+    interval: 15s
+    input_series:
+      - series: 'up{job="postgres",instance="db"}'
+        values: '1+0x8'
+      - series: 'pg_up{job="postgres",instance="db"}'
+        values: '0+0x8'
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: PostgresDown
+        exp_alerts:
+          - exp_labels: {job: postgres, instance: db, severity: critical}
+            exp_annotations:
+              summary: PostgreSQL unreachable from exporter or exporter unavailable
+  - name: missing HTTP target is not healthy
+    interval: 15s
+    input_series: []
+    alert_rule_test:
+      - eval_time: 2m
+        alertname: FraudGateDown
+        exp_alerts:
+          - exp_labels: {job: fraud-gate, severity: critical}
+            exp_annotations:
+              summary: Fraud Gate HTTP metrics unavailable
+  - name: scoring latency threshold is milliseconds
+    interval: 15s
+    input_series:
+      - series: 'chimera_fraud_gate_score_latency_ms_bucket{transport="grpc",le="100"}'
+        values: '0+0x40'
+      - series: 'chimera_fraud_gate_score_latency_ms_bucket{transport="grpc",le="500"}'
+        values: '0+100x40'
+      - series: 'chimera_fraud_gate_score_latency_ms_bucket{transport="grpc",le="+Inf"}'
+        values: '0+100x40'
+    alert_rule_test:
+      - eval_time: 6m
+        alertname: FraudGateHighScoringLatency
+        exp_alerts:
+          - exp_labels: {transport: grpc, severity: warning}
+            exp_annotations:
+              summary: Fraud Gate service P95 scoring latency above 300ms

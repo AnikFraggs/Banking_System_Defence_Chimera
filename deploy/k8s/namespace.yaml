@@ -1,0 +1,13 @@
+# CHIMERA Checkout Shield - Kubernetes namespace.
+# SANDBOX ONLY. Never point this at real cards, real cardholder data, or real
+# PayPal accounts. UNTESTED starting point: these manifests have never been
+# applied to a cluster. See deploy/k8s/README.md.
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: chimera
+  labels:
+    app.kubernetes.io/part-of: chimera-checkout-shield
+    app.kubernetes.io/managed-by: kubectl
+    # Defensive payment reference app; sandbox/demo use only.
+    chimera.io/environment: sandbox

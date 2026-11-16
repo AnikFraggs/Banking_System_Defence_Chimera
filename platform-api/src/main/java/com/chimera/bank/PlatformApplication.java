@@ -2,6 +2,7 @@ package com.chimera.bank;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.scheduling.annotation.EnableScheduling;
 
 /**
  * CHIMERA Bank Platform entry point.
@@ -11,6 +12,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * ordered {@code DefensePipeline}.
  */
 @SpringBootApplication(scanBasePackages = "com.chimera.bank")
+@EnableScheduling
 public class PlatformApplication {
 
     public static void main(String[] args) {

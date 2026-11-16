@@ -8,17 +8,22 @@ CREATE TABLE IF NOT EXISTS users (
 CREATE TABLE IF NOT EXISTS transactions (
     id SERIAL PRIMARY KEY,
     timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    username VARCHAR(50) NOT NULL,
     type VARCHAR(20) NOT NULL,
     amount DECIMAL(15,2) NOT NULL,
     counterparty VARCHAR(100),
     status VARCHAR(20) NOT NULL
 );
 
--- Insert dummy data if empty
-DO $$ BEGIN
-    IF NOT EXISTS (SELECT 1 FROM users) THEN
-        INSERT INTO users (username, role, balance) VALUES 
-        ('anita.rao', 'CUSTOMER', 256400.00),
-        ('rohan.kapoor', 'CUSTOMER', 87500.00);
-    END IF;
-END $$;
+-- Upgrade databases created by the earlier unscoped BFF initializer.
+ALTER TABLE transactions ADD COLUMN IF NOT EXISTS username VARCHAR(50);
+
+-- Owner-scoped recent-history reads and stable timestamp ordering at scale.
+CREATE INDEX IF NOT EXISTS idx_transactions_owner_timestamp
+    ON transactions (username, timestamp DESC, id DESC);
+
+-- Idempotent demo fixtures; never overwrite balances or role changes on restart.
+INSERT INTO users (username, role, balance) VALUES
+    ('anita.rao', 'CUSTOMER', 256400.00),
+    ('rohan.kapoor', 'CUSTOMER', 87500.00)
+ON CONFLICT (username) DO NOTHING;

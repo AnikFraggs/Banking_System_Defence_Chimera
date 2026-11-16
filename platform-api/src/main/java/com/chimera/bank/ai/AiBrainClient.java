@@ -5,22 +5,26 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.web.client.ClientHttpRequestFactories;
 import org.springframework.boot.web.client.ClientHttpRequestFactorySettings;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.client.ClientHttpRequestFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClient;
+import org.springframework.web.server.ResponseStatusException;
 
 import java.time.Duration;
+import java.util.List;
 import java.util.Map;
 
 /**
- * Client for the Python "AI brain" (the existing chimera-defense-lab triage
- * service: XGBoost + RAG + offline RL + optional OpenAI/Claude advisory).
+ * Client for the Python "AI brain" service (ai-brain/app.py). {@code /v1/triage} is a
+ * heuristic signature + anomaly scorer; {@code /v1/credit-application/score} is a logistic
+ * regression trained on a synthetic credit-boost/CPN dataset with a red-flag knowledge base.
  *
  * <p>The Java platform owns money movement and the layered perimeter; it
  * delegates nuanced risk scoring to this service over HTTP. If the brain is
  * unreachable, {@link #triage} degrades gracefully to a conservative local
- * fallback so the platform never hard-fails on an optional dependency.
+ * fallback and credit scoring fails closed to manual review.
  */
 @Service
 public class AiBrainClient {
@@ -101,6 +105,50 @@ public class AiBrainClient {
 
     public boolean lastCallOk() {
         return lastCallOk;
+    }
+
+    /**
+     * Scores a credit application (derived features only) for credit-boost / CPN fraud.
+     * Brain validation errors surface as 400 without echoing the brain's detail, which can
+     * contain the rejected input; an unreachable brain fails closed to manual review.
+     */
+    @SuppressWarnings("unchecked")
+    public Map<String, Object> scoreCreditApplication(Map<String, Object> application) {
+        try {
+            Map<String, Object> response = client.post()
+                    .uri("/v1/credit-application/score")
+                    .body(application)
+                    .retrieve()
+                    .onStatus(HttpStatusCode::is4xxClientError, (req, res) -> {
+                        throw new ResponseStatusException(HttpStatus.BAD_REQUEST,
+                                "Credit application failed validation (derived features only; no raw identifiers).");
+                    })
+                    .onStatus(HttpStatusCode::is5xxServerError, (req, res) -> {
+                        throw new IllegalStateException("brain returned " + res.getStatusCode());
+                    })
+                    .body(Map.class);
+            lastCallOk = true;
+            if (response == null) {
+                throw new IllegalStateException("brain returned an empty body");
+            }
+            return response;
+        } catch (ResponseStatusException e) {
+            lastCallOk = true;
+            throw e;
+        } catch (Exception e) {
+            lastCallOk = false;
+            log.warn("AI brain unavailable for credit scoring ({}); failing closed to manual review.", e.toString());
+            return Map.of(
+                    "decision", "manual_review",
+                    "requires_human_review", true,
+                    "auto_decline", false,
+                    "red_flags", List.of(),
+                    "recommended_checks", List.of("ecbsv_consent_ssn_verification",
+                            "income_verification_from_payroll_or_bank_data"),
+                    "model_loaded", false,
+                    "summary", "Credit brain unreachable; failing closed to manual review.",
+                    "from_fallback", true);
+        }
     }
 
     @SuppressWarnings("unchecked")

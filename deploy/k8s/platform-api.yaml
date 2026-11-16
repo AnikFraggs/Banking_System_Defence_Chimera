@@ -1,0 +1,90 @@
+# platform-api (Spring Boot 3.3.5 / Java 21). SANDBOX ONLY. UNTESTED.
+# Image chimera-platform-api:local is a LOCAL BUILD tag; push to a registry and
+# replace image: below before applying to a cluster.
+# Probes use /actuator/health (currently exposed; see application.yml). Health is
+# DOWN if PostgreSQL/Redis are unreachable, which correctly gates readiness.
+# replicas: 2 so the HorizontalPodAutoscaler in hpa.yaml has room to scale.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: platform-api
+  namespace: chimera
+  labels:
+    app: platform-api
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: platform-api
+  template:
+    metadata:
+      labels:
+        app: platform-api
+        app.kubernetes.io/part-of: chimera-checkout-shield
+    spec:
+      containers:
+        - name: platform-api
+          image: chimera-platform-api:local # TODO: push to a registry and replace
+          imagePullPolicy: IfNotPresent
+          ports:
+            - name: http
+              containerPort: 8080
+          envFrom:
+            - configMapRef:
+                name: chimera-config
+            - secretRef:
+                name: chimera-secrets
+          env:
+            # Container-aware JVM heap sizing for the demo memory limit.
+            - name: JAVA_TOOL_OPTIONS
+              value: "-XX:MaxRAMPercentage=75.0"
+          resources:
+            requests:
+              cpu: "500m"
+              memory: "768Mi"
+            limits:
+              cpu: "1500m"
+              memory: "1536Mi"
+          # Give the JVM time to boot before liveness starts killing the pod.
+          startupProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 20
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 30
+          readinessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 10
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /actuator/health
+              port: 8080
+            initialDelaySeconds: 60
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 6
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: platform-api
+  namespace: chimera
+  labels:
+    app: platform-api
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  type: ClusterIP
+  selector:
+    app: platform-api
+  ports:
+    - name: http
+      port: 8080
+      targetPort: 8080

@@ -3,6 +3,7 @@ package com.chimera.bank.defense;
 import com.chimera.bank.common.defense.DefenseContext;
 import com.chimera.bank.common.defense.LayerVerdict;
 import com.chimera.bank.common.rbac.Role;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.constraints.NotBlank;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -66,9 +67,12 @@ public class DefenseController {
     public ResponseEntity<EvaluateResponse> evaluate(
             @RequestBody EvaluateRequest req,
             @RequestHeader(value = "X-Forwarded-For", required = false) String forwardedIp,
-            @RequestHeader(value = "X-Real-IP", required = false) String realIp) {
+            @RequestHeader(value = "X-Real-IP", required = false) String realIp,
+            HttpServletRequest servletRequest) {
 
-        String ip = forwardedIp != null ? forwardedIp : realIp;
+        // forward-headers-strategy=framework strips X-Forwarded-For and moves the
+        // client address into getRemoteAddr(), so the headers alone are usually null.
+        String ip = firstNonBlank(forwardedIp, realIp, servletRequest.getRemoteAddr());
         DefenseContext ctx = new DefenseContext(
                 "cor-" + UUID.randomUUID(),
                 Instant.now(),
@@ -87,6 +91,15 @@ public class DefenseController {
 
         DefenseResult result = pipeline.evaluate(ctx);
         return ResponseEntity.ok(EvaluateResponse.from(result));
+    }
+
+    private static String firstNonBlank(String... candidates) {
+        for (String candidate : candidates) {
+            if (candidate == null) continue;
+            String first = candidate.split(",")[0].trim();
+            if (!first.isBlank() && !"unknown".equalsIgnoreCase(first)) return first;
+        }
+        return null;
     }
 
     private static Role parseRole(String role) {

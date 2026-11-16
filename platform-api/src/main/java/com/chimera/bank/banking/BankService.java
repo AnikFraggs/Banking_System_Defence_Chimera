@@ -19,17 +19,19 @@ import org.springframework.web.server.ResponseStatusException;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.security.SecureRandom;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 import java.util.UUID;
+import java.util.concurrent.ConcurrentHashMap;
 
 @Service
 public class BankService {
+    private static final SecureRandom RANDOM = new SecureRandom();
     public enum TransactionType { DEPOSIT, WITHDRAWAL, TRANSFER }
 
     public record Transaction(String id, Instant timestamp, TransactionType type,
@@ -48,6 +50,19 @@ public class BankService {
     private final TransactionRepository transactionRepository;
     private final DefensePipeline defense;
 
+    /** Pending security challenges awaiting answer validation (keyed by registration number). */
+    private final Map<String, PendingSecurityChallenge> pendingChallenges = new ConcurrentHashMap<>();
+
+    /** A challenge issued to a principal, awaiting answer validation. */
+    private record PendingSecurityChallenge(String expectedAnswer, Instant issuedAt, int attempts) {}
+
+    /** Principals who passed a human challenge, within a short step-up validity window. */
+    private final Map<String, Instant> verifiedHumans = new ConcurrentHashMap<>();
+    private static final long HUMAN_VERIFICATION_TTL_SECONDS = 300;
+
+    /** Client-facing challenge prompt. The expected answer is never sent to the client. */
+    public record ChallengePrompt(String question) {}
+
     public BankService(UserRepository userRepository, TransactionRepository transactionRepository, DefensePipeline defense) {
         this.userRepository = userRepository;
         this.transactionRepository = transactionRepository;
@@ -60,18 +75,18 @@ public class BankService {
         return snapshot(user, txns);
     }
 
-    public synchronized AccountOverview deposit(AuthService.Principal principal, BigDecimal amount, String reference) {
+    public synchronized AccountOverview deposit(AuthService.Principal principal, BigDecimal amount, String reference, String sourceIp) {
         AppUser user = getUser(principal);
-        screen(principal, "deposit", safeText(reference));
+        screen(principal, "deposit", safeText(reference), sourceIp);
         user.setBalance(user.getBalance() + amount.doubleValue());
         userRepository.save(user);
         record(user.getUsername(), "DEPOSIT", amount.doubleValue(), safeText(reference, "Cash deposit"), "COMPLETED");
         return snapshot(user, transactionRepository.findTop10ByUsernameOrderByTimestampDesc(user.getUsername()));
     }
 
-    public synchronized AccountOverview withdraw(AuthService.Principal principal, BigDecimal amount, String reference) {
+    public synchronized AccountOverview withdraw(AuthService.Principal principal, BigDecimal amount, String reference, String sourceIp) {
         AppUser user = getUser(principal);
-        screen(principal, "withdraw", safeText(reference));
+        screen(principal, "withdraw", safeText(reference), sourceIp);
         if (user.getBalance() < amount.doubleValue()) throw new ResponseStatusException(HttpStatus.CONFLICT, "Insufficient balance.");
         user.setBalance(user.getBalance() - amount.doubleValue());
         userRepository.save(user);
@@ -79,9 +94,9 @@ public class BankService {
         return snapshot(user, transactionRepository.findTop10ByUsernameOrderByTimestampDesc(user.getUsername()));
     }
 
-    public synchronized AccountOverview transfer(AuthService.Principal principal, BigDecimal amount, String beneficiaryAccount, String note) {
+    public synchronized AccountOverview transfer(AuthService.Principal principal, BigDecimal amount, String beneficiaryAccount, String note, String sourceIp) {
         AppUser sender = getUser(principal);
-        screen(principal, "transfer", "to " + beneficiaryAccount);
+        screen(principal, "transfer", "to " + beneficiaryAccount, sourceIp);
         
         if (sender.getBalance() < amount.doubleValue()) throw new ResponseStatusException(HttpStatus.CONFLICT, "Insufficient balance.");
 
@@ -133,32 +148,62 @@ public class BankService {
     }
 
     // --- NEW SECURE TRANSFER LOGIC ---
-    public SecurityChallenge getSecurityChallenge() {
+    public ChallengePrompt getSecurityChallenge(AuthService.Principal principal) {
         List<SecurityChallenge> challenges = List.of(
             new SecurityChallenge("What color is the sky during a clear day?", "blue"),
             new SecurityChallenge("Is fire generally hot or cold? (lowercase)", "hot"),
             new SecurityChallenge("How many wheels does a standard car have? (digits)", "4"),
             new SecurityChallenge("What is the opposite of 'stop'? (lowercase)", "go")
         );
-        return challenges.get(new Random().nextInt(challenges.size()));
+        SecurityChallenge challenge = challenges.get(RANDOM.nextInt(challenges.size()));
+        // Keyed per principal; the expected answer stays server-side and is never returned.
+        pendingChallenges.put(principal.registrationNumber(),
+                new PendingSecurityChallenge(challenge.expectedAnswer(), Instant.now(), 0));
+        return new ChallengePrompt(challenge.question());
     }
 
-    public SecureTransferResponse validateSecureTransfer(AuthService.Principal principal, String answer, String beneficiary, BigDecimal amount) {
-        if ("999".equals(answer)) {
-            return new SecureTransferResponse("QUARANTINED", "AI behavior detected. Session routed to Vault.", null);
+    public SecureTransferResponse validateSecureTransfer(AuthService.Principal principal, String answer, String beneficiary, BigDecimal amount, String sourceIp) {
+        String regNo = principal.registrationNumber();
+        PendingSecurityChallenge pending = pendingChallenges.get(regNo);
+
+        // Enforce a challenge exists and has not been locked out (max 3 attempts).
+        if (pending == null) {
+            return new SecureTransferResponse("CHALLENGE_REQUIRED", "No security challenge has been issued. Request one first.", null);
+        }
+        if (pending.attempts() >= 3) {
+            pendingChallenges.remove(regNo);
+            return new SecureTransferResponse("LOCKED", "Too many failed attempts. Challenge invalidated.", null);
         }
 
-        DefenseContext context = new DefenseContext("tx-" + UUID.randomUUID(), Instant.now(), "127.0.0.1",
+        // Validate the answer server-side against the issued challenge (case-insensitive).
+        boolean answerValid = answer != null && answer.trim().equalsIgnoreCase(pending.expectedAnswer());
+        int nextAttempts = pending.attempts() + 1;
+
+        if (!answerValid) {
+            pendingChallenges.put(regNo, new PendingSecurityChallenge(pending.expectedAnswer(), pending.issuedAt(), nextAttempts));
+            if (nextAttempts >= 3) {
+                pendingChallenges.remove(regNo);
+                return new SecureTransferResponse("LOCKED", "Too many failed attempts. Challenge invalidated.", null);
+            }
+            return new SecureTransferResponse("INVALID_ANSWER", "Security answer incorrect. Attempts remaining: " + (3 - nextAttempts), null);
+        }
+
+        // Answer valid: consume the challenge.
+        pendingChallenges.remove(regNo);
+
+        DefenseContext context = new DefenseContext("tx-" + UUID.randomUUID(), Instant.now(), sourceIp,
                 principal.registrationNumber(), principal.role(), "transfer", "Transfer " + amount + " to " + beneficiary);
         context.addSignal("human_challenge_passed", true);
-        
+
         DefenseResult result = defense.evaluate(context);
-        
+
         if (!result.allowed()) {
             return new SecureTransferResponse("LEAK_DETECTED", "Pathway compromised. Defense layers activated: " + result.finalVerdict().reason(), null);
         }
 
-        String otp = String.format("%06d", new Random().nextInt(1000000));
+        // Human verification earned: grant a short step-up window for the follow-up execute.
+        verifiedHumans.put(regNo, Instant.now());
+        String otp = String.format("%06d", RANDOM.nextInt(1000000));
         return new SecureTransferResponse("SECURE", "Pathway secure. OTP generated.", otp);
     }
 
@@ -195,10 +240,10 @@ public class BankService {
             });
     }
 
-    private void screen(AuthService.Principal principal, String purpose, String payload) {
-        DefenseContext context = new DefenseContext("bank-" + UUID.randomUUID(), Instant.now(), "127.0.0.1",
+    private void screen(AuthService.Principal principal, String purpose, String payload, String sourceIp) {
+        DefenseContext context = new DefenseContext("bank-" + UUID.randomUUID(), Instant.now(), sourceIp,
                 principal.registrationNumber(), principal.role(), purpose, payload);
-        context.addSignal("human_challenge_passed", true);
+        context.addSignal("human_challenge_passed", isHumanVerified(principal.registrationNumber()));
         DefenseResult result = defense.evaluate(context);
         if (!result.allowed()) {
             throw new ResponseStatusException(HttpStatus.CONFLICT, "Held by defense: " + result.finalVerdict().reason());
@@ -226,6 +271,19 @@ public class BankService {
         String band = user.getBalance() >= 100000 ? "Excellent" : "Good";
         return new AccountOverview(user.getRegistrationNumber(), user.getAccountNumber(), user.getCustomerName(),
                 BigDecimal.valueOf(user.getBalance()), 750, band, recent);
+    }
+
+    /** True only when the principal passed a human challenge within the step-up window. */
+    private boolean isHumanVerified(String registrationNumber) {
+        Instant verifiedAt = verifiedHumans.get(registrationNumber);
+        if (verifiedAt == null) {
+            return false;
+        }
+        if (verifiedAt.plusSeconds(HUMAN_VERIFICATION_TTL_SECONDS).isBefore(Instant.now())) {
+            verifiedHumans.remove(registrationNumber);
+            return false;
+        }
+        return true;
     }
 
     private static String safeText(String value) { return value == null ? "" : value.trim(); }

@@ -1,0 +1,82 @@
+# Express BFF that the web nginx proxies /api/ to. SANDBOX ONLY.
+# Image chimera-bff:local is a LOCAL BUILD tag: load it into kind or push it to
+# a registry and replace image: below.
+# The web pod's nginx resolves "bff-express" when it starts, so this Service
+# must exist before web.yaml is applied (alphabetical `kubectl apply -f` order
+# already guarantees that). The Ingress sends /api straight to platform-api, so
+# this hop is only used by traffic that enters through the web Service.
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: bff-express
+  namespace: chimera
+  labels:
+    app: bff-express
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: bff-express
+  template:
+    metadata:
+      labels:
+        app: bff-express
+        app.kubernetes.io/part-of: chimera-checkout-shield
+    spec:
+      containers:
+        - name: bff-express
+          image: chimera-bff:local # TODO: push to a registry and replace
+          imagePullPolicy: IfNotPresent
+          env:
+            - name: PORT
+              value: "5000"
+            - name: JAVA_API_URL
+              value: "http://platform-api:8080"
+            - name: API_TIMEOUT_MS
+              value: "10000"
+            - name: BFF_MAX_IN_FLIGHT
+              value: "32"
+          ports:
+            - name: http
+              containerPort: 5000
+          resources:
+            requests:
+              cpu: "50m"
+              memory: "64Mi"
+            limits:
+              cpu: "500m"
+              memory: "256Mi"
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 3
+            periodSeconds: 10
+            timeoutSeconds: 3
+            failureThreshold: 6
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 5000
+            initialDelaySeconds: 10
+            periodSeconds: 20
+            timeoutSeconds: 3
+            failureThreshold: 6
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: bff-express
+  namespace: chimera
+  labels:
+    app: bff-express
+    app.kubernetes.io/part-of: chimera-checkout-shield
+spec:
+  type: ClusterIP
+  selector:
+    app: bff-express
+  ports:
+    - name: http
+      port: 5000
+      targetPort: 5000

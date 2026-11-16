@@ -4,6 +4,7 @@ import com.chimera.bank.auth.AuthService;
 import com.chimera.bank.common.rbac.Role;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +18,7 @@ import java.util.List;
 /** Analyst/manager interfaces for approved intelligence and retrieval evaluation. */
 @RestController
 @RequestMapping("/api/intelligence")
+@PreAuthorize("isAuthenticated()")
 public class IntelligenceController {
     private final AuthService auth;
     private final ThreatIntelligenceService intelligence;

@@ -1,135 +1,97 @@
 const express = require('express');
-const { Pool } = require('pg');
-const { createClient } = require('redis');
 const cors = require('cors');
 const axios = require('axios');
+const http = require('http');
+const https = require('https');
 
 const app = express();
-app.use(cors());
-app.use(express.json());
-
-// --- INFRASTRUCTURE CONNECTIONS ---
-// SSD Layer: PostgreSQL (Permanent cold storage)
-const pg = new Pool({ connectionString: process.env.DATABASE_URL });
-
-// Cache Layer: Redis (L1/L2 Hot Data)
-const redis = createClient({ url: process.env.REDIS_URL });
-redis.connect().catch(console.error);
-
-// --- MEMORY HIERARCHY SIMULATION ---
-// VRAM / Register (Ultra-fast Node.js memory for active threats/RL states)
-const VRAM = new Map(); 
-
-// RAM (Active session buffers)
-const RAM = new Map(); 
-
-
-// --- TRIE & BLOOM FILTER ROUTING ---
-class RouteNode {
-    constructor() {
-        this.children = {};
-        this.bloom = new Set(); // Simplified Bloom Filter
-        this.targetLayer = null;
-    }
-}
-
-const rootTrie = new RouteNode();
-
-function insertRoute(path, layer) {
-    let node = rootTrie;
-    for (const char of path) {
-        if (!node.children[char]) node.children[char] = new RouteNode();
-        node = node.children[char];
-        node.bloom.add(path); // Add to bloom filter at each step
-    }
-    node.targetLayer = layer;
-}
-
-function routeRequest(path) {
-    let node = rootTrie;
-    for (const char of path) {
-        if (!node.children[char] || !node.bloom.has(path)) return 'SSD'; // Prune early
-        node = node.children[char];
-    }
-    return node.targetLayer;
-}
-
-// Register API routes to specific memory layers
-insertRoute('/api/market/overview', 'VRAM');      // Live stocks -> VRAM
-insertRoute('/api/banking/dashboard', 'CACHE');   // User balance -> Redis
-insertRoute('/api/banking/transactions', 'SSD');  // History -> Postgres
-
-
-// --- MIDDLEWARE: The Processor Engine ---
-app.use(async (req, res, next) => {
-    const targetLayer = routeRequest(req.path);
-    req.targetLayer = targetLayer; // Attach to request
-    
-    // Quantization logic: If under attack, strip payload to integers
-    if (req.body.threatLevel === 'HIGH') {
-        req.body = { amount: Number(req.body.amount), flag: 1 }; // Strip metadata
-    }
-    
-    next();
+const apiBase = (process.env.JAVA_API_URL || 'http://localhost:8080').replace(/\/$/, '');
+const allowedOrigins = (process.env.CORS_ORIGINS || 'http://localhost:5173,http://127.0.0.1:5173')
+  .split(',').map(value => value.trim()).filter(Boolean);
+const client = axios.create({
+  baseURL: apiBase,
+  timeout: Number(process.env.API_TIMEOUT_MS || 10000),
+  httpAgent: new http.Agent({ keepAlive: true, maxSockets: 128, maxFreeSockets: 32 }),
+  httpsAgent: new https.Agent({ keepAlive: true, maxSockets: 128, maxFreeSockets: 32 }),
+  validateStatus: () => true,
 });
 
+app.disable('x-powered-by');
+app.use(cors({ origin: allowedOrigins, credentials: false, methods: ['GET', 'POST', 'OPTIONS'],
+  allowedHeaders: ['Authorization', 'Content-Type', 'Idempotency-Key'] }));
+app.use(express.json({ limit: '10mb', strict: true }));
 
-// --- ENDPOINTS ---
-
-// 1. VRAM Layer Endpoint (Live Market)
-app.get('/api/market/overview', async (req, res) => {
-    // In VRAM, data updates in microseconds. We serve from local memory.
-    if (VRAM.has('market')) {
-        return res.json({ ...VRAM.get('market'), layer: 'VRAM (GPU/Register)', latency: '0.1ms' });
+let inFlight = 0;
+const maxInFlight = Math.max(8, Number(process.env.BFF_MAX_IN_FLIGHT || 32));
+app.use((req, res, next) => {
+  if (inFlight >= maxInFlight) {
+    res.set('Retry-After', '1');
+    return res.status(503).json({ error: 'Gateway is at capacity; retry shortly' });
+  }
+  inFlight += 1;
+  let released = false;
+  const release = () => {
+    if (!released) {
+      released = true;
+      inFlight -= 1;
     }
-    // Fallback to Java API if not in VRAM
-    const response = await axios.get(`${process.env.JAVA_API_URL}/api/market/overview`, { headers: { Authorization: req.headers.authorization } });
-    VRAM.set('market', response.data);
-    res.json({ ...response.data, layer: 'SSD -> VRAM (Loaded)', latency: '12ms' });
+  };
+  res.once('finish', release);
+  res.once('close', release);
+  return next();
 });
 
-// 2. CACHE Layer Endpoint (Dashboard)
-app.get('/api/banking/dashboard', async (req, res) => {
-    const cacheKey = `dashboard:${req.headers.authorization}`;
-    
-    // Check Redis (L1/L2 Cache)
-    const cached = await redis.get(cacheKey);
-    if (cached) {
-        return res.json({ ...JSON.parse(cached), layer: 'L1/L2 Cache (Redis)', latency: '1ms' });
-    }
-    
-    // Cache miss -> Fetch from Java API
-    const response = await axios.get(`${process.env.JAVA_API_URL}/api/banking/dashboard`, { headers: { Authorization: req.headers.authorization } });
-    await redis.setEx(cacheKey, 60, JSON.stringify(response.data)); // Cache for 60 seconds
-    res.json({ ...response.data, layer: 'RAM -> Cache (Loaded)', latency: '45ms' });
-});
+async function forward(req, res, path, method = req.method) {
+  // express.json() leaves non-JSON bodies (multipart dataset uploads) unread, so
+  // stream them through untouched with their original boundary-bearing headers.
+  const streamed = Boolean(req.headers['content-type']) && !req.is('application/json');
+  try {
+    const result = await client.request({
+      url: path,
+      method,
+      data: streamed ? req : req.body,
+      headers: {
+        ...(req.headers.authorization ? { Authorization: req.headers.authorization } : {}),
+        ...(req.headers['idempotency-key'] ? { 'Idempotency-Key': req.headers['idempotency-key'] } : {}),
+        ...(streamed ? { 'Content-Type': req.headers['content-type'] } : {}),
+        ...(streamed && req.headers['content-length'] ? { 'Content-Length': req.headers['content-length'] } : {}),
+        'X-Forwarded-For': req.headers['x-forwarded-for'] || req.socket.remoteAddress,
+      },
+    });
+    res.status(result.status);
+    if (result.headers['content-type']) res.type(result.headers['content-type']);
+    return res.send(result.data);
+  } catch (error) {
+    const timeout = error.code === 'ECONNABORTED' || error.code === 'ETIMEDOUT';
+    return res.status(timeout ? 504 : 502).json({ error: timeout ? 'Upstream API timed out' : 'Upstream API unavailable' });
+  }
+}
 
-// 3. SSD Layer Endpoint (Transaction History - Permanent Storage)
+app.get('/health', (_req, res) => res.json({ status: 'UP', upstream: apiBase }));
+app.get('/api/market/overview', (req, res) => forward(req, res, '/api/market/overview'));
+app.get('/api/banking/dashboard', (req, res) => forward(req, res, '/api/banking/dashboard'));
 app.get('/api/banking/transactions', async (req, res) => {
-    // Directly query PostgreSQL (SSD)
-    try {
-        const result = await pg.query('SELECT * FROM transactions ORDER BY timestamp DESC LIMIT 10');
-        res.json({ transactions: result.rows, layer: 'SSD (PostgreSQL)', latency: '15ms' });
-    } catch (err) {
-        res.status(500).json({ error: 'Database query failed' });
-    }
+  try {
+    const result = await client.get('/api/banking/dashboard', {
+      headers: req.headers.authorization ? { Authorization: req.headers.authorization } : {},
+    });
+    if (result.status < 200 || result.status >= 300) return res.status(result.status).send(result.data);
+    return res.json({ transactions: result.data.recentTransactions || [] });
+  } catch (error) {
+    return res.status(error.code === 'ECONNABORTED' ? 504 : 502).json({ error: 'Upstream API unavailable' });
+  }
+});
+app.post('/api/banking/secure-transfer/validate', (req, res) =>
+  forward(req, res, '/api/banking/secure-transfer/validate'));
+app.post('/api/banking/secure-transfer/execute', (req, res) =>
+  forward(req, res, '/api/banking/secure-transfer/execute'));
+app.use('/api', (req, res) => forward(req, res, req.originalUrl));
+
+app.use((error, _req, res, _next) => {
+  if (error instanceof SyntaxError && error.status === 400) return res.status(400).json({ error: 'Invalid JSON body' });
+  if (error.type === 'entity.too.large') return res.status(413).json({ error: 'Request body exceeds 10 MB' });
+  return res.status(500).json({ error: 'Request could not be processed' });
 });
 
-// 4. Secure Transfer (Write-through cache to SSD)
-app.post('/api/banking/secure-transfer/execute', async (req, res) => {
-    const { amount, beneficiary, method } = req.body;
-    
-    // 1. Write to SSD (Postgres) - Immutable Ledger
-    await pg.query(
-        'INSERT INTO transactions (type, amount, counterparty, status) VALUES ($1, $2, $3, $4)',
-        ['TRANSFER', parseFloat(amount), beneficiary, 'COMPLETED']
-    );
-    
-    // 2. Invalidate Cache (Redis)
-    await redis.del(`dashboard:${req.headers.authorization}`);
-    
-    // 3. Return success
-    res.json({ status: 'SUCCESS', message: `Transferred ₹${amount} to ${beneficiary} via ${method}. Written to SSD.` });
-});
-
-app.listen(5000, () => console.log('⚡ CHIMERA Express Processor Engine running on port 5000'));
+const port = Number(process.env.PORT || 5000);
+app.listen(port, () => console.log(`CHIMERA BFF listening on port ${port}; upstream=${apiBase}`));

@@ -1,0 +1,173 @@
+{
+  "eval_file": "datasets\\new_custom_datasets\\out\\rag_eval\\rag_eval.jsonl",
+  "split": "test",
+  "dense_backend": "bge_small_onnx_int8",
+  "thresholds": {
+    "challenge_threshold": 0.9334597690210158,
+    "block_threshold": 0.9677918091825918
+  },
+  "variants": {
+    "regex_only": {
+      "attack": {
+        "n": 1899,
+        "allow": 0.8294,
+        "step_up": 0.0,
+        "constrain": 0.1706,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.1706,
+        "human_review_rate": 0.1706,
+        "escalated_by_source": {
+          "codesagar:Lakera/gandalf_ignore_instructions": 0.0956,
+          "codesagar:deepset/prompt-injections": 0.0134,
+          "codesagar:jackhhao/jailbreak-classification": 0.0979,
+          "codesagar:synthetic": 0.0,
+          "patt:0xcela_event_handlers.txt": 0.0,
+          "patt:Auth_Bypass.txt": 0.3571,
+          "patt:Auth_Bypass2.txt": 0.3824,
+          "patt:BRUTELOGIC-XSS-STRINGS.txt": 0.1186,
+          "patt:FUZZDB_MSSQL.txt": 0.7778,
+          "patt:FUZZDB_MySQL-WHERE_Time.txt": 0.16,
+          "patt:FUZZDB_Oracle.txt": 0.0,
+          "patt:FUZZDB_Postgres_Enumeration.txt": 0.1667,
+          "patt:Generic_ErrorBased.txt": 0.0,
+          "patt:Generic_TimeBased.txt": 0.3667,
+          "patt:Generic_UnionSelect.txt": 0.8333,
+          "patt:JHADDIX_XSS.txt": 0.6308,
+          "patt:RSNAKE_XSS.txt": 0.2,
+          "patt:SQLi_Polyglots.txt": 0.0,
+          "patt:XSS_Polyglots.txt": 0.4615,
+          "patt:command-execution-unix.txt": 0.0,
+          "patt:command_exec.txt": 0.1136,
+          "patt:xss_payloads_quick.txt": 0.3889
+        }
+      },
+      "benign": {
+        "n": 1514,
+        "allow": 0.9914,
+        "step_up": 0.0,
+        "constrain": 0.0086,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.0086,
+        "human_review_rate": 0.0086,
+        "escalated_by_source": {
+          "chimera:layer1_edge_network": 0.0,
+          "chimera:layer2_auth_api": 0.5,
+          "chimera:layer3_app_database": 0.0,
+          "chimera:layer4_genai_rag": 0.0,
+          "codesagar:deepset/prompt-injections": 0.0,
+          "codesagar:jackhhao/jailbreak-classification": 0.0133,
+          "codesagar:synthetic": 0.0,
+          "codesagar:ultrachat": 0.0069
+        }
+      }
+    },
+    "deployed_union_challenge_weight_0.5": {
+      "attack": {
+        "n": 1899,
+        "allow": 0.3734,
+        "step_up": 0.0,
+        "constrain": 0.6266,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.6266,
+        "human_review_rate": 0.6266,
+        "escalated_by_source": {
+          "codesagar:Lakera/gandalf_ignore_instructions": 0.8279,
+          "codesagar:deepset/prompt-injections": 0.1007,
+          "codesagar:jackhhao/jailbreak-classification": 0.6931,
+          "codesagar:synthetic": 0.36,
+          "patt:0xcela_event_handlers.txt": 0.0615,
+          "patt:Auth_Bypass.txt": 0.7143,
+          "patt:Auth_Bypass2.txt": 0.7647,
+          "patt:BRUTELOGIC-XSS-STRINGS.txt": 0.7288,
+          "patt:FUZZDB_MSSQL.txt": 0.8889,
+          "patt:FUZZDB_MySQL-WHERE_Time.txt": 0.28,
+          "patt:FUZZDB_Oracle.txt": 1.0,
+          "patt:FUZZDB_Postgres_Enumeration.txt": 0.1667,
+          "patt:Generic_ErrorBased.txt": 0.1744,
+          "patt:Generic_TimeBased.txt": 0.5333,
+          "patt:Generic_UnionSelect.txt": 0.9896,
+          "patt:JHADDIX_XSS.txt": 0.8615,
+          "patt:RSNAKE_XSS.txt": 0.925,
+          "patt:SQLi_Polyglots.txt": 0.5,
+          "patt:XSS_Polyglots.txt": 1.0,
+          "patt:command-execution-unix.txt": 0.0851,
+          "patt:command_exec.txt": 0.3182,
+          "patt:xss_payloads_quick.txt": 0.8333
+        }
+      },
+      "benign": {
+        "n": 1514,
+        "allow": 0.9841,
+        "step_up": 0.0,
+        "constrain": 0.0159,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.0159,
+        "human_review_rate": 0.0159,
+        "escalated_by_source": {
+          "chimera:layer1_edge_network": 0.0,
+          "chimera:layer2_auth_api": 0.5,
+          "chimera:layer3_app_database": 0.0,
+          "chimera:layer4_genai_rag": 0.0,
+          "codesagar:deepset/prompt-injections": 0.0086,
+          "codesagar:jackhhao/jailbreak-classification": 0.0212,
+          "codesagar:synthetic": 0.1,
+          "codesagar:ultrachat": 0.0115
+        }
+      }
+    },
+    "what_if_challenge_weight_0.45": {
+      "attack": {
+        "n": 1899,
+        "allow": 0.3734,
+        "step_up": 0.2375,
+        "constrain": 0.3892,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.6266,
+        "human_review_rate": 0.3892,
+        "escalated_by_source": {
+          "codesagar:Lakera/gandalf_ignore_instructions": 0.8279,
+          "codesagar:deepset/prompt-injections": 0.1007,
+          "codesagar:jackhhao/jailbreak-classification": 0.6931,
+          "codesagar:synthetic": 0.36,
+          "patt:0xcela_event_handlers.txt": 0.0615,
+          "patt:Auth_Bypass.txt": 0.7143,
+          "patt:Auth_Bypass2.txt": 0.7647,
+          "patt:BRUTELOGIC-XSS-STRINGS.txt": 0.7288,
+          "patt:FUZZDB_MSSQL.txt": 0.8889,
+          "patt:FUZZDB_MySQL-WHERE_Time.txt": 0.28,
+          "patt:FUZZDB_Oracle.txt": 1.0,
+          "patt:FUZZDB_Postgres_Enumeration.txt": 0.1667,
+          "patt:Generic_ErrorBased.txt": 0.1744,
+          "patt:Generic_TimeBased.txt": 0.5333,
+          "patt:Generic_UnionSelect.txt": 0.9896,
+          "patt:JHADDIX_XSS.txt": 0.8615,
+          "patt:RSNAKE_XSS.txt": 0.925,
+          "patt:SQLi_Polyglots.txt": 0.5,
+          "patt:XSS_Polyglots.txt": 1.0,
+          "patt:command-execution-unix.txt": 0.0851,
+          "patt:command_exec.txt": 0.3182,
+          "patt:xss_payloads_quick.txt": 0.8333
+        }
+      },
+      "benign": {
+        "n": 1514,
+        "allow": 0.9841,
+        "step_up": 0.004,
+        "constrain": 0.0119,
+        "isolate_session": 0.0,
+        "escalated_rate": 0.0159,
+        "human_review_rate": 0.0119,
+        "escalated_by_source": {
+          "chimera:layer1_edge_network": 0.0,
+          "chimera:layer2_auth_api": 0.5,
+          "chimera:layer3_app_database": 0.0,
+          "chimera:layer4_genai_rag": 0.0,
+          "codesagar:deepset/prompt-injections": 0.0086,
+          "codesagar:jackhhao/jailbreak-classification": 0.0212,
+          "codesagar:synthetic": 0.1,
+          "codesagar:ultrachat": 0.0115
+        }
+      }
+    }
+  }
+}

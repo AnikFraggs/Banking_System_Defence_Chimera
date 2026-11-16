@@ -2,11 +2,13 @@ package com.chimera.bank.defense.vault;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.time.Instant;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -28,8 +30,9 @@ import java.util.concurrent.ConcurrentHashMap;
  *       safe boundary; it never deletes or attacks any external party's data.</li>
  * </ul>
  *
- * <p>This in-memory implementation is a reference. Production replaces it with a
- * dedicated encrypted datastore with WORM audit and dual-control key custody.
+ * <p>Entries are held in memory; when a {@link VaultPersistence} bean exists (platform-api:
+ * AES-256-GCM rows in PostgreSQL) every state transition is also written durably. Production
+ * still needs WORM audit and dual-control key custody on top of this.
  */
 @Component
 public class DeceptionVault {
@@ -47,7 +50,22 @@ public class DeceptionVault {
 
     public enum Status {QUARANTINED, RESTORED, PURGE_PENDING, PURGED}
 
+    /** Durable copy of every state transition; platform-api supplies an encrypted JPA store. */
+    public interface VaultPersistence {
+        void save(VaultEntry entry);
+    }
+
     private final Map<String, VaultEntry> store = new ConcurrentHashMap<>();
+    private final VaultPersistence persistence;
+
+    public DeceptionVault() {
+        this(Optional.empty());
+    }
+
+    @Autowired
+    public DeceptionVault(Optional<VaultPersistence> persistence) {
+        this.persistence = persistence.orElse(null);
+    }
 
     /** Relocate a compromised session's working set into isolated quarantine. */
     public VaultEntry quarantine(String correlationId, String reason, Map<String, Object> snapshot) {
@@ -55,7 +73,7 @@ public class DeceptionVault {
         VaultEntry entry = new VaultEntry(
                 vaultId, correlationId, Instant.now(), reason,
                 Map.copyOf(snapshot), Status.QUARANTINED);
-        store.put(vaultId, entry);
+        put(entry);
         log.warn("Quarantined session {} into {} (reason={})", correlationId, vaultId, reason);
         return entry;
     }
@@ -69,7 +87,7 @@ public class DeceptionVault {
         VaultEntry e = require(vaultId);
         VaultEntry restored = new VaultEntry(
                 e.vaultId(), e.correlationId(), e.quarantinedAt(), e.reason(), e.snapshot(), Status.RESTORED);
-        store.put(vaultId, restored);
+        put(restored);
         log.info("Restored vault entry {}", vaultId);
         return restored;
     }
@@ -79,8 +97,7 @@ public class DeceptionVault {
         VaultEntry e = require(vaultId);
         VaultEntry pending = new VaultEntry(
                 e.vaultId(), e.correlationId(), e.quarantinedAt(), e.reason(), e.snapshot(), Status.PURGE_PENDING);
-        store.put(vaultId, pending);
-        return pending;
+        return put(pending);
     }
 
     /** Step 2: manager-approved, audited purge. Only permitted from PURGE_PENDING. */
@@ -92,9 +109,24 @@ public class DeceptionVault {
         VaultEntry purged = new VaultEntry(
                 e.vaultId(), e.correlationId(), e.quarantinedAt(),
                 e.reason() + " | purged_by=" + approverRegNo, Map.of(), Status.PURGED);
-        store.put(vaultId, purged);
+        put(purged);
         log.warn("Vault entry {} purged with approval by {}", vaultId, approverRegNo);
         return purged;
+    }
+
+    private VaultEntry put(VaultEntry entry) {
+        store.put(entry.vaultId(), entry);
+        if (persistence != null) {
+            try {
+                persistence.save(entry);
+            } catch (RuntimeException ex) {
+                // Never let a durability failure undo the quarantine: DefensePipeline would turn the
+                // exception into a CHALLENGE, weakening the L6 verdict.
+                log.error("Vault entry {} ({}) held in memory only; durable write failed: {}",
+                        entry.vaultId(), entry.status(), ex.toString());
+            }
+        }
+        return entry;
     }
 
     private VaultEntry require(String vaultId) {

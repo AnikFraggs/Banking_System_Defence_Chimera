@@ -1,0 +1,290 @@
+{
+  "caveat": "SYNTHETIC DATA ONLY.",
+  "lgbm_train_seconds": 0.38,
+  "n_trees": 300,
+  "stdlib_vs_lightgbm_max_abs_prob_diff_test": 0.0,
+  "thresholds_v3": {
+    "t_low": 0.010412540148643231,
+    "t_high": 0.014313053138135395,
+    "chosen_on": "val",
+    "val_fpr_target": 0.005,
+    "val_recall_target": 0.95
+  },
+  "stress": {
+    "seed": 777001,
+    "rows": 10000,
+    "controllable_fields": [
+      "phone_age_days",
+      "email_age_days",
+      "address_matches_bureau",
+      "device_identities_30d",
+      "doc_tamper_score",
+      "inquiries_6m"
+    ]
+  },
+  "model_bytes": 665786,
+  "results": {
+    "v2_lr": {
+      "test": {
+        "roc_auc": 0.9733,
+        "pr_auc": 0.9576,
+        "n": 8028,
+        "positives": 651,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0199,
+          0.017,
+          0.0234
+        ],
+        "fpr_manual_review": [
+          0.0133,
+          0.0109,
+          0.0162
+        ],
+        "precision_manual_review": [
+          0.8635,
+          0.8365,
+          0.8867
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9535,
+        "pr_auc": 0.9189,
+        "n": 4920,
+        "positives": 298,
+        "recall_any_action": [
+          0.896,
+          0.8561,
+          0.9257
+        ],
+        "recall_manual_review": [
+          0.8523,
+          0.8076,
+          0.8881
+        ],
+        "fpr_any_action": [
+          0.0169,
+          0.0135,
+          0.021
+        ],
+        "fpr_manual_review": [
+          0.0121,
+          0.0093,
+          0.0157
+        ],
+        "precision_manual_review": [
+          0.8194,
+          0.7727,
+          0.8582
+        ]
+      },
+      "stress_fresh_rings": {
+        "roc_auc": 0.9685,
+        "pr_auc": 0.9318,
+        "n": 10000,
+        "positives": 748,
+        "recall_any_action": [
+          0.9024,
+          0.879,
+          0.9217
+        ],
+        "recall_manual_review": [
+          0.877,
+          0.8515,
+          0.8986
+        ],
+        "fpr_any_action": [
+          0.0191,
+          0.0165,
+          0.0221
+        ],
+        "fpr_manual_review": [
+          0.012,
+          0.01,
+          0.0144
+        ],
+        "precision_manual_review": [
+          0.8553,
+          0.8286,
+          0.8784
+        ]
+      },
+      "stress_stealth_graft": {
+        "roc_auc": 0.9665,
+        "pr_auc": 0.9262,
+        "n": 10000,
+        "positives": 748,
+        "recall_any_action": [
+          0.8944,
+          0.8703,
+          0.9144
+        ],
+        "recall_manual_review": [
+          0.861,
+          0.8343,
+          0.8839
+        ],
+        "fpr_any_action": [
+          0.0191,
+          0.0165,
+          0.0221
+        ],
+        "fpr_manual_review": [
+          0.012,
+          0.01,
+          0.0144
+        ],
+        "precision_manual_review": [
+          0.853,
+          0.8259,
+          0.8765
+        ]
+      },
+      "assess_latency_ms": {
+        "p50": 0.0107,
+        "p95": 0.0132,
+        "p99": 0.0164
+      }
+    },
+    "v3_lgbm": {
+      "test": {
+        "roc_auc": 0.976,
+        "pr_auc": 0.9575,
+        "n": 8028,
+        "positives": 651,
+        "recall_any_action": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "recall_manual_review": [
+          0.9524,
+          0.9332,
+          0.9663
+        ],
+        "fpr_any_action": [
+          0.0184,
+          0.0156,
+          0.0218
+        ],
+        "fpr_manual_review": [
+          0.0159,
+          0.0133,
+          0.019
+        ],
+        "precision_manual_review": [
+          0.8412,
+          0.8131,
+          0.8659
+        ]
+      },
+      "adaptive_holdout": {
+        "roc_auc": 0.9596,
+        "pr_auc": 0.9369,
+        "n": 4920,
+        "positives": 298,
+        "recall_any_action": [
+          0.9262,
+          0.8908,
+          0.9507
+        ],
+        "recall_manual_review": [
+          0.9262,
+          0.8908,
+          0.9507
+        ],
+        "fpr_any_action": [
+          0.0151,
+          0.012,
+          0.0191
+        ],
+        "fpr_manual_review": [
+          0.0123,
+          0.0095,
+          0.0159
+        ],
+        "precision_manual_review": [
+          0.8288,
+          0.7847,
+          0.8655
+        ]
+      },
+      "stress_fresh_rings": {
+        "roc_auc": 0.9681,
+        "pr_auc": 0.9421,
+        "n": 10000,
+        "positives": 748,
+        "recall_any_action": [
+          0.9305,
+          0.91,
+          0.9466
+        ],
+        "recall_manual_review": [
+          0.9291,
+          0.9085,
+          0.9454
+        ],
+        "fpr_any_action": [
+          0.0165,
+          0.0141,
+          0.0193
+        ],
+        "fpr_manual_review": [
+          0.0142,
+          0.0119,
+          0.0168
+        ],
+        "precision_manual_review": [
+          0.8414,
+          0.8149,
+          0.8647
+        ]
+      },
+      "stress_stealth_graft": {
+        "roc_auc": 0.9673,
+        "pr_auc": 0.942,
+        "n": 10000,
+        "positives": 748,
+        "recall_any_action": [
+          0.9305,
+          0.91,
+          0.9466
+        ],
+        "recall_manual_review": [
+          0.9291,
+          0.9085,
+          0.9454
+        ],
+        "fpr_any_action": [
+          0.0165,
+          0.0141,
+          0.0193
+        ],
+        "fpr_manual_review": [
+          0.0142,
+          0.0119,
+          0.0168
+        ],
+        "precision_manual_review": [
+          0.8414,
+          0.8149,
+          0.8647
+        ]
+      },
+      "assess_latency_ms": {
+        "p50": 0.2047,
+        "p95": 0.259,
+        "p99": 0.3949
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+# Ingress for CHIMERA Checkout Shield. SANDBOX ONLY. UNTESTED.
+# Requires an ingress controller (e.g. ingress-nginx) installed in the cluster.
+# Replace host with a real sandbox hostname you control. TLS is left commented;
+# enable it with a cert-manager ClusterIssuer or a manually provisioned secret.
+#
+# Routing: /api -> platform-api:8080 (Spring serves /api directly), everything
+# else -> web:80 (nginx SPA). The web nginx.conf also proxies /api internally, so
+# routing / straight to web would work too; splitting here avoids a double hop.
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: chimera
+  namespace: chimera
+  labels:
+    app.kubernetes.io/part-of: chimera-checkout-shield
+  annotations:
+    nginx.ingress.kubernetes.io/proxy-body-size: "8m"
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "60"
+spec:
+  ingressClassName: nginx
+  # tls:
+  #   - hosts:
+  #       - chimera-checkout.local
+  #     secretName: chimera-tls
+  rules:
+    - host: chimera-checkout.local # TODO: replace with your sandbox hostname
+      http:
+        paths:
+          - path: /api
+            pathType: Prefix
+            backend:
+              service:
+                name: platform-api
+                port:
+                  number: 8080
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: web
+                port:
+                  number: 80

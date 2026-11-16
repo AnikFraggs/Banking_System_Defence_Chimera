@@ -1,0 +1,26 @@
+# Compose override: run with the main file, e.g.
+#   docker compose -f compose.yaml -f observability/docker-compose.observability.yml up -d
+# Needs the `prometheus` service from the main compose file (see observability/README.md).
+# ASSUMPTIONS to confirm against compose.yaml: service names `postgres` and `redis`, database
+# `chimera_db` (taken from system.json). Credentials come from your environment; nothing is hardcoded.
+services:
+  postgres-exporter:
+    image: quay.io/prometheuscommunity/postgres-exporter:v0.15.0   # pinned from memory; bump if the pull fails
+    environment:
+      DATA_SOURCE_NAME: "postgresql://${POSTGRES_USER:?set POSTGRES_USER}:${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD}@postgres:5432/chimera_db?sslmode=disable"
+    depends_on:
+      - postgres
+    # no published port: Prometheus reaches it over the compose network as postgres-exporter:9187
+
+  redis-exporter:
+    image: oliver006/redis_exporter:v1.62.0                        # pinned from memory; bump if the pull fails
+    environment:
+      REDIS_ADDR: "redis://redis:6379"
+    depends_on:
+      - redis
+
+  prometheus:
+    volumes:
+      # prometheus.yml has `rule_files: /etc/prometheus/alerts.yml` but the README snippet never mounted it,
+      # so no alert rule was ever loaded.
+      - ./observability/alerts.yml:/etc/prometheus/alerts.yml:ro

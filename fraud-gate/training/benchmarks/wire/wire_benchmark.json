@@ -1,0 +1,115 @@
+{
+  "dataset": "PaySim (local, synthetic mobile-money simulator)",
+  "data_sha256": "16910f90577b0d981bf8ff289714510bb89bc71bff7d3f220f024e287e4eea6b",
+  "split": "temporal 70/15/15 sorted by step",
+  "rows": {
+    "train": 4453834,
+    "validation": 954393,
+    "test": 954393,
+    "test_transfer_cashout": 407406
+  },
+  "fraud_rate": {
+    "train": 0.000818,
+    "test": 0.0042
+  },
+  "features": [
+    "amount",
+    "oldbalanceOrg",
+    "newbalanceOrig",
+    "oldbalanceDest",
+    "newbalanceDest",
+    "balance_delta_orig",
+    "balance_delta_dest",
+    "error_balance_orig",
+    "is_transfer",
+    "is_cash_out"
+  ],
+  "validation_fpr_budget": 0.01,
+  "threshold_chosen_on": "validation only",
+  "seed": 42,
+  "environment": {
+    "python": "3.14.6",
+    "platform": "Windows-11-10.0.26200-SP0"
+  },
+  "models": {
+    "hgb_production": {
+      "roc_auc": 1.0,
+      "pr_auc": 1.0,
+      "brier": 2.1e-05,
+      "threshold": 0.9999779001483358,
+      "recall": 0.9967564870259481,
+      "precision": 1.0,
+      "fpr": 0.0,
+      "tp": 3995,
+      "fp": 0,
+      "fn": 13,
+      "tn": 950385,
+      "fpr_budget_met": true,
+      "val_pr_auc": 1.0,
+      "subset_transfer_cashout": {
+        "roc_auc": 1.0,
+        "pr_auc": 1.0,
+        "brier": 4.9e-05
+      },
+      "latency_ms": {
+        "p50": 1.9077,
+        "p95": 3.1981,
+        "p99": 4.4035
+      },
+      "eval_seconds": 20.0
+    },
+    "xgboost": {
+      "roc_auc": 1.0,
+      "pr_auc": 0.99995,
+      "brier": 2e-05,
+      "threshold": 0.9996508359909058,
+      "recall": 0.9970059880239521,
+      "precision": 1.0,
+      "fpr": 0.0,
+      "tp": 3996,
+      "fp": 0,
+      "fn": 12,
+      "tn": 950385,
+      "fpr_budget_met": true,
+      "val_pr_auc": 1.0,
+      "subset_transfer_cashout": {
+        "roc_auc": 1.0,
+        "pr_auc": 0.99995,
+        "brier": 4.4e-05
+      },
+      "latency_ms": {
+        "p50": 0.6545,
+        "p95": 2.0222,
+        "p99": 3.2901
+      },
+      "eval_seconds": 4.6
+    },
+    "lightgbm": {
+      "roc_auc": 1.0,
+      "pr_auc": 0.99999,
+      "brier": 1.2e-05,
+      "threshold": 0.9999999995162729,
+      "recall": 0.9965069860279441,
+      "precision": 1.0,
+      "fpr": 0.0,
+      "tp": 3994,
+      "fp": 0,
+      "fn": 14,
+      "tn": 950385,
+      "fpr_budget_met": true,
+      "val_pr_auc": 1.0,
+      "subset_transfer_cashout": {
+        "roc_auc": 1.0,
+        "pr_auc": 0.99999,
+        "brier": 2.8e-05
+      },
+      "latency_ms": {
+        "p50": 0.4289,
+        "p95": 1.2894,
+        "p99": 1.7968
+      },
+      "eval_seconds": 12.4
+    }
+  },
+  "note": "PaySim is a synthetic simulator; fraud is concentrated in TRANSFER/CASH_OUT. Numbers are not real-world wire-fraud quality."
+}

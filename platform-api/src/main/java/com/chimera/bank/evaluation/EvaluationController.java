@@ -2,6 +2,7 @@ package com.chimera.bank.evaluation;
 
 import com.chimera.bank.auth.AuthService;
 import com.chimera.bank.common.rbac.Role;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -16,6 +17,7 @@ import java.util.List;
 /** Manager-only, local dataset validation surface. */
 @RestController
 @RequestMapping("/api/evaluation")
+@PreAuthorize("hasRole('MANAGER')")
 public class EvaluationController {
     private final AuthService auth;
     private final DatasetValidationService validation;

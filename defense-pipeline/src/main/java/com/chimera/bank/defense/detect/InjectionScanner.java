@@ -42,13 +42,15 @@ public final class InjectionScanner {
             0x202A, 0x202B, 0x202C, 0x202D, 0x202E, 0x2066, 0x2067, 0x2068, 0x2069
     };
 
+    // Exfil verbs are anchored to a sensitive object: a bare "reveal|print|show" alternation
+    // matched substrings inside benign words ("printing", "revealing") and caused most chat FPs.
     private static final List<Pattern> INJECTION_PATTERNS = List.of(
-            Pattern.compile("(?i)ignore\\s+(all\\s+)?(previous|prior|above)\\s+instructions"),
+            Pattern.compile("(?i)ignore\\s+(all\\s+|your\\s+|any\\s+|the\\s+)?(previous\\s+|prior\\s+|above\\s+)?instructions"),
             Pattern.compile("(?i)disregard\\s+(the\\s+)?(system|earlier)\\s+prompt"),
-            Pattern.compile("(?i)reveal|print|show\\s+(your\\s+)?(system|hidden)\\s+prompt"),
+            Pattern.compile("(?i)(reveal|print|show|disclose|leak|exfiltrate|send)\\s+(?:\\w+\\s+){0,3}?(prompt|instructions|password|secret|confidential|credential|api[_ ]?key|token)"),
             Pattern.compile("(?i)you\\s+are\\s+now\\s+(a|an|in)\\s+"),
-            Pattern.compile("(?i)exfiltrate|leak|send\\s+.*(secret|key|token|credential)"),
-            Pattern.compile("(?i)base64|eval\\(|exec\\(|<script")
+            Pattern.compile("(?i)(exfiltrate|leak|send)\\s+.{0,80}?(secret|api[_ ]?key|token|credential)"),
+            Pattern.compile("(?i)base64|eval\\(|exec\\(|print\\(|<script")
     );
 
     public record ScanReport(

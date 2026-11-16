@@ -1,0 +1,128 @@
+# Unverified deployment blueprint. Stub mode is the safe default; no PayPal
+# credentials are required until an operator explicitly configures sandbox HTTP.
+# CAPTURE remains unavailable until a real creditcard HGB artifact is uploaded
+# to the fraud gate's /artifacts disk and the service is restarted.
+services:
+  - type: web
+    name: platform-api
+    runtime: docker
+    plan: free
+    region: oregon
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    healthCheckPath: /actuator/health
+    envVars:
+      # Render supplies postgresql://...; Spring resolves this nested placeholder
+      # to the required jdbc:postgresql://... form at application startup.
+      - key: DATABASE_URL
+        fromDatabase:
+          name: chimera-postgres
+          property: connectionString
+      - key: SPRING_DATASOURCE_URL
+        value: jdbc:${DATABASE_URL}
+      - key: SPRING_DATASOURCE_USERNAME
+        fromDatabase:
+          name: chimera-postgres
+          property: user
+      - key: SPRING_DATASOURCE_PASSWORD
+        fromDatabase:
+          name: chimera-postgres
+          property: password
+      - key: SPRING_JPA_HIBERNATE_DDL_AUTO
+        value: update
+      - key: FRAUD_GATE_BASE_URL
+        value: http://chimera-fraud-gate:8080
+      - key: FRAUD_GATE_TIMEOUT_MS
+        value: "300"
+      - key: CHIMERA_CHECKOUT_FRAUD_GATE_TRANSPORT
+        value: http
+      - key: PAYPAL_MODE
+        value: stub
+      - key: PAYPAL_BASE_URL
+        value: https://api-m.sandbox.paypal.com
+      - key: PAYPAL_CLIENT_ID
+        sync: false
+      - key: PAYPAL_CLIENT_SECRET
+        sync: false
+      - key: PAYPAL_WEBHOOK_ID
+        sync: false
+      - key: AUDIT_HMAC_KEY
+        sync: false
+      - key: AUDIT_KEY_VERSION
+        value: render-v1
+      - key: MANAGER_AUTH_KEY
+        sync: false
+
+  - type: web
+    name: chimera-fraud-gate
+    runtime: docker
+    plan: starter
+    region: oregon
+    rootDir: fraud-gate
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    # Liveness is separate from /ready: an absent model must not turn into an
+    # implicit allow. The service deploys in its fail-closed CHALLENGE state.
+    healthCheckPath: /openapi.json
+    disk:
+      name: chimera-creditcard-model
+      mountPath: /artifacts
+      sizeGB: 1
+    envVars:
+      - key: MODEL_ARTIFACT_PATH
+        value: /artifacts/creditcard_hgb.joblib
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: chimera-redis
+          property: connectionString
+
+  - type: worker
+    name: chimera-fraud-gate-worker
+    runtime: docker
+    plan: starter
+    region: oregon
+    rootDir: fraud-gate
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    dockerCommand: python -m app.worker
+    envVars:
+      - key: REDIS_URL
+        fromService:
+          type: keyvalue
+          name: chimera-redis
+          property: connectionString
+      - key: WORKER_NAME
+        value: chimera-fraud-gate-worker
+
+  # The existing nginx.conf proxies same-origin /api requests to platform-api.
+  # Browser behavior and the Render service-to-service network path are unverified.
+  - type: web
+    name: chimera-web
+    runtime: docker
+    plan: free
+    region: oregon
+    rootDir: web
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    envVars:
+      - key: VITE_API_URL
+        value: /api
+      - key: VITE_PAYPAL_STUB
+        value: "true"
+      - key: VITE_PAYPAL_CLIENT_ID
+        sync: false
+
+  - type: keyvalue
+    name: chimera-redis
+    plan: free
+    region: oregon
+    ipAllowList: []
+
+databases:
+  - name: chimera-postgres
+    plan: free
+    region: oregon
+    databaseName: chimera_db
+    user: chimera
+    postgresMajorVersion: "15"

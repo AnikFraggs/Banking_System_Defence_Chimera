@@ -1,0 +1,27 @@
+# Root context is used only by the platform-api Dockerfile, which needs the
+# POMs, common/, defense-pipeline/, platform-api/ sources and contracts/.
+.git
+.github
+.pip-cache
+.pytest_cache
+.zcode
+archive
+build-check
+checkpoints
+datasets
+metrics
+fraud-gate
+ai-brain
+bff-express
+web
+loadtest
+deploy
+infra
+observability
+postman
+**/target
+**/node_modules
+**/__pycache__
+*.log
+.env
+.env.*
